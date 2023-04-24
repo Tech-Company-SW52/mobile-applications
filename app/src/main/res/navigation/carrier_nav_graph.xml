@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/carrier_nav_graph"
+    app:startDestination="@id/id_carrier_home_fragment">
+    <fragment
+        android:id="@+id/id_carrier_contracts_fragment"
+        android:name="com.fastport.CarrierFragments.CarrierContractsFragment"
+        android:label="Contracts"
+        tools:layout="@layout/fragment_carrier_contracts" />
+    <fragment
+        android:id="@+id/id_carrier_home_fragment"
+        android:name="com.fastport.CarrierFragments.CarrierHomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_carrier_home" />
+    <fragment
+        android:id="@+id/id_carrier_profile_fragment"
+        android:name="com.fastport.CarrierFragments.CarrierProfileFragment"
+        android:label="My profile"
+        tools:layout="@layout/fragment_carrier_profile" />
+    <fragment
+        android:id="@+id/id_carrier_support_fragment"
+        android:name="com.fastport.CarrierFragments.CarrierSupportFragment"
+        android:label="Support"
+        tools:layout="@layout/fragment_carrier_support" />
+</navigation>

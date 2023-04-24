@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/id_client_home_fragment"
+        android:checked="true"
+        android:checkable="true"
+        android:title="Home"/>
+    <item
+        android:id="@+id/id_client_profile_fragment"
+        android:checkable="true"
+        android:title="My Profile"/>
+    <item
+        android:id="@+id/id_client_search_fragment"
+        android:checkable="true"
+        android:title="Search Vehicles"/>
+    <item
+        android:id="@+id/id_client_contracts_fragment"
+        android:checkable="true"
+        android:title="Contracts"/>
+    <item
+        android:id="@+id/id_client_support_fragment"
+        android:checkable="true"
+        android:title="Support"/>
+
+</menu>

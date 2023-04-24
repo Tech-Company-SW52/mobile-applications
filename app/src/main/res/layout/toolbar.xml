@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/fp_blue"
+    android:id="@+id/myToolBar"
+    android:elevation="8dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    <ImageView
+        android:layout_width="130px"
+        android:layout_height="130px"
+        android:src="@drawable/fastport_logo"
+        android:layout_marginLeft="18dp"
+        android:layout_gravity="start" />
+
+    <TextView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/toolbar_user_initial"
+        android:background="@drawable/profile_shape"
+        android:text="DT"
+        android:textColor="#526B9D"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="center"
+        android:layout_marginRight="20dp"
+        android:paddingTop="3dp"
+        android:layout_gravity="right"
+        />
+</androidx.appcompat.widget.Toolbar>
