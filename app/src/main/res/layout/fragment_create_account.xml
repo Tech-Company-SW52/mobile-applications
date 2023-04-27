@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterFragments.CreateAccountFragment"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="75dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="80dp"
+                    android:layout_height="71dp"
+                    android:src="@drawable/fastport_logo" />
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="327dp"
+                    android:layout_height="104dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Create a new account!"
+                    android:textAlignment="center"
+                    android:textColor=" #093649"
+                    android:textSize="30sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="start"
+                android:paddingHorizontal="50dp"
+                android:layout_marginTop="15dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Email addres"
+                    android:textColor="#38404F"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+                <EditText
+                    android:id="@+id/txtEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:background="@drawable/edit_text_background"
+                    android:drawableStart="@drawable/outline_email_24"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:paddingStart="10dp"
+                    android:text="email"
+                    android:textColor="#ACACAC"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Password"
+                    android:textColor="#38404F"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="15dp"
+                    />
+                <EditText
+                    android:id="@+id/txtPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:background="@drawable/edit_text_background"
+                    android:drawableStart="@drawable/baseline_lock_24"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:hint="*********"
+                    android:inputType="textPassword"
+                    android:paddingStart="10dp"
+                    android:textColor="#ACACAC"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Confirm Password"
+                    android:textColor="#38404F"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="15dp"
+                    />
+                <EditText
+                    android:id="@+id/txtConfirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:background="@drawable/edit_text_background"
+                    android:drawableStart="@drawable/baseline_lock_24"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:hint="*********"
+                    android:inputType="textPassword"
+                    android:paddingStart="10dp"
+                    android:textColor="#ACACAC"
+                    />
+
+                <Button
+                    android:id="@+id/btnNext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Continue"
+                    />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/register_nav_graph"
+    app:startDestination="@id/createAccountFragment">
+
+    <fragment
+        android:id="@+id/createAccountFragment"
+        android:name="com.fastport.RegisterFragments.CreateAccountFragment"
+        android:label="fragment_create_account"
+        tools:layout="@layout/fragment_create_account" >
+        <action
+            android:id="@+id/action_createAccountFragment_to_fillInformationFragment"
+            app:destination="@id/fillInformationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fillInformationFragment"
+        android:name="com.fastport.RegisterFragments.FillInformationFragment"
+        android:label="fragment_fill_information"
+        tools:layout="@layout/fragment_fill_information" >
+        <action
+            android:id="@+id/action_fillInformationFragment_to_newAccountFragment"
+            app:destination="@id/newAccountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newAccountFragment"
+        android:name="com.fastport.RegisterFragments.NewAccountFragment"
+        android:label="fragment_new_account"
+        tools:layout="@layout/fragment_new_account" />
+</navigation>
