@@ -2,4 +2,6 @@
     <string name="app_name">FastPort</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="password"><u>Forgot your password?</u></string>
+    <string name="create"><u>Create acount</u></string>
 </resources>
