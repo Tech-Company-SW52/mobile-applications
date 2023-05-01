@@ -50,6 +50,7 @@ class CarrierContractsFragment : Fragment() {
                 tabLayout.selectTab(tabLayout.getTabAt(position))
             }
         })
+
         return view
     }
 }
