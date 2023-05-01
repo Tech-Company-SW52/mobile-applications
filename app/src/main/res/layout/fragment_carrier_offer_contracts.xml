@@ -6,9 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".CarrierFragments.CarrierContracts.CarrierOfferContractsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tvOfferContracts"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -31,6 +30,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/tvOfferContracts" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

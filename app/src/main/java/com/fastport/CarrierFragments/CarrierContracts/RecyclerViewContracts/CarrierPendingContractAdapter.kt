@@ -8,16 +8,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fastport.Contracts.Contract
 import com.fastport.R
 
-class OfferContractAdapter(var contracts: ArrayList<Contract>) :
-    RecyclerView.Adapter<OfferContractPrototype>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OfferContractPrototype {
+class CarrierPendingContractAdapter(var contracts: ArrayList<Contract>) :
+    RecyclerView.Adapter<CarrierPendingContractPrototype>() {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): CarrierPendingContractPrototype {
         val view = LayoutInflater
             .from(parent.context)
-            .inflate(R.layout.prototype_offer_contract, parent, false)
-        return OfferContractPrototype(view)
+            .inflate(R.layout.prototype_carrier_pending_contract, parent, false)
+        return CarrierPendingContractPrototype(view)
     }
 
-    override fun onBindViewHolder(holder: OfferContractPrototype, position: Int) {
+    override fun onBindViewHolder(holder: CarrierPendingContractPrototype, position: Int) {
         holder.bind(contracts.get(position))
     }
 
@@ -27,7 +30,7 @@ class OfferContractAdapter(var contracts: ArrayList<Contract>) :
 
 }
 
-class OfferContractPrototype(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class CarrierPendingContractPrototype(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val tvSubject = itemView.findViewById<TextView>(R.id.tvSubjectCC)
     val tvFrom = itemView.findViewById<TextView>(R.id.tvFromCC)
     val tvTo = itemView.findViewById<TextView>(R.id.tvToCC)
