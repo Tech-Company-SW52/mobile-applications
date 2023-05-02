@@ -65,8 +65,11 @@ class ClientPendingContractsFragment : Fragment() {
                 "Example Time Arrival",
                 1,
                 1,
-                "Example Description",
-                true
+                true,
+                "Done",
+                "Example Client",
+                "Example Phone",
+                "Example Image"
             )
         )
         pendingContracts.add(
@@ -80,8 +83,11 @@ class ClientPendingContractsFragment : Fragment() {
                 "Example Time Arrival 2",
                 2,
                 2,
-                "Example Description 2",
-                true
+                true,
+                "Done",
+                "Example Client 2",
+                "Example Phone 2",
+                "Example Image"
             )
         )
     }

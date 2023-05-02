@@ -15,6 +15,10 @@ class Contract (
 //    val timeArrival: Date,
     val amount: Int,
     val quantity: Int,
-    val description: String,
-    val visible: Boolean
+    val visible: Boolean,
+    // Otros
+    val status: String,
+    val client: String,
+    val phone: String,
+    val image: String,
     )
