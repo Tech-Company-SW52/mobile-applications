@@ -7,9 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.fastport.BaseURL
 import com.fastport.CarrierClasses.Experience
 import com.fastport.CarrierFragments.CarrierProfile.RecyclerViewProfile.ExperienceProfileAdapter
+import com.fastport.CarrierFragments.Services.ProfileService
 import com.fastport.R
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -52,17 +59,43 @@ class CarrierExperienceProfileFragment : Fragment() {
     }
 
     private fun initView(view: View){
-        val rvExperience = view.findViewById<RecyclerView>(R.id.rvCommentsCarrier)
+        val rvExperience = view.findViewById<RecyclerView>(R.id.rvExperienceCarrier)
 
         rvExperience.adapter = experienceAdapter
         rvExperience.layoutManager = LinearLayoutManager(view.context)
     }
 
     private fun loadExperiences(){
-        experiences.add(Experience(0, "Experience 1", "Tiempo 1"))
-        experiences.add(Experience(1, "Experience 2", "Tiempo 2"))
-        experiences.add(Experience(2, "Experience 3", "Tiempo 3"))
-        experiences.add(Experience(3, "Experience 4", "Tiempo 4"))
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BaseURL.BASE_URL.toString())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val experienceService: ProfileService = retrofit.create(ProfileService::class.java)
+
+        val request = experienceService.getExperience("json")
+
+        //Recibir la lista de experiencias
+        request.enqueue(object : Callback<ArrayList<Experience>> {
+            override fun onResponse(call: Call<ArrayList<Experience>>, response: Response<ArrayList<Experience>>) {
+                if(response.isSuccessful){
+                    val experienceList = response.body()!!
+                    //experiences.addAll(experienceList)
+
+                    for (experience in experienceList){
+                        experiences.add(Experience(experience.id, experience.job, experience.time) )
+                    }
+
+                    experiences.add(Experience(1, "Programador", "2 años"))
+
+                }
+            }
+
+            override fun onFailure(call: Call<ArrayList<Experience>>, t: Throwable) {
+                t.printStackTrace()
+            }
+        })
+
     }
 
     companion object {

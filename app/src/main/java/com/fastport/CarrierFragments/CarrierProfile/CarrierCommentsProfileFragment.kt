@@ -51,7 +51,7 @@ class CarrierCommentsProfileFragment : Fragment() {
     }
 
     private fun initView(view: View){
-        val rvComments = view.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rvCommentsCarrier)
+        val rvComments = view.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rvExperienceCarrier)
 
         rvComments.adapter = commentAdapter
         rvComments.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(view.context)

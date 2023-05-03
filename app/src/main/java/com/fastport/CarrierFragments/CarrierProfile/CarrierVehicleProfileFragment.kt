@@ -52,7 +52,7 @@ class CarrierVehicleProfileFragment : Fragment() {
     }
 
     private fun initView(view: View){
-        val rvVehicle = view.findViewById<RecyclerView>(R.id.rvCommentsCarrier)
+        val rvVehicle = view.findViewById<RecyclerView>(R.id.rvExperienceCarrier)
 
         rvVehicle.adapter = vehicleAdapter
         rvVehicle.layoutManager = LinearLayoutManager(view.context)
