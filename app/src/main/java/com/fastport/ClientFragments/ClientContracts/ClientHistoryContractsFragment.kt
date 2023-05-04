@@ -84,7 +84,7 @@ class ClientHistoryContractsFragment : Fragment() {
                 2,
                 2,
                 true,
-                "Done",
+                "Pending",
                 "Example Client 2",
                 "Example Phone 2",
                 "Example Image"

@@ -20,6 +20,15 @@ class ContractDetailsPrototype(itemView: View) : RecyclerView.ViewHolder(itemVie
         tvTo.text = Html.fromHtml("To: <b>${contract.to}</b>")
         tvDate.text = Html.fromHtml("Date: <b>${contract.date}</b>")
         tvAmount.text = Html.fromHtml("Amount: <b>S/.${contract.amount}</b>")
-        tvClientName.text = "${contract.client}"
+        tvClientName.text = contract.client
+//        if (user == "client") {
+//            val tvStatus = itemView.findViewById<TextView>(R.id.tvStatusC)
+//            tvStatus.text = "Status: ${contract.status}"
+//            if (contract.status == "Done") {
+//                tvStatus.setTextColor(itemView.resources.getColor(R.color.accept))
+//            } else {
+//                tvStatus.setTextColor(itemView.resources.getColor(R.color.decline))
+//            }
+//        }
     }
 }
