@@ -60,7 +60,7 @@
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:paddingStart="10dp"
-                    android:text="username"
+                    android:hint="username"
                     android:textColor="#ACACAC"
                     />
                 <TextView

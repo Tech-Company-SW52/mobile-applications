@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 
 class LoginActivity : AppCompatActivity() {
@@ -27,6 +28,14 @@ class LoginActivity : AppCompatActivity() {
         }
         btnCarrier.setOnClickListener(){
             startActivity(carrierIntent)
+        }
+        register()
+    }
+    private fun register(){
+        val tvCreateAccount=findViewById<TextView>(R.id.tvCreateAccount)
+        val registerActivity= Intent(this, RegisterActivity::class.java)
+        tvCreateAccount.setOnClickListener(){
+            startActivity(registerActivity)
         }
     }
 }
