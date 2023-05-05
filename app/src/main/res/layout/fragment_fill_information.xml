@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="start"
-                android:paddingHorizontal="50dp"
+                android:paddingHorizontal="25dp"
                 android:layout_marginTop="15dp">
                 <TextView
                     android:layout_width="wrap_content"
@@ -105,16 +105,15 @@
                             android:textColor="#38404F"
                             android:textSize="16sp"
                             android:textStyle="bold"/>
-                        <EditText
-                            android:id="@+id/txtCountry"
+                        <Spinner
+                            android:id="@+id/spCountry"
                             android:layout_width="match_parent"
                             android:layout_height="38dp"
-                            android:background="@drawable/edit_text_background"
                             android:drawablePadding="10dp"
                             android:ems="10"
+                            android:background="@drawable/edit_text_background"
                             android:inputType="textPersonName"
                             android:paddingStart="10dp"
-                            android:hint="select country"
                             android:textColor="#ACACAC"
                             />
                     </LinearLayout>
@@ -188,8 +187,8 @@
                     android:textColor="#38404F"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
-                <EditText
-                    android:id="@+id/txtUserType"
+                <Spinner
+                    android:id="@+id/spUserType"
                     android:layout_width="match_parent"
                     android:layout_height="38dp"
                     android:background="@drawable/edit_text_background"
@@ -221,8 +220,8 @@
                         android:orientation="vertical"
                         android:layout_weight="0.8"
                         android:layout_marginRight="10dp">
-                        <EditText
-                            android:id="@+id/txtIdentityCardType"
+                        <Spinner
+                            android:id="@+id/spIdentityCardType"
                             android:layout_width="match_parent"
                             android:layout_height="38dp"
                             android:background="@drawable/edit_text_background"
