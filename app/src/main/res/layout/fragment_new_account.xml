@@ -87,13 +87,15 @@
                     android:layout_height="wrap_content"
                     android:text="I declare that I have read and accepted the terms and conditions."
                     android:id="@+id/checkboxConditions"
-                    android:layout_marginTop="5dp"/>
+                    android:layout_marginTop="5dp"
+                    android:buttonTint="@color/fp_blue"/>
                 <CheckBox
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="I agree to the use of my information."
                     android:id="@+id/checkboxInformation"
-                    android:layout_marginTop="5dp"/>
+                    android:layout_marginTop="5dp"
+                    android:buttonTint="@color/fp_blue"/>
                 <Button
                     android:id="@+id/btnSignUp"
                     android:layout_width="match_parent"
