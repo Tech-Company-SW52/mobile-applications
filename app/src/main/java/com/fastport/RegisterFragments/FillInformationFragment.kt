@@ -1,5 +1,7 @@
 package com.fastport.RegisterFragments
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,6 +12,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
+import android.widget.TextView
 import androidx.navigation.Navigation
 import com.fastport.R
 import com.fastport.databinding.ActivityRegisterBinding
@@ -30,6 +33,8 @@ class FillInformationFragment : Fragment() {
         spinnerCountry(view)
         spinnerUserType(view)
         spinnerCardType(view)
+        uploadDocument(view)
+        uploadProfileId(view)
         return view
     }
     private fun spinnerCountry(view_: View){
@@ -110,10 +115,37 @@ class FillInformationFragment : Fragment() {
             cards.removeAt(index)
         }
     }
+    private fun uploadDocument(view_: View){
+        val txtUploadPhoto=view_.findViewById<TextView>(R.id.txtUploadPhoto)
+        txtUploadPhoto.setOnClickListener(){
+            val intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.type = "image/*"
+            startActivityForResult(intent, 1)
+        }
+    }
+    private fun uploadProfileId(view_: View){
+        val txtUploadDocument=view_.findViewById<TextView>(R.id.txtUploadDocument)
+        txtUploadDocument.setOnClickListener(){
+            val intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.type = "image/*"
+            startActivityForResult(intent, 1)
+        }
+    }
     private fun next(view_: View){
         val btnNext=view_.findViewById<Button>(R.id.btnNext2)
         btnNext.setOnClickListener(){
             Navigation.findNavController(view_).navigate(R.id.action_fillInformationFragment_to_newAccountFragment)
+        }
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK) {
+            when (requestCode) {
+                1 -> {
+                    val selectedImageUri = data?.data
+                    // Manejar la imagen seleccionada
+                }
+            }
         }
     }
 }
