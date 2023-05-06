@@ -1,27 +1,37 @@
 package com.fastport.CarrierFragments.CarrierProfile
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fastport.CarrierClasses.Vehicle
+import com.fastport.CarrierFragments.CarrierProfile.Components.AddVehicle
+import com.fastport.CarrierFragments.CarrierProfile.Components.AddVehicleInterface
 import com.fastport.CarrierFragments.CarrierProfile.RecyclerViewProfile.VehicleProfileAdapter
-import com.fastport.R
+import com.google.android.material.textfield.TextInputEditText
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-
+var type: String = ""
+var capacity: Int = 0
+var image: String = ""
 /**
  * A simple [Fragment] subclass.
  * Use the [CarrierVehicleProfileFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class CarrierVehicleProfileFragment : Fragment() {
+@Suppress("NAME_SHADOWING")
+class CarrierVehicleProfileFragment : Fragment(), AddVehicleInterface {
+
 
     var vehicles = ArrayList<Vehicle>()
     var vehicleAdapter = VehicleProfileAdapter(vehicles)
@@ -32,27 +42,86 @@ class CarrierVehicleProfileFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // show dialog add vehicle
+
+
+
+
+
+
+
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        showAddVehicle()
     }
 
+    private fun showAddVehicle() {
+        /*val btnAddVehicle = vehicleView.findViewById<Button>(R.id.btAddVehicle)
+        btnAddVehicle?.setOnClickListener {
+            val builder = AlertDialog.Builder(context)
+            val inflater = layoutInflater
+            val dialogLayout = inflater.inflate(R.layout.fragment_add_vehicle, null)
+            val editText = dialogLayout.findViewById<EditText>(R.id.etVehicleName)
+
+            with(builder){
+                setTitle("Agregar Vehiculo")
+                setPositiveButton("Agregar"){dialog, which ->
+                    Toast.makeText(context, "Vehiculo Agregado", Toast.LENGTH_SHORT).show()
+                }
+                setNegativeButton("Cancelar"){dialog, which ->
+                    Toast.makeText(context, "Cancelado", Toast.LENGTH_SHORT).show()
+                }
+                setView(dialogLayout)
+                show()
+            }
+        }*/
+
+    }
+
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val vehicleView: View = inflater.inflate(R.layout.fragment_carrier_vehicle_profile, container, false)
+        val vehicleView: View = inflater.inflate(com.fastport.R.layout.fragment_carrier_vehicle_profile, container, false)
+        //val itTypeVehicle = vehicleView.findViewById<TextInputEditText>(com.fastport.R.id.etVehicleName)
+        //val itCapacity = vehicleView.findViewById<TextInputEditText>(com.fastport.R.id.etCapacity)
+        //val itImage = vehicleView.findViewById<TextInputEditText>(com.fastport.R.id.etPhoto)
+        val addVehicle = AddVehicle()
+        addVehicle.setAddVehicleListener(this)
 
-        loadVehicles()
-        initView(vehicleView)
+        val btnAddVehicle = vehicleView.findViewById<Button>(com.fastport.R.id.btAddVehicle)
+            btnAddVehicle?.setOnClickListener {
+                addVehicle.show(parentFragmentManager, "AddVehicle")
+                /*
+                val inflater = layoutInflater
+                val dialogLayout =
+                    inflater.inflate(com.fastport.R.layout.fragment_add_vehicle, null)
+                val editText =
+                    dialogLayout.findViewById<TextInputEditText>(com.fastport.R.id.etVehicleName)
+                val capacity =
+                    dialogLayout.findViewById<TextInputEditText>(com.fastport.R.id.etCapacity)
+                val image = dialogLayout.findViewById<TextInputEditText>(com.fastport.R.id.etPhoto)
+                */
 
-        return vehicleView
+            }
+            loadVehicles()
+            initView(vehicleView)
+
+            return vehicleView
+
+    }
+    fun onAddVehicleFormulary(){
+        Toast.makeText(context, "Vehiculo Agregado", Toast.LENGTH_SHORT).show()
+
     }
 
     private fun initView(view: View){
-        val rvVehicle = view.findViewById<RecyclerView>(R.id.rvExperienceCarrier)
+        val rvVehicle = view.findViewById<RecyclerView>(com.fastport.R.id.rvExperienceCarrier)
 
         rvVehicle.adapter = vehicleAdapter
         rvVehicle.layoutManager = LinearLayoutManager(view.context)
@@ -82,5 +151,24 @@ class CarrierVehicleProfileFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onAddVehicleFormulary(
+        vehicleType: String,
+        vehicleCapacity: Int,
+        vehiclePhoto: String
+    ) {
+        type = vehicleType
+        capacity= vehicleCapacity
+        image= vehiclePhoto
+        Toast.makeText(context, "datos $type $capacity $image", Toast.LENGTH_SHORT).show()
+
+        vehicles.add(Vehicle(vehicles.size+1, type, capacity, image))
+        vehicleAdapter.notifyDataSetChanged()
+
+
+
     }
 }

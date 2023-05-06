@@ -2,4 +2,9 @@
     <string name="app_name">FastPort</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_vehicle">Add Vehicle</string>
+    <string name="vehicle_type">vehicle type</string>
+    <string name="vehicle_capacity">vehicle capacity</string>
+    <string name="vehicle_photo">vehicle photo</string>
+    <string name="save">Save</string>
 </resources>
