@@ -5,17 +5,54 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.viewpager2.widget.ViewPager2
+import com.fastport.CarrierFragments.CarrierProfile.CarrierProfileAdapter
 import com.fastport.R
+import com.google.android.material.tabs.TabLayout
 
 class CarrierProfileFragment : Fragment() {
 
+    var tabTitle = arrayOf("Personal information", "Experience", "Vehicle", "Comments")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_carrier_profile, container, false)
+        //return inflater.inflate(R.layout.fragment_carrier_profile, container, false)
+
+        val view: View = inflater.inflate(R.layout.fragment_carrier_profile, container, false)
+
+        val viewPager = view.findViewById<ViewPager2>(R.id.vpClientProfile)
+        val tabLayout = view.findViewById<TabLayout>(R.id.tlClientProfile)
+
+        val adapter = CarrierProfileAdapter(parentFragmentManager, lifecycle)
+
+        tabLayout.addTab(tabLayout.newTab().setText(tabTitle[0]))
+        tabLayout.addTab(tabLayout.newTab().setText(tabTitle[1]))
+        tabLayout.addTab(tabLayout.newTab().setText(tabTitle[2]))
+        tabLayout.addTab(tabLayout.newTab().setText(tabTitle[3]))
+
+        viewPager.adapter = adapter
+
+        tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                viewPager.currentItem = tab!!.position
+            }
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+            }
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+            }
+        })
+
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                tabLayout.selectTab(tabLayout.getTabAt(position))
+            }
+        })
+        return view
+
     }
 
 }
