@@ -48,12 +48,34 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="Full Name"
+                    android:text="Name"
                     android:textColor="#38404F"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
                 <EditText
-                    android:id="@+id/txtFullName"
+                    android:id="@+id/txtName"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:background="@drawable/edit_text_background"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:paddingStart="10dp"
+                    android:hint="Fullname"
+                    android:textColor="#ACACAC"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Last Name"
+                    android:textColor="#38404F"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="15dp"/>
+                <EditText
+                    android:id="@+id/txtLastName"
                     android:layout_width="match_parent"
                     android:layout_height="38dp"
                     android:background="@drawable/edit_text_background"

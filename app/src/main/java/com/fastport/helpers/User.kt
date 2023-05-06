@@ -1,10 +1,9 @@
-package com.fastport.Beans;
+package com.fastport.helpers
 
 import com.google.gson.annotations.SerializedName
-import java.util.Date
+import java.io.Serializable
 
-
-class Clients(
+class User(
     @SerializedName("birthdate") var birthdate: String,
     @SerializedName("description") var description: String,
     @SerializedName("email") var email:String,
@@ -15,19 +14,5 @@ class Clients(
     @SerializedName("phone")var phone:String,
     @SerializedName("region")var region: String,
     @SerializedName("password")var password: String,
-    @SerializedName("photo")var photo:String
-
-        ){
-
-//
-//    var emain: String
-//    var id: Int
-//    constructor(id:Int, birthdate: Date, description: String){
-//        this.birthdate = birthdate
-//        this.description = description
-//        this.id = id
-//    }
-
-
-
+    @SerializedName("photo")var photo:String): Serializable {
 }
