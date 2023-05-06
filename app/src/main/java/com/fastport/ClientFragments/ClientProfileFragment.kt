@@ -48,13 +48,13 @@ class ClientProfileFragment : Fragment() {
                 tabLayout.selectTab(tabLayout.getTabAt(position))
             }
         })
+
+        loadData(view)
         return view
     }
 
-    private fun loadData() {
-        val civCarrierProfile = view?.findViewById<CircleImageView>(R.id.civProfileImage)
-        //val tvCarrierName = view?.findViewById<TextView>(R.id.tvProfileName)
-        //val tvCarrierDescription = view?.findViewById<TextView>(R.id.tvProfileDescription)
+    private fun loadData(view: View) {
+        val civCarrierProfile = view.findViewById<CircleImageView>(R.id.civProfileImage)
 
         //Usar picasso para cargar la imagen
         Picasso.get().load("https://pbs.twimg.com/profile_images/1251666168026468357/77bjLb3i_400x400.jpg")
