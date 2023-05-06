@@ -13,12 +13,17 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.Navigation
+import com.fastport.Beans.Clients
+import com.fastport.Beans.Drivers
 import com.fastport.R
 import com.fastport.databinding.ActivityRegisterBinding
 
 
 class FillInformationFragment : Fragment() {
+    lateinit var clientUser: Clients;
+    lateinit var driverUser: Drivers;
     val countries= arrayListOf("Select Country","Argentina", "Bolivia", "Brasil", "Chile", "Colombia", "Costa Rica", "Cuba", "Ecuador", "El Salvador", "Guatemala", "Haití", "Honduras", "Jamaica", "México", "Nicaragua", "Panamá", "Paraguay", "Perú", "Puerto Rico", "República Dominicana", "Uruguay", "Venezuela")
     val types= arrayListOf("Select type","Transportista","Cliente")
     val cards= arrayListOf("Select type","DNI","Pasaporte")
@@ -29,6 +34,14 @@ class FillInformationFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view: View= inflater.inflate(R.layout.fragment_fill_information, container, false)
+
+        val argumentos = arguments
+        if (argumentos != null) {
+            val valor = argumentos.getStringArray("tempUser")
+            if (valor != null) {
+                Toast.makeText(context,valor[0].toString()+"+"+valor[1].toString(),Toast.LENGTH_SHORT).show()
+            }
+        }
         next(view)
         spinnerCountry(view)
         spinnerUserType(view)
@@ -148,4 +161,5 @@ class FillInformationFragment : Fragment() {
             }
         }
     }
+
 }
