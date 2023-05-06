@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.fastport.CarrierFragments.CarrierContracts.RecyclerViewContracts.CarrierPendingContractAdapter
+import com.fastport.Contracts.Contract
 import com.fastport.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -18,16 +22,13 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class CarrierPendingContractsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    var pendingContracts = ArrayList<Contract>()
+
+    var pendingContractAdapter = CarrierPendingContractAdapter(pendingContracts)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
@@ -35,7 +36,58 @@ class CarrierPendingContractsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_carrier_pending_contracts, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_carrier_pending_contracts, container, false)
+
+        loadOfferContracts()
+        initView(view)
+
+        return view
+    }
+
+    private fun initView(view: View) {
+         val rvPendingContracts = view.findViewById<RecyclerView>(R.id.rvCarrierPendingContracts)
+
+         rvPendingContracts.adapter = pendingContractAdapter
+         rvPendingContracts.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
+    }
+
+    private fun loadOfferContracts() {
+        pendingContracts.add(
+            Contract(
+                1,
+                "Example Subject",
+                "Example From",
+                "Example To",
+                "Example Date",
+                "Example Time Departure",
+                "Example Time Arrival",
+                1,
+                1,
+                true,
+                "Done",
+                "Example Client",
+                "Example Phone",
+                "Example Image"
+            )
+        )
+        pendingContracts.add(
+            Contract(
+                2,
+                "Example Subject 2",
+                "Example From 2",
+                "Example To 2",
+                "Example Date 2",
+                "Example Time Departure 2",
+                "Example Time Arrival 2",
+                2,
+                2,
+                true,
+                "Done",
+                "Example Client 2",
+                "Example Phone 2",
+                "Example Image"
+            )
+        )
     }
 
     companion object {
