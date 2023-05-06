@@ -9,11 +9,12 @@
         android:id="@+id/tvTypeVehicle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:text="Type vehicle"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.081"
+        app:layout_constraintHorizontal_bias="0.038"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,23 +22,23 @@
         android:id="@+id/tvPhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="Photo"
         android:textSize="12sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvTypeVehicle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.524"
-        app:layout_constraintStart_toEndOf="@+id/tvTypeVehicle"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintStart_toEndOf="@+id/tvTypeVehicle" />
 
     <TextView
         android:id="@+id/tvCapacity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
         android:text="Capacity"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintHorizontal_bias="0.036"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btTypeVehicle" />
 
@@ -45,6 +46,7 @@
         android:id="@+id/btTypeVehicle"
         android:layout_width="150dp"
         android:layout_height="35dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="4dp"
         android:clickable="false"
         android:contextClickable="false"
@@ -52,7 +54,7 @@
         android:textColor="#000000"
         android:theme="@style/CustomButtonTextInformation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.107"
+        app:layout_constraintHorizontal_bias="0.052"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTypeVehicle" />
 
@@ -60,6 +62,7 @@
         android:id="@+id/btCapacity"
         android:layout_width="150dp"
         android:layout_height="35dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="16dp"
         android:clickable="false"
@@ -69,22 +72,24 @@
         android:theme="@style/CustomButtonTextInformation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.107"
+        app:layout_constraintHorizontal_bias="0.052"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCapacity" />
+        app:layout_constraintTop_toBottomOf="@+id/tvCapacity"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/ivPhotoVehicle"
-        android:layout_width="129dp"
-        android:layout_height="108dp"
-        android:layout_marginStart="64dp"
+        android:layout_width="108dp"
+        android:layout_height="99dp"
         android:layout_marginTop="4dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toEndOf="@+id/btCapacity"
+        app:layout_constraintHorizontal_bias="0.867"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPhoto"
+        app:layout_constraintVertical_bias="1.0"
         tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

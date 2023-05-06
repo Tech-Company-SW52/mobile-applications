@@ -9,94 +9,97 @@
     tools:context=".CarrierFragments.CarrierProfileFragment">
 
     <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civCarrierProfile"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="16dp"
 
+        android:layout_marginTop="16dp"
         android:src="@drawable/fastport_logo"
-        app:layout_constraintBottom_toTopOf="@+id/tvClientName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvClientDescription"
-        android:layout_width="221dp"
-        android:layout_height="73dp"
+        android:id="@+id/tvProfileDescription"
+        android:layout_width="220dp"
+        android:layout_height="55dp"
 
-        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
 
-        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
         android:ems="10"
+        android:text="Hola, mi nombre es Juan y tengo 20 años de experiencia conduciendo."
         android:textAlignment="center"
         android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="Hola, mi nombre es Juan y tengo 20 años de experiencia conduciendo." />
+        app:layout_constraintTop_toBottomOf="@+id/tvProfileName" />
 
     <TextView
-        android:id="@+id/tvClientName"
+        android:id="@+id/tvProfileName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
         android:text="Mario Gomez"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tvClientDescription"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/civCarrierProfile" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/tvStarsRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="4dp"
         android:text="* * * * *"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btnClientEditProfile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvProfileDescription" />
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tlClientProfile"
+        android:id="@+id/tlProfile"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="10dp"
-        app:tabTextAppearance="@style/CustomThemeTabLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnClientEditProfile"
-        app:tabMode="fixed" />
+        app:layout_constraintTop_toBottomOf="@+id/btnEditProfile"
+        app:tabMode="fixed"
+        app:tabTextAppearance="@style/CustomThemeTabLayout" />
 
     <Button
-        android:id="@+id/btnClientEditProfile"
+        android:id="@+id/btnEditProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="364dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="360dp"
         android:text="Edit Profile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvStarsRating"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/vpClientProfile"
+        android:id="@+id/vpProfile"
         android:layout_width="408dp"
         android:layout_height="0dp"
         android:layout_marginTop="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tlClientProfile" />
+        app:layout_constraintTop_toBottomOf="@+id/tlProfile" />
 </androidx.constraintlayout.widget.ConstraintLayout>

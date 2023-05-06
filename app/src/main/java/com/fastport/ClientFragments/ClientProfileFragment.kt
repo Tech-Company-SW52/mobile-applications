@@ -5,10 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.viewpager2.widget.ViewPager2
 import com.fastport.ClientFragments.ClientProfile.ClientProfileAdapter
 import com.fastport.R
 import com.google.android.material.tabs.TabLayout
+import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
 
 class ClientProfileFragment : Fragment() {
 
@@ -20,8 +23,8 @@ class ClientProfileFragment : Fragment() {
     ): View? {
         val view: View = inflater.inflate(R.layout.fragment_client_profile, container, false)
 
-        val viewPager = view.findViewById<ViewPager2>(R.id.vpClientProfile)
-        val tabLayout = view.findViewById<TabLayout>(R.id.tlClientProfile)
+        val viewPager = view.findViewById<ViewPager2>(R.id.vpProfile)
+        val tabLayout = view.findViewById<TabLayout>(R.id.tlProfile)
 
         val adapter = ClientProfileAdapter(parentFragmentManager, lifecycle)
 
@@ -46,6 +49,18 @@ class ClientProfileFragment : Fragment() {
             }
         })
         return view
+    }
+
+    private fun loadData() {
+        val civCarrierProfile = view?.findViewById<CircleImageView>(R.id.civProfileImage)
+        //val tvCarrierName = view?.findViewById<TextView>(R.id.tvProfileName)
+        //val tvCarrierDescription = view?.findViewById<TextView>(R.id.tvProfileDescription)
+
+        //Usar picasso para cargar la imagen
+        Picasso.get().load("https://pbs.twimg.com/profile_images/1251666168026468357/77bjLb3i_400x400.jpg")
+            .error(R.drawable.ic_launcher_background)
+            .into(civCarrierProfile)
+
     }
 
 }

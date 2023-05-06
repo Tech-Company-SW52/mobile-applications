@@ -66,7 +66,7 @@ class CarrierExperienceProfileFragment : Fragment() {
     }
 
     private fun loadExperiences(){
-        val retrofit = Retrofit.Builder()
+        /*val retrofit = Retrofit.Builder()
             .baseUrl(BaseURL.BASE_URL.toString())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -94,8 +94,11 @@ class CarrierExperienceProfileFragment : Fragment() {
             override fun onFailure(call: Call<ArrayList<Experience>>, t: Throwable) {
                 t.printStackTrace()
             }
-        })
+        })*/
 
+        experiences.add(Experience(1, "ANITA Tourism", "5 años"))
+        experiences.add(Experience(2, "PERU Tourism SAC", "7 años"))
+        experiences.add(Experience(3, "Independiente", "3 años"))
     }
 
     companion object {

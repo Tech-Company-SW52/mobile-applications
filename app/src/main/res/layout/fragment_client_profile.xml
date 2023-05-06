@@ -9,45 +9,46 @@
     tools:context=".ClientFragments.ClientProfileFragment" >
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/civClientProfileImage"
+        android:id="@+id/civProfileImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
 
         android:layout_marginTop="16dp"
         android:src="@drawable/fastport_logo"
-        app:layout_constraintBottom_toTopOf="@+id/tvClientName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/tvClientDescription"
+    <TextView
+        android:id="@+id/tvProfileDescription"
         android:layout_width="221dp"
         android:layout_height="73dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textMultiLine"
         android:text="Hola, mi nombre es Manuel y busco transporte."
         android:textAlignment="center"
         android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnClientEditProfile"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvProfileName" />
 
     <TextView
-        android:id="@+id/tvClientName"
+        android:id="@+id/tvProfileName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
+        android:layout_marginTop="8dp"
         android:text="Manuel Rodriguez"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tvClientDescription"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/civProfileImage" />
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tlClientProfile"
+        android:id="@+id/tlProfile"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -57,21 +58,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnClientEditProfile"
+        app:layout_constraintTop_toBottomOf="@+id/btnEditProfile"
         app:tabMode="fixed" />
 
     <Button
-        android:id="@+id/btnClientEditProfile"
+        android:id="@+id/btnEditProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="376dp"
         android:text="Edit Profile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvProfileDescription"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/vpClientProfile"
+        android:id="@+id/vpProfile"
         android:layout_width="409dp"
         android:layout_height="311dp"
         android:layout_marginStart="5dp"
@@ -79,6 +83,6 @@
         android:layout_marginEnd="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tlClientProfile" />
+        app:layout_constraintTop_toBottomOf="@+id/tlProfile" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
