@@ -84,7 +84,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvToCD" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/tvStarsRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
@@ -103,7 +103,7 @@
         android:textColor="@android:color/black"
         app:layout_constraintEnd_toStartOf="@+id/divider2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/tvStarsRating"
         tools:text="Client Name" />
 
     <de.hdodenhof.circleimageview.CircleImageView

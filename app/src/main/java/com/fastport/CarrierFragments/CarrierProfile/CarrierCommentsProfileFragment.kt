@@ -73,25 +73,25 @@ class CarrierCommentsProfileFragment : Fragment() {
                 "Muy buen servicio, puntual",
                 "Juan Perez",
                 4,
-                "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29uYXxlbnwwfHwwfHw%3D&w=1000&q=80"
+                "https://english.indiana.edu/images/profiles/profiles-768x768/varon-alberto.png"
             )
         )
         comments.add(
             Comment(
                 3,
                 "Muy buen servicio, muy amable",
-                "Juan Perez",
+                "Mauricio Lopez",
                 3,
-                "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29uYXxlbnwwfHwwfHw%3D&w=1000&q=80"
+                "https://static9.depositphotos.com/1642942/1174/i/450/depositphotos_11745653-stock-photo-cute-guy-leaning-on-chair.jpg"
             )
         )
         comments.add(
             Comment(
                 4,
                 "Muy buen servicio",
-                "Juan Perez",
+                "Elizabeth Torres",
                 2,
-                "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29uYXxlbnwwfHwwfHw%3D&w=1000&q=80"
+                "https://dynl.mktgcdn.com/p/99GjxYm5duwK2zP-dATJQ5czQPUaHsE5EtzCXsJHGHg/450x450.jpg"
             )
         )
     }

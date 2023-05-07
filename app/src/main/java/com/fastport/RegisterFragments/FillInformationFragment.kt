@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
@@ -19,11 +20,13 @@ import com.fastport.Beans.Clients
 import com.fastport.Beans.Drivers
 import com.fastport.R
 import com.fastport.databinding.ActivityRegisterBinding
+import com.fastport.helpers.User
 
 
 class FillInformationFragment : Fragment() {
-    lateinit var clientUser: Clients;
-    lateinit var driverUser: Drivers;
+    lateinit var user: User;
+    lateinit var userType: String;
+    lateinit var userCountry: String;
     val countries= arrayListOf("Select Country","Argentina", "Bolivia", "Brasil", "Chile", "Colombia", "Costa Rica", "Cuba", "Ecuador", "El Salvador", "Guatemala", "Haití", "Honduras", "Jamaica", "México", "Nicaragua", "Panamá", "Paraguay", "Perú", "Puerto Rico", "República Dominicana", "Uruguay", "Venezuela")
     val types= arrayListOf("Select type","Transportista","Cliente")
     val cards= arrayListOf("Select type","DNI","Pasaporte")
@@ -34,14 +37,6 @@ class FillInformationFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view: View= inflater.inflate(R.layout.fragment_fill_information, container, false)
-
-        val argumentos = arguments
-        if (argumentos != null) {
-            val valor = argumentos.getStringArray("tempUser")
-            if (valor != null) {
-                Toast.makeText(context,valor[0].toString()+"+"+valor[1].toString(),Toast.LENGTH_SHORT).show()
-            }
-        }
         next(view)
         spinnerCountry(view)
         spinnerUserType(view)
@@ -61,8 +56,7 @@ class FillInformationFragment : Fragment() {
         spCountry.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 deleteCountryHint()
-                val selectedItem = parent.getItemAtPosition(position).toString()
-                Log.d("Spinner", "Opción seleccionada: $selectedItem")
+                userCountry = parent.getItemAtPosition(position).toString()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -81,8 +75,7 @@ class FillInformationFragment : Fragment() {
         spUserType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 deleteUserHint()
-                val selectedItem = parent.getItemAtPosition(position).toString()
-                Log.d("Spinner", "Opción seleccionada: $selectedItem")
+                userType = parent.getItemAtPosition(position).toString()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -146,8 +139,43 @@ class FillInformationFragment : Fragment() {
     }
     private fun next(view_: View){
         val btnNext=view_.findViewById<Button>(R.id.btnNext2)
+        val txtName=view_.findViewById<EditText>(R.id.txtName)
+        val txtLastName=view_.findViewById<EditText>(R.id.txtLastName)
+        val txtdateBirth=view_.findViewById<EditText>(R.id.txtdateBirth)
+        val txtPhoneNumber=view_.findViewById<EditText>(R.id.txtPhoneNumber)
+        //val spUserType=view_.findViewById<EditText>(R.id.spUserType)
+        //val spIdentityCardType=view_.findViewById<EditText>(R.id.spIdentityCardType)
+        val txtIdentityCardTypeNumber=view_.findViewById<EditText>(R.id.txtIdentityCardTypeNumber)
+
         btnNext.setOnClickListener(){
-            Navigation.findNavController(view_).navigate(R.id.action_fillInformationFragment_to_newAccountFragment)
+
+                val argumentos = arguments
+                if (argumentos != null) {
+                    val valor = argumentos.getStringArray("tempUser")
+                    if (valor != null) {
+                        user= User(
+                            txtdateBirth.text.toString(),
+                            "",
+                            valor[0].toString(),
+                            0,
+                            txtName.text.toString(),
+                            txtLastName.text.toString(),
+                            "",
+                            txtPhoneNumber.text.toString(),
+                            userCountry,
+                            valor[1].toString(),
+                            ""
+                        );
+                        val bundle = Bundle()
+                        bundle.putSerializable("tempInfoUser",user)
+                        if(userType=="Cliente"){
+                            bundle.putSerializable("userType","client")
+                        }else {
+                            bundle.putSerializable("userType","driver")
+                        }
+                        Navigation.findNavController(view_).navigate(R.id.action_fillInformationFragment_to_newAccountFragment,bundle)
+                    }
+                }
         }
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

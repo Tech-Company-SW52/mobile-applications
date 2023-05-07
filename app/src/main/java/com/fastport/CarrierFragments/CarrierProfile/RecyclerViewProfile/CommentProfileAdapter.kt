@@ -31,7 +31,7 @@ class CommentProfilePrototype(itemView: android.view.View) : RecyclerView.ViewHo
     val tvName = itemView.findViewById<TextView>(R.id.tvCommentName)
     val tvComment = itemView.findViewById<TextView>(R.id.tvComment)
     val tvRate = itemView.findViewById<TextView>(R.id.tvCarrierRate)
-    val ivPhotoComment = itemView.findViewById<ImageView>(R.id.civClientProfileImage)
+    val ivPhotoComment = itemView.findViewById<ImageView>(R.id.civProfileImage)
 
     fun bind(comment: Comment) {
         tvName.text = comment.name

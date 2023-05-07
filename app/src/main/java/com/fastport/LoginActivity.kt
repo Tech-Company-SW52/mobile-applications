@@ -34,6 +34,12 @@ class LoginActivity : AppCompatActivity() {
             val forgotIntent= Intent(this,PasswordActivity::class.java)
             startActivity(forgotIntent)
         }
+        val create = findViewById<TextView>(R.id.tvCreate)
+        create.setOnClickListener(){
+            val registerIntent= Intent(this,RegisterActivity::class.java)
+            startActivity(registerIntent)
+        }
+
         toolbar=findViewById(R.id.myPreToolBar)
         setSupportActionBar(toolbar)
         register()

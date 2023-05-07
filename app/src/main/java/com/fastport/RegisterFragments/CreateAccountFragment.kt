@@ -38,6 +38,7 @@ class CreateAccountFragment : Fragment() {
             }else{
                 Toast.makeText(context,"Las contraseñas deben ser iguales", Toast.LENGTH_SHORT).show()
             }
+
         }
 
 
