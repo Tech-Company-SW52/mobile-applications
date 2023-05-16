@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'com.fastport'
+    namespace 'com.fastporte'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.fastport"
+        applicationId "com.fastporte"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -24,7 +24,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    buildFeatures{
+    buildFeatures {
         viewBinding true;
     }
     compileOptions {

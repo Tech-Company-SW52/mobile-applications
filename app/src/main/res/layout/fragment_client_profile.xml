@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="60dp"
-    tools:context=".ClientFragments.ClientProfileFragment" >
+    tools:context=".controller.fragments.ClientFragments.ClientProfileFragment">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/civProfileImage"

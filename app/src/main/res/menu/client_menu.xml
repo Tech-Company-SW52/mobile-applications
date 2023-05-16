@@ -4,22 +4,22 @@
         android:id="@+id/id_client_home_fragment"
         android:checked="true"
         android:checkable="true"
-        android:title="Home"/>
+        android:title="Home" />
     <item
         android:id="@+id/id_client_profile_fragment"
         android:checkable="true"
-        android:title="My Profile"/>
+        android:title="My Profile" />
     <item
         android:id="@+id/id_client_search_fragment"
         android:checkable="true"
-        android:title="Search Vehicles"/>
+        android:title="Search Vehicles" />
     <item
         android:id="@+id/id_client_contracts_fragment"
         android:checkable="true"
-        android:title="Contracts"/>
+        android:title="Contracts" />
     <item
         android:id="@+id/id_client_support_fragment"
         android:checkable="true"
-        android:title="Support"/>
+        android:title="Support" />
 
 </menu>

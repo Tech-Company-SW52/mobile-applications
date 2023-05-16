@@ -6,27 +6,27 @@
     app:startDestination="@id/id_client_home_fragment">
     <fragment
         android:id="@+id/id_client_contracts_fragment"
-        android:name="com.fastport.ClientFragments.ClientContractsFragment"
+        android:name="com.fastporte.controller.fragments.ClientFragments.ClientContractsFragment"
         android:label="Contracts"
         tools:layout="@layout/fragment_client_contracts" />
     <fragment
         android:id="@+id/id_client_home_fragment"
-        android:name="com.fastport.ClientFragments.ClientHomeFragment"
+        android:name="com.fastporte.controller.fragments.ClientFragments.ClientHomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_client_home" />
     <fragment
         android:id="@+id/id_client_profile_fragment"
-        android:name="com.fastport.ClientFragments.ClientProfileFragment"
+        android:name="com.fastporte.controller.fragments.ClientFragments.ClientProfileFragment"
         android:label="My profile"
         tools:layout="@layout/fragment_client_profile" />
     <fragment
         android:id="@+id/id_client_search_fragment"
-        android:name="com.fastport.ClientFragments.ClientSearchFragment"
+        android:name="com.fastporte.controller.fragments.ClientFragments.ClientSearchFragment"
         android:label="Search vehicles"
         tools:layout="@layout/fragment_client_search" />
     <fragment
         android:id="@+id/id_client_support_fragment"
-        android:name="com.fastport.ClientFragments.ClientSupportFragment"
+        android:name="com.fastporte.controller.fragments.ClientFragments.ClientSupportFragment"
         android:label="Support"
         tools:layout="@layout/fragment_client_support" />
 </navigation>
