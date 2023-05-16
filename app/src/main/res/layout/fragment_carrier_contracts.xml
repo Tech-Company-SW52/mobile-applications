@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="60dp"
-    tools:context=".CarrierFragments.CarrierContractsFragment">
+    tools:context=".controller.fragments.CarrierFragments.CarrierContractsFragment">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tlCarrierContracts"

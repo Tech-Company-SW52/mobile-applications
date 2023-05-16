@@ -3,27 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterFragments.NewAccountFragment"
+    tools:context=".controller.fragments.RegisterFragments.NewAccountFragment"
     android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="75dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center">
+
                 <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="80dp"
                     android:layout_height="71dp"
                     android:src="@drawable/fastport_logo" />
+
                 <TextView
                     android:id="@+id/textView3"
                     android:layout_width="327dp"
@@ -34,6 +38,7 @@
                     android:textColor=" #093649"
                     android:textSize="30sp" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -41,6 +46,7 @@
                 android:gravity="start"
                 android:paddingHorizontal="50dp"
                 android:layout_marginTop="15dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -49,7 +55,8 @@
                     android:text="Username"
                     android:textColor="#38404F"
                     android:textSize="16sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
+
                 <EditText
                     android:id="@+id/txtUsername"
                     android:layout_width="match_parent"
@@ -61,8 +68,8 @@
                     android:inputType="textPersonName"
                     android:paddingStart="10dp"
                     android:hint="username"
-                    android:textColor="#ACACAC"
-                    />
+                    android:textColor="#ACACAC" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -72,7 +79,8 @@
                     android:textColor="#38404F"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:layout_marginTop="15dp"/>
+                    android:layout_marginTop="15dp" />
+
                 <EditText
                     android:id="@+id/txtUserDescription"
                     android:layout_width="match_parent"
@@ -80,29 +88,30 @@
                     android:background="@drawable/edit_text_background"
                     android:drawablePadding="10dp"
                     android:ems="10"
-                    android:textColor="#ACACAC"
-                    />
+                    android:textColor="#ACACAC" />
+
                 <CheckBox
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="I declare that I have read and accepted the terms and conditions."
                     android:id="@+id/checkboxConditions"
                     android:layout_marginTop="5dp"
-                    android:buttonTint="@color/fp_blue"/>
+                    android:buttonTint="@color/fp_blue" />
+
                 <CheckBox
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="I agree to the use of my information."
                     android:id="@+id/checkboxInformation"
                     android:layout_marginTop="5dp"
-                    android:buttonTint="@color/fp_blue"/>
+                    android:buttonTint="@color/fp_blue" />
+
                 <Button
                     android:id="@+id/btnSignUp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Sign Up"
-                    />
+                    android:text="Sign Up" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
