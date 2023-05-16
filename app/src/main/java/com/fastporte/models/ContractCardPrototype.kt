@@ -10,6 +10,8 @@ import com.fastporte.helpers.SharedPreferences
 import com.squareup.picasso.OkHttp3Downloader
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class ContractCardPrototype(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val tvSubject: TextView = itemView.findViewById(R.id.tvSubjectCC)
@@ -31,7 +33,11 @@ class ContractCardPrototype(itemView: View) : RecyclerView.ViewHolder(itemView) 
         tvSubject.text = "Subject: ${contract.subject}"
         tvFrom.text = Html.fromHtml("From: <b>${contract.from}</b>")
         tvTo.text = Html.fromHtml("To: <b>${contract.to}</b>")
-        tvDate.text = Html.fromHtml("Date: <b>${contract.date}</b>")
+        val parser = SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy")
+        val date: Date = parser.parse(contract.date.toString())
+        val formatter = SimpleDateFormat("dd/MM/yyyy")
+        val formattedDate: String = formatter.format(date)
+        tvDate.text = Html.fromHtml("Date: <b>${formattedDate}</b>")
         tvTime.text = Html.fromHtml("Time: <b>${contract.timeDeparture} - ${contract.timeArrival}</b>")
         tvQuantity.text = Html.fromHtml("Quantity: <b>${contract.quantity}</b>")
         tvAmount.text = "S/. ${contract.amount}"
@@ -40,18 +46,18 @@ class ContractCardPrototype(itemView: View) : RecyclerView.ViewHolder(itemView) 
 
         if (sharedPreferences.getValue("typeUser") == "client") {
             tvUserData.text = "Driver Data"
-            tvClientName.text = "${contract.client.name} ${contract.client.lastname}"
-            tvClientPhone.text = "Phone: ${contract.client.phone}"
-            picBuilder.downloader(OkHttp3Downloader(itemView.context))
-            picBuilder.build()
-                .load(contract.client.photo)
-                .into(civUserCC)
-        } else {
             tvClientName.text = "${contract.driver.name} ${contract.driver.lastname}"
             tvClientPhone.text = "Phone: ${contract.driver.phone}"
             picBuilder.downloader(OkHttp3Downloader(itemView.context))
             picBuilder.build()
                 .load(contract.driver.photo)
+                .into(civUserCC)
+        } else {
+            tvClientName.text = "${contract.client.name} ${contract.client.lastname}"
+            tvClientPhone.text = "Phone: ${contract.client.phone}"
+            picBuilder.downloader(OkHttp3Downloader(itemView.context))
+            picBuilder.build()
+                .load(contract.client.photo)
                 .into(civUserCC)
         }
     }

@@ -10,21 +10,12 @@ import com.fastporte.helpers.LoadContracts
 
 class CarrierPendingContractsFragment : Fragment() {
 
-//    var pendingContracts = ArrayList<Contract>()
-//
-//    var pendingContractAdapter = CarrierPendingContractAdapter(pendingContracts)
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_carrier_pending_contracts, container, false)
-//
-//        loadOfferContracts()
-//        initView(view)
-//
-//        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,50 +24,4 @@ class CarrierPendingContractsFragment : Fragment() {
         val loadContracts = LoadContracts()
         loadContracts.getPendingContractsOfDriver(view, view.context)
     }
-
-    //    private fun initView(view: View) {
-//         val rvPendingContracts = view.findViewById<RecyclerView>(R.id.rvCarrierPendingContracts)
-//
-//         rvPendingContracts.adapter = pendingContractAdapter
-//         rvPendingContracts.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
-//    }
-//
-//    private fun loadOfferContracts() {
-//        pendingContracts.add(
-//            Contract(
-//                1,
-//                "Example Subject",
-//                "Example From",
-//                "Example To",
-//                "Example Date",
-//                "Example Time Departure",
-//                "Example Time Arrival",
-//                1,
-//                1,
-//                true,
-//                "Done",
-//                "Example Client",
-//                "Example Phone",
-//                "Example Image"
-//            )
-//        )
-//        pendingContracts.add(
-//            Contract(
-//                2,
-//                "Example Subject 2",
-//                "Example From 2",
-//                "Example To 2",
-//                "Example Date 2",
-//                "Example Time Departure 2",
-//                "Example Time Arrival 2",
-//                2,
-//                2,
-//                true,
-//                "Done",
-//                "Example Client 2",
-//                "Example Phone 2",
-//                "Example Image"
-//            )
-//        )
-//    }
 }

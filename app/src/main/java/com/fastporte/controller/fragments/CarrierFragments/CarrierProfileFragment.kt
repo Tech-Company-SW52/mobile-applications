@@ -81,7 +81,7 @@ class CarrierProfileFragment : Fragment() {
 
         val profileService: ProfileService = retrofit.create(ProfileService::class.java)
 
-        val request = profileService.getProfile("json")
+        val request = profileService.getProfile(1, "json")
 
         request.enqueue(object : Callback<Information> {
             override fun onFailure(call: Call<Information>, t: Throwable) {
