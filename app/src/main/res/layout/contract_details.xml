@@ -84,7 +84,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvToCD" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/tvUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
@@ -103,10 +103,11 @@
         android:textColor="@android:color/black"
         app:layout_constraintEnd_toStartOf="@+id/divider2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/tvUser"
         tools:text="Client Name" />
 
     <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civUserCD"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_centerInParent="true"

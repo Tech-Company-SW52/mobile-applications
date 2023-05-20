@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ClientFragments.ClientSupportFragment"
+    tools:context=".controller.fragments.ClientFragments.ClientSupportFragment"
     android:layout_marginTop="60dp">
 
     <!-- TODO: Update blank fragment layout -->
@@ -11,6 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Client Support"
-        android:gravity="center"/>
+        android:gravity="center" />
 
 </FrameLayout>

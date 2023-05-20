@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.FastPort" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.FastPorte" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -14,11 +14,11 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="CustomThemeTabLayout" parent="Theme.FastPort">
+    <style name="CustomThemeTabLayout" parent="Theme.FastPorte">
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="CustomButtonTextInformation" parent="Theme.FastPort">
+    <style name="CustomButtonTextInformation" parent="Theme.FastPorte">
         <item name="android:textSize">9sp</item>
         <item name="colorPrimary">@color/white</item>
     </style>

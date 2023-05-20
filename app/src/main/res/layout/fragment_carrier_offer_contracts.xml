@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CarrierFragments.CarrierContracts.CarrierOfferContractsFragment">
+    tools:context=".controller.fragments.CarrierFragments.CarrierContracts.CarrierOfferContractsFragment">
 
     <TextView
         android:id="@+id/tvOfferContracts"

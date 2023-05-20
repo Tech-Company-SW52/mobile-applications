@@ -4,17 +4,17 @@
         android:id="@+id/id_carrier_home_fragment"
         android:checked="true"
         android:checkable="true"
-        android:title="Home"/>
+        android:title="Home" />
     <item
         android:id="@+id/id_carrier_profile_fragment"
         android:checkable="true"
-        android:title="My Profile"/>
+        android:title="My Profile" />
     <item
         android:id="@+id/id_carrier_contracts_fragment"
         android:checkable="true"
-        android:title="Contracts"/>
+        android:title="Contracts" />
     <item
         android:id="@+id/id_carrier_support_fragment"
         android:checkable="true"
-        android:title="Support"/>
+        android:title="Support" />
 </menu>

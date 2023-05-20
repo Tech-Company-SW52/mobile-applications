@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CarrierFragments.CarrierProfile.CarrierCommentsProfileFragment">
+    tools:context=".controller.fragments.CarrierFragments.CarrierProfile.CarrierCommentsProfileFragment">
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -23,8 +23,8 @@
                 android:id="@+id/rvExperienceCarrier"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -34,7 +34,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
