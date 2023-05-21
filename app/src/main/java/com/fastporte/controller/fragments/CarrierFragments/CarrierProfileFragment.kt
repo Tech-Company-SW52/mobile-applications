@@ -12,6 +12,7 @@ import com.fastporte.helpers.BaseURL
 import com.fastporte.models.Information
 import com.fastporte.R
 import com.fastporte.controller.fragments.CarrierFragments.CarrierProfile.CarrierProfileAdapter
+import com.fastporte.helpers.SharedPreferences
 import com.fastporte.network.ProfileService
 import com.google.android.material.tabs.TabLayout
 import com.squareup.picasso.Picasso
@@ -68,12 +69,12 @@ class CarrierProfileFragment : Fragment() {
             }
         })
 
-        loadData()
+        loadData(view)
         return view
 
     }
 
-    private fun loadData() {
+    private fun loadData(view: View) {
         val retrofit = Retrofit.Builder()
             .baseUrl(BaseURL.BASE_URL.toString())
             .addConverterFactory(GsonConverterFactory.create())
@@ -81,7 +82,7 @@ class CarrierProfileFragment : Fragment() {
 
         val profileService: ProfileService = retrofit.create(ProfileService::class.java)
 
-        val request = profileService.getProfile(1, "json")
+        val request = profileService.getDriverProfile(SharedPreferences(view.context).getValue("id")!!.toInt() , "json")
 
         request.enqueue(object : Callback<Information> {
             override fun onFailure(call: Call<Information>, t: Throwable) {

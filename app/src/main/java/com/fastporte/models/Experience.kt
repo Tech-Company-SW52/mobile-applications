@@ -1,7 +1,10 @@
 package com.fastporte.models
 
+import java.sql.Time
+import java.time.LocalTime
+
 class Experience(
     val id: Int,
     val job: String,
-    val time: String
+    val years: Int
 )
