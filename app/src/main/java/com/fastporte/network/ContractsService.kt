@@ -3,6 +3,7 @@ package com.fastporte.network
 import com.fastporte.models.Contract
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -26,4 +27,26 @@ interface ContractsService {
         @Path("user") user: String,
         @Query("format") format: String
     ): Call<List<Contract>>
+
+    // change read status to true or false
+    @PUT("api/contracts/{idContract}/change-notification-status")
+    fun changeNotificationStatus(
+        @Path("idContract") idContract: Int,
+        @Query("format") format: String
+    ): Call<Contract>
+
+    // visible to false
+    @PUT("api/contracts/{idContract}/change-visible")
+    fun changeVisible(
+        @Path("idContract") idContract: Int,
+        @Query("format") format: String
+    ): Call<Contract>
+
+    // update contract status
+    @PUT("api/contracts/{idContract}/update-status/{idContractStatus}")
+    fun updateContractStatus(
+        @Path("idContract") idContract: Int,
+        @Path("idContractStatus") idContractStatus: Int,
+        @Query("format") format: String
+    ): Call<Contract>
 }

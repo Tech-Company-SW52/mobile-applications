@@ -2,18 +2,34 @@ package com.fastporte.models
 
 import android.annotation.SuppressLint
 import android.text.Html
+import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.fastporte.R
+import com.fastporte.helpers.BaseURL
 import com.fastporte.helpers.SharedPreferences
+import com.fastporte.network.ContractsService
 import com.squareup.picasso.OkHttp3Downloader
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
 import java.util.Date
 
 class ContractCardPrototype(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    private val retrofit: Retrofit = Retrofit.Builder()
+        .baseUrl(BaseURL.BASE_URL.toString())
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    private val contractsService: ContractsService = retrofit.create(ContractsService::class.java)
+
     private val tvSubject: TextView = itemView.findViewById(R.id.tvSubjectCC)
     private val tvFrom: TextView = itemView.findViewById(R.id.tvFromCC)
     private val tvTo: TextView = itemView.findViewById(R.id.tvToCC)
@@ -27,6 +43,27 @@ class ContractCardPrototype(itemView: View) : RecyclerView.ViewHolder(itemView) 
     private val civUserCC: CircleImageView = itemView.findViewById(R.id.civUserCC)
     private val sharedPreferences = SharedPreferences(itemView.context)
 
+    fun responseService(request: Call<Contract>) {
+        request.enqueue(object : Callback<Contract> {
+            override fun onFailure(call: Call<Contract>, t: Throwable) {
+                Log.d("Activity Fail", "Error: $t")
+            }
+
+            override fun onResponse(
+                call: Call<Contract>,
+                response: Response<Contract>
+            ) {
+                if (response.isSuccessful) {
+                    val contract: Contract = response.body()!!
+                    Log.d("Activity success", "Success: $contract")
+                } else {
+                    Log.d("Activity fail", "Error: " + response.code())
+                }
+            }
+        })
+    }
+
+
     @SuppressLint("SetTextI18n")
     @Suppress("DEPRECATION")
     fun bind(contract: Contract) {
@@ -38,7 +75,8 @@ class ContractCardPrototype(itemView: View) : RecyclerView.ViewHolder(itemView) 
         val formatter = SimpleDateFormat("dd/MM/yyyy")
         val formattedDate: String = formatter.format(date)
         tvDate.text = Html.fromHtml("Date: <b>${formattedDate}</b>")
-        tvTime.text = Html.fromHtml("Time: <b>${contract.timeDeparture} - ${contract.timeArrival}</b>")
+        tvTime.text =
+            Html.fromHtml("Time: <b>${contract.timeDeparture} - ${contract.timeArrival}</b>")
         tvQuantity.text = Html.fromHtml("Quantity: <b>${contract.quantity}</b>")
         tvAmount.text = "S/. ${contract.amount}"
 
@@ -52,6 +90,19 @@ class ContractCardPrototype(itemView: View) : RecyclerView.ViewHolder(itemView) 
             picBuilder.build()
                 .load(contract.driver.photo)
                 .into(civUserCC)
+
+            // Decline button
+            val btDeclineClient = itemView.findViewById<Button>(R.id.btDeclineClient)
+            btDeclineClient.setOnClickListener {
+                // Activar la notificación de cancelación de servicio
+                if (!contract.notification.readStatus) {
+                    val request = contractsService.changeNotificationStatus(contract.id, "json")
+                    responseService(request)
+                }
+                // Cambiar visibilidad del contrato
+                val request2 = contractsService.changeVisible(contract.id, "json")
+                responseService(request2)
+            }
         } else {
             tvClientName.text = "${contract.client.name} ${contract.client.lastname}"
             tvClientPhone.text = "Phone: ${contract.client.phone}"
@@ -59,6 +110,33 @@ class ContractCardPrototype(itemView: View) : RecyclerView.ViewHolder(itemView) 
             picBuilder.build()
                 .load(contract.client.photo)
                 .into(civUserCC)
+
+            if (contract.status.id == 1) {
+                // Decline button
+                val btDeclineDriver = itemView.findViewById<Button>(R.id.btDeclineDriver)
+                btDeclineDriver.setOnClickListener {
+                    // Activar la notificación del rechazo del servicio
+                    if (!contract.notification.readStatus) {
+                        val request = contractsService.changeNotificationStatus(contract.id, "json")
+                        responseService(request)
+                    }
+                    // Cambiar visibilidad del contrato
+                    val request2 = contractsService.changeVisible(contract.id, "json")
+                    responseService(request2)
+                }
+                // Accept button
+                val btAcceptDriver = itemView.findViewById<Button>(R.id.btAcceptDriver)
+                btAcceptDriver.setOnClickListener {
+                    // Activar la notificación de la aceptación del servicio
+                    if (!contract.notification.readStatus) {
+                        val request = contractsService.changeNotificationStatus(contract.id, "json")
+                        responseService(request)
+                    }
+                    // Cambiar estado del contrato a pending
+                    val request2 = contractsService.updateContractStatus(contract.id, 2, "json")
+                    responseService(request2)
+                }
+            }
         }
     }
 }

@@ -29,5 +29,7 @@ class Contract(
     @SerializedName("driver")
     val driver: User,
     @SerializedName("status")
-    val status: Status
+    val status: Status,
+    @SerializedName("notification")
+    val notification: Notification
 )
