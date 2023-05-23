@@ -23,6 +23,7 @@ class SearchResultFragment : Fragment() {
 
 
         next(view)
+        simulate(view)
         return view
     }
     private fun next(view_: View) {
@@ -30,6 +31,14 @@ class SearchResultFragment : Fragment() {
         btnNext.setOnClickListener() {
             Navigation.findNavController(view_)
                 .navigate(R.id.action_searchResultFragment_to_searchFragment)
+
+        }
+    }
+    private fun simulate(view_: View) {
+        val btnNext = view_.findViewById<Button>(R.id.simulate)
+        btnNext.setOnClickListener() {
+            Navigation.findNavController(view_)
+                .navigate(R.id.action_searchResultFragment_to_clientSearchDriverProfile)
 
         }
     }

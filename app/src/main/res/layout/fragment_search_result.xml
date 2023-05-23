@@ -40,7 +40,13 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/simulate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Simular interaccion" />
 
     </LinearLayout>
 </FrameLayout>
