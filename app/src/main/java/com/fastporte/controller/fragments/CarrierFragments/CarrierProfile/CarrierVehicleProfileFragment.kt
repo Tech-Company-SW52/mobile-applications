@@ -2,7 +2,6 @@ package com.fastporte.controller.fragments.CarrierFragments.CarrierProfile
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,7 +39,8 @@ class CarrierVehicleProfileFragment : Fragment(), AddVehicleInterface {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val vehicleView: View = inflater.inflate(R.layout.fragment_carrier_vehicle_profile, container, false)
+        val vehicleView: View =
+            inflater.inflate(R.layout.fragment_carrier_vehicle_profile, container, false)
         val addVehicle = AddVehicle()
         addVehicle.setAddVehicleListener(this)
 
@@ -65,19 +65,23 @@ class CarrierVehicleProfileFragment : Fragment(), AddVehicleInterface {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        val vehicleService: ProfileService= retrofit.create(ProfileService::class.java)
+        val vehicleService: ProfileService = retrofit.create(ProfileService::class.java)
 
         val request = vehicleService.getDriverVehicle(
             SharedPreferences(view.context).getValue("id")!!.toInt(),
-            "json")
+            "json"
+        )
 
         request.enqueue(object : Callback<List<Vehicle>> {
             override fun onResponse(call: Call<List<Vehicle>>, response: Response<List<Vehicle>>) {
                 if (response.isSuccessful) {
-                    if(response.message() == "No Content"){
-                        Toast.makeText(view.context, "No hay vehiculos registrados", Toast.LENGTH_SHORT).show()
-                    }
-                    else {
+                    if (response.message() == "No Content") {
+                        Toast.makeText(
+                            view.context,
+                            "No hay vehiculos registrados",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
                         val vehicles: List<Vehicle> = response.body()!!
                         //Agregar un elemento a vehicles
                         //vehiclesNew.add(Vehicle(vehiclesNew.size + 1, type/*, capacity, image*/))
@@ -93,7 +97,7 @@ class CarrierVehicleProfileFragment : Fragment(), AddVehicleInterface {
             }
 
         })
-        }
+    }
 
 
     @SuppressLint("NotifyDataSetChanged")
