@@ -15,7 +15,7 @@
             android:layout_height="match_parent">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/civCarrierProfile"
+                android:id="@+id/civtvSearchVehicleCarrierProfile"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
 
@@ -27,7 +27,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tvProfileDescription"
+                android:id="@+id/tvSearchVehicleProfileDescription"
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
 
@@ -42,36 +42,20 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvProfileName" />
+                app:layout_constraintTop_toBottomOf="@+id/tvSearchVehicleProfileName" />
 
             <TextView
-                android:id="@+id/tvProfileName"
+                android:id="@+id/tvSearchVehicleProfileName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:text="Mario Gomez"
                 android:textAlignment="center"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/civCarrierProfile" />
-
-            <TextView
-                android:id="@+id/tvUser"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="* * * * *"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvProfileDescription"
-                />
+                app:layout_constraintTop_toBottomOf="@+id/civtvSearchVehicleCarrierProfile" />
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_layout"
@@ -84,7 +68,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvUser"
+                app:layout_constraintTop_toBottomOf="@+id/btSearchVehicleContract"
                 app:tabMode="fixed"
                 app:tabTextAppearance="@style/CustomThemeTabLayout" />
 
@@ -96,6 +80,24 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tab_layout" />
+
+            <RatingBar
+                android:id="@+id/rbSearchVehicleUserStar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSearchVehicleProfileDescription" />
+
+            <Button
+                android:id="@+id/btSearchVehicleContract"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contract"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rbSearchVehicleUserStar" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

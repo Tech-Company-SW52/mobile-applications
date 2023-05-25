@@ -46,7 +46,7 @@
             android:id="@+id/simulate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Simular interaccion" />
+            android:text="Simular interaccion con driver id 1" />
 
     </LinearLayout>
 </FrameLayout>
