@@ -13,10 +13,11 @@ import com.fastporte.R
 import com.fastporte.models.CommentsSearch
 import com.squareup.picasso.OkHttp3Downloader
 import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
 
 class SearchClientCommentsAdapter(val comments: List<CommentsSearch>,val context: Context):RecyclerView.Adapter<SearchClientCommentsAdapter.ViewHolder>() {
     class ViewHolder(val view: View): RecyclerView.ViewHolder(view){
-        val iv_search_comment_profile=view.findViewById<ImageView>(R.id.iv_search_comment_profile)
+        val iv_search_comment_profile=view.findViewById<CircleImageView>(R.id.iv_search_comment_profile)
         val tv_search_comment_name=view.findViewById<TextView>(R.id.tv_search_comment_name)
         val tv_search_comment_comment=view.findViewById<TextView>(R.id.tv_search_comment_comment)
         val tv_search_comment_start_puntuation=view.findViewById<TextView>(R.id.tv_search_comment_start_puntuation)
