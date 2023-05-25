@@ -37,7 +37,7 @@ class ClientSearchDriverProfile : Fragment() {
         tabLayout = view.findViewById(R.id.tab_layout)
         viewPager = view.findViewById(R.id.view_pager)
 
-        val adapter = ViewPagerAdapter(childFragmentManager)
+        val adapter = ViewPagerAdapter(childFragmentManager,user)
         adapter.addFragment(ClientSearchPersonalnformationfragment(), "Personal Information")
         adapter.addFragment(ClientSearchExperienceFragment(), "Experience")
         adapter.addFragment(ClientSearchVehicleFragment(), "Vehicle")
@@ -71,12 +71,16 @@ class ClientSearchDriverProfile : Fragment() {
 
     }
 
-    private inner class ViewPagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+    private inner class ViewPagerAdapter(manager: FragmentManager, private val user: User) : FragmentPagerAdapter(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
         private val fragmentList = ArrayList<Fragment>()
         private val fragmentTitleList = ArrayList<String>()
 
         override fun getItem(position: Int): Fragment {
+            val fragment=fragmentList[position]
+            if(fragment is ClientSearchPersonalnformationfragment){
+                fragment.setUser(user)
+            }
             return fragmentList[position]
         }
 
