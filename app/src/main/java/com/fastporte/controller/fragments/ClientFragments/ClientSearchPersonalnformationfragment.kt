@@ -25,7 +25,13 @@ class ClientSearchPersonalnformationfragment : Fragment() {
     }
     fun setInfo(view_: View){
         val tv_sv_ui_name = view_.findViewById<TextView>(R.id.tv_sv_ui_name)
+        val tv_sv_ui_age = view_.findViewById<TextView>(R.id.tv_sv_ui_age)
+        val tv_sv_ui_email = view_.findViewById<TextView>(R.id.tv_sv_ui_email)
+        val tv_sv_ui_phone = view_.findViewById<TextView>(R.id.tv_sv_ui_phone)
         tv_sv_ui_name.text = user?.name ?: "None"
+        tv_sv_ui_age.text = (user?.birthdate ?: "None")+" years"
+        tv_sv_ui_email.text = user?.email ?: "None"
+        tv_sv_ui_phone.text = user?.phone ?: "None"
     }
 
 }
