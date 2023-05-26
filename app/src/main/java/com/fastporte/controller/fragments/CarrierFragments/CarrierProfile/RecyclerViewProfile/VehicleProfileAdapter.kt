@@ -35,10 +35,10 @@ class VehicleProfilePrototype(itemView: android.view.View) : RecyclerView.ViewHo
 
     fun bind(vehicle: Vehicle) {
         btTypeVehicle.text = vehicle.type
-        btCapacity.text = (vehicle.capacity).toString()
+        btCapacity.text = (vehicle.quantity).toString()
 
 
-        Picasso.get().load(vehicle.urlImage)
+        Picasso.get().load(vehicle.photo)
             .error(R.mipmap.ic_launcher_round)
             .into(ivPhotoVehicle)
     }
