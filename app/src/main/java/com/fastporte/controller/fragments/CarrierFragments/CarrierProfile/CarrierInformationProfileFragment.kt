@@ -7,11 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-
 import com.fastporte.helpers.BaseURL
-import com.fastporte.models.Information
 import com.fastporte.R
 import com.fastporte.helpers.SharedPreferences
+import com.fastporte.models.User
 import com.fastporte.network.ProfileService
 import retrofit2.Call
 import retrofit2.Callback
@@ -44,15 +43,15 @@ class CarrierInformationProfileFragment : Fragment() {
         profileService = retrofit.create(ProfileService::class.java)
 
         val request = profileService.getDriverProfile(
-            SharedPreferences(view.context).getValue("id")!!.toInt()
-            ,"json")
+            SharedPreferences(view.context).getValue("id")!!.toInt(), "json"
+        )
 
-        request.enqueue(object : Callback<Information> {
-            override fun onFailure(call: Call<Information>, t: Throwable) {
+        request.enqueue(object : Callback<User> {
+            override fun onFailure(call: Call<User>, t: Throwable) {
                 Log.d("profileInformationFragment", t.toString())
             }
 
-            override fun onResponse(call: Call<Information>, response: Response<Information>) {
+            override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.isSuccessful) {
                     showData(response.body()!!)
                 }
@@ -60,17 +59,17 @@ class CarrierInformationProfileFragment : Fragment() {
         })
     }
 
-    private fun showData(information: Information) {
+    private fun showData(user: User) {
 
         val btName = view?.findViewById<TextView>(R.id.btName)
         val btAge = view?.findViewById<TextView>(R.id.btAge)
         val btEmail = view?.findViewById<TextView>(R.id.btEmail)
         val btPhone = view?.findViewById<TextView>(R.id.btPhone)
 
-        btName?.text = information.name
-        btAge?.text = information.birthdate
-        btEmail?.text = information.email
-        btPhone?.text = information.phone
+        btName?.text = user.name
+        btAge?.text = user.birthdate
+        btEmail?.text = user.email
+        btPhone?.text = user.phone
 
     }
 
