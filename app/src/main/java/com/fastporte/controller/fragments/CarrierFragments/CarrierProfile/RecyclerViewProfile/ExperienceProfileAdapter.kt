@@ -34,6 +34,6 @@ class ExperienceProfilePrototype(itemView: android.view.View) : RecyclerView.Vie
 
     fun bind(experience: Experience) {
         btJob.text = experience.job
-        btTime.text = experience.time
+        btTime.text = experience.years
     }
 }

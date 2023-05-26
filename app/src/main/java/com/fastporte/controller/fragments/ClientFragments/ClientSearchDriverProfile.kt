@@ -81,6 +81,15 @@ class ClientSearchDriverProfile : Fragment() {
             if(fragment is ClientSearchPersonalnformationfragment){
                 fragment.setUser(user)
             }
+            if(fragment is ClientSearchExperienceFragment){
+                fragment.setUser(user)
+            }
+            if(fragment is ClientSearchVehicleFragment){
+                fragment.setUser(user)
+            }
+            if(fragment is ClientSearchCommentsFragment){
+                fragment.setUser(user)
+            }
             return fragmentList[position]
         }
 

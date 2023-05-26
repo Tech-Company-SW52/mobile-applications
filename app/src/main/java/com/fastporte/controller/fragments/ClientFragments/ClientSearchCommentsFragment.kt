@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fastporte.R
 import com.fastporte.adapter.SearchClientCommentsAdapter
 import com.fastporte.models.CommentsSearch
+import com.fastporte.models.User
 import com.fastporte.network.ClientsService
 import com.fastporte.network.CommentsService
 import retrofit2.Call
@@ -19,6 +20,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class ClientSearchCommentsFragment : Fragment() {
+    private var user: User? = null;
+
     lateinit var commentRecyclerView: RecyclerView
 
     override fun onCreateView(
@@ -33,6 +36,9 @@ class ClientSearchCommentsFragment : Fragment() {
 
         return view
     }
+    fun setUser(user: User) {
+        this.user = user
+    }
 
     private fun loadComments(view: View) {
         val retrofit = Retrofit.Builder()
@@ -40,7 +46,7 @@ class ClientSearchCommentsFragment : Fragment() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val commentService:CommentsService= retrofit.create(CommentsService::class.java)
-        val listComments = commentService.getCommentsByDriverID(1)
+        val listComments = commentService.getCommentsByDriverID(user?.id ?: 0)
         listComments.enqueue(object :Callback<List<CommentsSearch>>{
             override fun onResponse(
                 call: Call<List<CommentsSearch>>,

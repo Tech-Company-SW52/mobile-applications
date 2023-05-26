@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fastporte.R
 import com.fastporte.adapter.SearchClientCommentsAdapter
 import com.fastporte.adapter.SearchClientVehicleAdapter
+import com.fastporte.models.User
 import com.fastporte.models.Vehicle
 import com.fastporte.network.CommentsService
 import com.fastporte.network.VehicleService
@@ -21,6 +22,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 class ClientSearchVehicleFragment : Fragment() {
+    private var user: User? = null;
+
     lateinit var vehicleRecyclerView: RecyclerView
 
 
@@ -34,6 +37,9 @@ class ClientSearchVehicleFragment : Fragment() {
         loadVehicles(view)
         return view
     }
+    fun setUser(user: User) {
+        this.user = user
+    }
 
     private fun loadVehicles(view: View) {
         val retrofit = Retrofit.Builder()
@@ -41,7 +47,7 @@ class ClientSearchVehicleFragment : Fragment() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val vehicleService: VehicleService = retrofit.create(VehicleService::class.java)
-        val listVehicles = vehicleService.getVehicleByDriverID(1)
+        val listVehicles = vehicleService.getVehicleByDriverID(user?.id ?: 0)
         listVehicles.enqueue(object : Callback<List<Vehicle>>{
             override fun onResponse(call: Call<List<Vehicle>>, response: Response<List<Vehicle>>) {
                 val listVehicle=response.body()
