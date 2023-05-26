@@ -1,16 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/flSupportContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controller.fragments.ClientFragments.ClientSupportFragment"
-    android:layout_marginTop="60dp">
+    android:layout_marginTop="60dp"
+    tools:context=".controller.fragments.ClientFragments.ClientSupportFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Client Support"
-        android:gravity="center" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:gravity="center"
+        android:text="Do you have \na claim?"
+        android:textColor="#000000"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivMainSupport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/support"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <Button
+        android:id="@+id/btEmailSupport"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:clickable="false"
+        android:contextClickable="false"
+        android:drawableLeft="@drawable/outline_email_24"
+        android:drawablePadding="10dp"
+        android:text="fpt@gmail.com"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        android:theme="@style/CustomButtonTextInformation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivMainSupport" />
+
+    <Button
+        android:id="@+id/btPhoneSupport"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="12dp"
+        android:clickable="false"
+        android:contextClickable="false"
+        android:drawableLeft="@drawable/outline_account_circle_24"
+        android:text="+51 962273579"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        android:theme="@style/CustomButtonTextInformation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btEmailSupport" />
+
+    <ImageView
+        android:id="@+id/ivWhatsapp"
+        android:layout_width="48dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="40dp"
+        android:cropToPadding="true"
+        android:padding="4dp"
+        android:src="@drawable/whatsapp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btPhoneSupport"
+        app:srcCompat="@drawable/whatsapp" />
+
+    <Button
+        android:id="@+id/btFAQ"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:text="FAQ"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivWebSite"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/ivWebSite"
+        android:layout_width="48dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/baseline_language_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/ivWhatsapp"
+        app:layout_constraintTop_toBottomOf="@+id/btPhoneSupport" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
