@@ -11,6 +11,7 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.navigation.Navigation
 import androidx.viewpager.widget.ViewPager
 import com.fastporte.R
 import com.fastporte.models.User
@@ -52,7 +53,8 @@ class ClientSearchDriverProfile : Fragment() {
     private fun contractDriver(view_: View) {
         val btSearchVehicleContract = view_.findViewById<Button>(R.id.btSearchVehicleContract)
         btSearchVehicleContract.setOnClickListener(){
-
+            Navigation.findNavController(view_)
+                .navigate(R.id.action_clientSearchDriverProfile_to_clientRequestServiceFragment)
         }
     }
 

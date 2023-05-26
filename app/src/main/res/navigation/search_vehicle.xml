@@ -30,5 +30,14 @@
         android:id="@+id/clientSearchDriverProfile"
         android:name="com.fastporte.controller.fragments.ClientFragments.ClientSearchDriverProfile"
         android:label="fragment_client_search_driver_profile"
-        tools:layout="@layout/fragment_client_search_driver_profile" />
+        tools:layout="@layout/fragment_client_search_driver_profile" >
+        <action
+            android:id="@+id/action_clientSearchDriverProfile_to_clientRequestServiceFragment"
+            app:destination="@id/clientRequestServiceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/clientRequestServiceFragment"
+        android:name="com.fastporte.controller.fragments.ClientFragments.ClientRequestServiceFragment"
+        android:label="fragment_client_request_service"
+        tools:layout="@layout/fragment_client_request_service" />
 </navigation>
