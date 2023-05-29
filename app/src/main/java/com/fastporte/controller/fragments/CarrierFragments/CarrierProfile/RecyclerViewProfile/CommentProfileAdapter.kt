@@ -29,8 +29,8 @@ class CommentProfileAdapter(var comments: ArrayList<Comment>) :
 }
 
 class CommentProfilePrototype(itemView: android.view.View) : RecyclerView.ViewHolder(itemView) {
-    val tvName = itemView.findViewById<TextView>(R.id.tvCommentName)
-    val tvComment = itemView.findViewById<TextView>(R.id.tvComment)
+    val tvName = itemView.findViewById<TextView>(R.id.tvName)
+    val tvComment = itemView.findViewById<TextView>(R.id.tvDescription)
     val tvRate = itemView.findViewById<TextView>(R.id.tvCarrierRate)
     val ivPhotoComment = itemView.findViewById<ImageView>(R.id.civProfileImage)
 

@@ -128,30 +128,30 @@ class CarrierVehicleProfileFragment : Fragment(), AddVehicleInterface {
     }
 
     private fun loadVehicles() {
-        vehicles.add(
-            Vehicle(
-                1,
-                "Taxi",
-                6,
-                "https://autoland.com.pe/wp-content/uploads/2022/04/MgZxPlus_Interna_miniatura.png"
-            )
-        )
-        vehicles.add(
-            Vehicle(
-                2,
-                "Camioneta",
-                10,
-                "https://movertis.com/wp-content/uploads/2020/08/shutterstock_308683868-1.jpgwidth1000ampnameshutterstock_308683868-1.jpg"
-            )
-        )
-        vehicles.add(
-            Vehicle(
-                3,
-                "Trailer",
-                15,
-                "https://www.esan.edu.pe/images/blog/2018/08/29/1500x844-factores-vehiculo-carga.jpg"
-            )
-        )
+//        vehicles.add(
+//            Vehicle(
+//                1,
+//                "Taxi",
+//                6,
+//                "https://autoland.com.pe/wp-content/uploads/2022/04/MgZxPlus_Interna_miniatura.png"
+//            )
+//        )
+//        vehicles.add(
+//            Vehicle(
+//                2,
+//                "Camioneta",
+//                10,
+//                "https://movertis.com/wp-content/uploads/2020/08/shutterstock_308683868-1.jpgwidth1000ampnameshutterstock_308683868-1.jpg"
+//            )
+//        )
+//        vehicles.add(
+//            Vehicle(
+//                3,
+//                "Trailer",
+//                15,
+//                "https://www.esan.edu.pe/images/blog/2018/08/29/1500x844-factores-vehiculo-carga.jpg"
+//            )
+//        )
     }
 
     companion object {
@@ -186,7 +186,7 @@ class CarrierVehicleProfileFragment : Fragment(), AddVehicleInterface {
         image = vehiclePhoto
         Toast.makeText(context, "datos $type $capacity $image", Toast.LENGTH_SHORT).show()
 
-        vehicles.add(Vehicle(vehicles.size + 1, type, capacity, image))
+//        vehicles.add(Vehicle(vehicles.size + 1, type, capacity, image))
         vehicleAdapter.notifyDataSetChanged()
 
 

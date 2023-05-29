@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fastporte.models.Experience
 import com.fastporte.R
 
-class ExperienceProfileAdapter(var experiences: ArrayList<Experience>) :
+class ExperienceProfileAdapter(var experiences: List<Experience>) :
     RecyclerView.Adapter<ExperienceProfilePrototype>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExperienceProfilePrototype {
         val view = LayoutInflater

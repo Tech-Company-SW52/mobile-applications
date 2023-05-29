@@ -14,6 +14,8 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.navigation.Navigation
 import com.fastporte.R
+import com.fastporte.helpers.SharedPreferences
+
 
 
 class SearchFragment : Fragment() {
@@ -26,7 +28,7 @@ class SearchFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_search, container, false)
-        val items = listOf("Trunk", "Van", "Cargo Trunk", "Bus", "Taxi")
+        val items = listOf("Trunk", "Van", "Cargo Truck", "Bus", "Taxi")
 
         val autoComplete : AutoCompleteTextView = view.findViewById(R.id.auto_complete)
 
@@ -41,12 +43,22 @@ class SearchFragment : Fragment() {
         }
         val buttonresult = view.findViewById<Button>(R.id.bt_result)
         val editnumber = view.findViewById<EditText>(R.id.et_username)
+
+
         buttonresult.setOnClickListener(){
-            Toast.makeText(context, autoComplete.text.toString() + " " + editnumber.text.toString(), Toast.LENGTH_SHORT).show()
+            information(autoComplete.text.toString(),editnumber.text.toString())
+            next(view)
+
         }
-        next(view)
 
         return view
+    }
+    private fun information(type_vehicle: String, Size: String){
+        val _context = requireContext()
+        val sharedPreferences = SharedPreferences(_context)
+        sharedPreferences.save("type", type_vehicle)
+        sharedPreferences.save("size", Size)
+
     }
     private fun next(view_: View) {
         val btnNext = view_.findViewById<Button>(R.id.bt_result)
