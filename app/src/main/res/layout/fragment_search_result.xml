@@ -10,9 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="20dp"
-        android:gravity="start|center_horizontal"
         android:orientation="vertical"
-        android:paddingHorizontal="50dp">
+>
 
         <TextView
             android:id="@+id/tv_back"
@@ -39,14 +38,13 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_search_result"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            tools:listitem="@layout/prototype_search_carrier"
+            android:paddingHorizontal="5dp"
+            />
 
-        <Button
-            android:id="@+id/simulate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Simular interaccion con driver id 1" />
 
     </LinearLayout>
 </FrameLayout>

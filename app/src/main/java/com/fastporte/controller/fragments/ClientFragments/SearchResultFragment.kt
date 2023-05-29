@@ -12,9 +12,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.fastporte.R
 import com.fastporte.adapter.SearchClientCommentsAdapter
 import com.fastporte.controller.fragments.ClientFragments.RecyclerView.SearchCarrierAdapter
+import com.fastporte.controller.fragments.ClientFragments.RecyclerView.SearchCarrierListener
 import com.fastporte.helpers.SharedPreferences
 import com.fastporte.models.CommentsSearch
 import com.fastporte.models.User
@@ -29,9 +31,9 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class SearchResultFragment : Fragment() {
+class SearchResultFragment : Fragment(), SearchCarrierListener {
     lateinit var user: User;
-
+    lateinit var resultRecyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +42,7 @@ class SearchResultFragment : Fragment() {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_search_result, container, false)
 
+        resultRecyclerView=view.findViewById(R.id.rv_search_result)
 
         retrofit(view)
         next(view)
@@ -62,16 +65,14 @@ class SearchResultFragment : Fragment() {
         val vehicleService: VehicleService = retrofit.create(VehicleService::class.java)
 
         val listVehicle = vehicleService.getVehicleFindTypeQuantity(type, size,"json")
-        val rvSearchCarrier = _view.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rv_client_search_vehicle)
         listVehicle.enqueue(object : Callback<List<Vehicle>>{
             override fun onResponse(call: Call<List<Vehicle>>, response: Response<List<Vehicle>>) {
-                val vehicleList: ArrayList<Vehicle> = response.body() as ArrayList<Vehicle>
-                var searchadapter = SearchCarrierAdapter(vehicleList)
-                rvSearchCarrier.adapter = searchadapter
-                rvSearchCarrier.layoutManager = LinearLayoutManager(_view.context)
+                val vehicleList=response.body()
+                if(vehicleList!=null){
+                    resultRecyclerView.adapter= SearchCarrierAdapter(vehicleList,requireContext(),this@SearchResultFragment)
+                    resultRecyclerView.layoutManager= LinearLayoutManager(context)
+                }
             }
-
-
             override fun onFailure(call: Call<List<Vehicle>>, t: Throwable) {
                 Log.d("Search Vehicle", t.toString())
             }
@@ -83,7 +84,6 @@ class SearchResultFragment : Fragment() {
     }
 
     private fun next(view_: View) {
-
         val btnNext = view_.findViewById<TextView>(R.id.tv_back)
         btnNext.setOnClickListener() {
             Navigation.findNavController(view_)
@@ -91,39 +91,35 @@ class SearchResultFragment : Fragment() {
 
         }
     }
+
     private fun simulate(view_: View) {
-        val btnNext = view_.findViewById<Button>(R.id.simulate)
-        btnNext.setOnClickListener() {
 
+    }
 
-            val retrofit = Retrofit.Builder()
-                .baseUrl("https://api-fastporte.azurewebsites.net/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
+    override fun onActionsItemClick(vehicle: Vehicle,view_: View) {
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://api-fastporte.azurewebsites.net/api/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
 
-            val driverService: DriversService = retrofit.create(DriversService::class.java)
-            val driverById = driverService.getDriver(1,"json")
-            driverById.enqueue(object :Callback<User>{
-                override fun onResponse(call: Call<User>, response: Response<User>) {
-                    if(response.isSuccessful){
-                        user=response.body()!!
-                        val bundle = Bundle()
-                        bundle.putSerializable("searchUserTemp", user)
-                        Navigation.findNavController(view_)
-                            .navigate(R.id.action_searchResultFragment_to_clientSearchDriverProfile,bundle)
-                    }
+        val driverService: DriversService = retrofit.create(DriversService::class.java)
+        val driverById = driverService.getDriver(vehicle.driver.id,"json")
+        driverById.enqueue(object :Callback<User>{
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                if(response.isSuccessful){
+                    user=response.body()!!
+                    val bundle = Bundle()
+                    bundle.putSerializable("searchUserTemp", user)
+                    Navigation.findNavController(view_)
+                        .navigate(R.id.action_searchResultFragment_to_clientSearchDriverProfile,bundle)
                 }
+            }
 
-                override fun onFailure(call: Call<User>, t: Throwable) {
-                    TODO("Not yet implemented")
-                }
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
 
-            })
-
-
-
-
-        }
+        })
     }
 
 }

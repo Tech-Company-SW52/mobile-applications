@@ -62,11 +62,8 @@ class SearchFragment : Fragment() {
     }
     private fun next(view_: View) {
         val btnNext = view_.findViewById<Button>(R.id.bt_result)
-        btnNext.setOnClickListener() {
-            Navigation.findNavController(view_)
-                .navigate(R.id.action_searchFragment_to_searchResultFragment)
-
-        }
+        Navigation.findNavController(view_)
+            .navigate(R.id.action_searchFragment_to_searchResultFragment)
     }
 
 }
