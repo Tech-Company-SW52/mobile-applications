@@ -92,9 +92,6 @@ class SearchResultFragment : Fragment(), SearchCarrierListener {
         }
     }
 
-    private fun simulate(view_: View) {
-
-    }
 
     override fun onActionsItemClick(vehicle: Vehicle,view_: View) {
         val retrofit = Retrofit.Builder()
