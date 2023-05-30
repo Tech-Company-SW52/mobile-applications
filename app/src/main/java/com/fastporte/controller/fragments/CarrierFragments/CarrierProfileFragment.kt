@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.viewpager2.widget.ViewPager2
+import com.fastporte.Interface.EditProfileDialogListener
 import com.fastporte.helpers.BaseURL
 import com.fastporte.R
 import com.fastporte.controller.fragments.CarrierFragments.CarrierProfile.CarrierProfileAdapter
@@ -25,7 +26,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class CarrierProfileFragment : Fragment() {
+class CarrierProfileFragment : Fragment(), EditProfileDialogListener {
 
     var tabTitle = arrayOf("Personal information", "Experience", "Vehicle", "Comments")
 
@@ -38,6 +39,7 @@ class CarrierProfileFragment : Fragment() {
 
         val view: View = inflater.inflate(R.layout.fragment_carrier_profile, container, false)
         val editProfileDialog = EditProfileDriverDialogFragment()
+        editProfileDialog.setDialogListener(this)
 
         //Tab layout
         val viewPager = view.findViewById<ViewPager2>(R.id.vpProfile)
@@ -119,5 +121,17 @@ class CarrierProfileFragment : Fragment() {
 
         tvCarrierName?.text = user.name
         tvCarrierDescription?.text = user.description
+    }
+
+    override fun onDialogDataSaved(user: User) {
+        val tvProfileName = view?.findViewById<TextView>(R.id.tvProfileName)
+        val informationName = view?.findViewById<Button>(R.id.btName)
+        val informationBirthday = view?.findViewById<Button>(R.id.btAge)
+        val informationPhone = view?.findViewById<Button>(R.id.btPhone)
+
+        tvProfileName?.text = user.name
+        informationName?.text = user.name
+        informationBirthday?.text = user.birthdate
+        informationPhone?.text = user.phone
     }
 }

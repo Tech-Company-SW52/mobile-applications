@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.viewpager2.widget.ViewPager2
+import com.fastporte.Interface.EditProfileDialogListener
 import com.fastporte.R
 import com.fastporte.controller.fragments.CarrierFragments.CarrierProfile.Components.EditProfileDriverDialogFragment
 import com.fastporte.controller.fragments.ClientFragments.ClientProfile.ClientProfileAdapter
@@ -25,7 +26,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class ClientProfileFragment : Fragment() {
+class ClientProfileFragment : Fragment(), EditProfileDialogListener {
 
     var tabTitle = arrayOf("Personal information")
 
@@ -35,6 +36,7 @@ class ClientProfileFragment : Fragment() {
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_client_profile, container, false)
         val editProfileDialog = EditProfileClientDialogFragment()
+        editProfileDialog.setDialogListener(this)
 
         val viewPager = view.findViewById<ViewPager2>(R.id.vpProfile)
         val tabLayout = view.findViewById<TabLayout>(R.id.tlProfile)
@@ -81,7 +83,10 @@ class ClientProfileFragment : Fragment() {
             .build()
 
         val service = retrofit.create(ProfileService::class.java)
-        val request = service.getClientProfile(SharedPreferences(view.context).getValue("id")!!.toInt(), "json")
+        val request = service.getClientProfile(
+            SharedPreferences(view.context).getValue("id")!!.toInt(),
+            "json"
+        )
 
         request.enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
@@ -89,6 +94,7 @@ class ClientProfileFragment : Fragment() {
                     showData(response.body()!!)
                 }
             }
+
             override fun onFailure(call: Call<User>, t: Throwable) {
                 println("Error: ${t.message}")
             }
@@ -97,7 +103,7 @@ class ClientProfileFragment : Fragment() {
 
     }
 
-    private fun showData(user: User){
+    private fun showData(user: User) {
         val civProfileImage = view?.findViewById<CircleImageView>(R.id.civProfileImage)
         val tvProfileName = view?.findViewById<TextView>(R.id.tvProfileName)
         val tvProfileDescription = view?.findViewById<TextView>(R.id.tvProfileDescription)
@@ -109,7 +115,17 @@ class ClientProfileFragment : Fragment() {
 
         tvProfileName?.text = user.name
         tvProfileDescription?.text = user.description
-
     }
 
+    override fun onDialogDataSaved(user: User) {
+        val tvProfileName = view?.findViewById<TextView>(R.id.tvProfileName)
+        val informationName = view?.findViewById<Button>(R.id.btName)
+        val informationBirthday = view?.findViewById<Button>(R.id.btAge)
+        val informationPhone = view?.findViewById<Button>(R.id.btPhone)
+
+        tvProfileName?.text = user.name
+        informationName?.text = user.name
+        informationBirthday?.text = user.birthdate
+        informationPhone?.text = user.phone
+    }
 }

@@ -6,6 +6,7 @@ import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.DialogFragment
+import com.fastporte.Interface.EditProfileDialogListener
 import com.fastporte.databinding.FragmentDialogEditProfileBinding
 import com.fastporte.helpers.BaseURL
 import com.fastporte.helpers.SharedPreferences
@@ -19,6 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class EditProfileDriverDialogFragment : DialogFragment() {
     private lateinit var binding: FragmentDialogEditProfileBinding
+    private var dialogListener: EditProfileDialogListener? = null
     val bundle = Bundle()
     var user: User? = null
 
@@ -52,6 +54,8 @@ class EditProfileDriverDialogFragment : DialogFragment() {
 
             updateUser()
 
+            dialogListener?.onDialogDataSaved(user!!)
+
             dismiss()
         }
 
@@ -64,6 +68,10 @@ class EditProfileDriverDialogFragment : DialogFragment() {
 
         return dialog
         // return super.onCreateDialog(savedInstanceState)
+    }
+
+    fun setDialogListener(listener: EditProfileDialogListener) {
+        dialogListener = listener
     }
 
     @SuppressLint("SimpleDateFormat")
