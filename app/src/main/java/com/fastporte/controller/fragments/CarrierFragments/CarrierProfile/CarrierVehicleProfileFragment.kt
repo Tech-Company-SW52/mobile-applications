@@ -1,6 +1,5 @@
 package com.fastporte.controller.fragments.CarrierFragments.CarrierProfile
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fastporte.R
 import com.fastporte.models.Vehicle
 import com.fastporte.controller.fragments.CarrierFragments.CarrierProfile.Components.AddVehicle
-import com.fastporte.controller.fragments.CarrierFragments.CarrierProfile.Components.AddVehicleInterface
 import com.fastporte.controller.fragments.CarrierFragments.CarrierProfile.RecyclerViewProfile.VehicleProfileAdapter
 import com.fastporte.helpers.BaseURL
 import com.fastporte.helpers.SharedPreferences
@@ -24,12 +22,13 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-var type: String = ""
-var capacity: Int = 0
-var image: String = ""
+//var type: String = ""
+//var capacity: Int = 0
+//var image: String = ""
 
-class CarrierVehicleProfileFragment : Fragment(), AddVehicleInterface {
-
+class CarrierVehicleProfileFragment : Fragment()
+    //, AddVehicleInterface
+{
     lateinit var vehicleRecyclerView: RecyclerView
     //var vehiclesNew = ArrayList<Vehicle>()
     //var vehicleAdapter: VehicleProfileAdapter? = null
@@ -42,11 +41,12 @@ class CarrierVehicleProfileFragment : Fragment(), AddVehicleInterface {
         val vehicleView: View =
             inflater.inflate(R.layout.fragment_carrier_vehicle_profile, container, false)
         val addVehicle = AddVehicle()
-        addVehicle.setAddVehicleListener(this)
+        //addVehicle.setAddVehicleListener(this)
 
         val btnAddVehicle = vehicleView.findViewById<Button>(R.id.btAddVehicle)
         btnAddVehicle?.setOnClickListener {
             addVehicle.show(parentFragmentManager, "AddVehicle")
+            loadVehicles(vehicleView)
         }
         //vehicleAdapter = VehicleProfileAdapter(vehiclesNew, vehicleView.context)
         return vehicleView
@@ -100,19 +100,19 @@ class CarrierVehicleProfileFragment : Fragment(), AddVehicleInterface {
     }
 
 
-    @SuppressLint("NotifyDataSetChanged")
-    override fun onAddVehicleFormulary(
-        vehicleType: String,
-        vehicleCapacity: Int,
-        vehiclePhoto: String
-    ) {
-        type = vehicleType
-        capacity = vehicleCapacity
-        image = vehiclePhoto
-        //Toast.makeText(context, "datos $type $capacity $image", Toast.LENGTH_SHORT).show()
-
-        //vehiclesNew.add(Vehicle(vehiclesNew.size + 1, type/*, capacity, image*/))
-        //vehicleAdapter!!.notifyDataSetChanged()
-    }
+    //@SuppressLint("NotifyDataSetChanged")
+    //override fun onAddVehicleFormulary(
+    //    vehicleType: String,
+    //    vehicleCapacity: Int,
+    //    vehiclePhoto: String
+    //) {
+    //    type = vehicleType
+    //    capacity = vehicleCapacity
+    //    image = vehiclePhoto
+    //    Toast.makeText(context, "datos $type $capacity $image", Toast.LENGTH_SHORT).show()
+//
+    //    vehiclesNew.add(Vehicle(vehiclesNew.size + 1, type/*, capacity, image*/))
+    //    vehicleAdapter!!.notifyDataSetChanged()
+    //}
 
 }

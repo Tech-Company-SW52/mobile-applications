@@ -7,6 +7,7 @@ import com.fastporte.models.Vehicle
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -33,4 +34,10 @@ interface ProfileService {
 
     @PUT("api/clients/{id}")
     fun updateClient(@Path("id") id: Int, @Body user: User?): Call<User>
+
+    @POST("api/experience/{id}")
+    fun postExperienceDriver(@Path("id") id: Int, @Body experience: Experience?): Call<Experience>
+
+    @POST("api/vehicle/{id}")
+    fun postVehicleDriver(@Path("id") id: Int, @Body experience: Vehicle?): Call<Vehicle>
 }

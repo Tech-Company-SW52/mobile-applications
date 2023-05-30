@@ -40,4 +40,7 @@ class ExperienceProfileAdapter(var experiences: List<Experience>, val context: C
         return experiences.size
     }
 
+
+
+
 }

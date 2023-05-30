@@ -11,4 +11,7 @@
     <string name="create"><u>Create account</u></string>
     <string name="upload_photo"><u>Upload photo</u></string>
     <string name="upload_document"><u>Upload document</u></string>
+    <string name="add_experience">Add experience</string>
+    <string name="experience_job">Experience Job</string>
+    <string name="experience_in_years">Job in years</string>
 </resources>
