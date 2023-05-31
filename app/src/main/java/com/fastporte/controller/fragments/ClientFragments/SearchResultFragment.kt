@@ -46,7 +46,6 @@ class SearchResultFragment : Fragment(), SearchCarrierListener {
 
         retrofit(view)
         next(view)
-        simulate(view)
         return view
     }
 

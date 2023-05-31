@@ -43,18 +43,28 @@ class ClientSearchDriverProfile : Fragment() {
         adapter.addFragment(ClientSearchExperienceFragment(), "Experience")
         adapter.addFragment(ClientSearchVehicleFragment(), "Vehicle")
         adapter.addFragment(ClientSearchCommentsFragment(), "Comments")
-
+        back(view)
         viewPager.adapter = adapter
         tabLayout.setupWithViewPager(viewPager)
 
         return view
     }
 
+    private fun back(view_: View) {
+        val tvbacksearchprofile = view_.findViewById<TextView>(R.id.tvbacksearchprofile)
+        tvbacksearchprofile.setOnClickListener(){
+            Navigation.findNavController(view_)
+                .navigate(R.id.action_clientSearchDriverProfile_to_searchResultFragment)
+        }
+    }
+
     private fun contractDriver(view_: View) {
         val btSearchVehicleContract = view_.findViewById<Button>(R.id.btSearchVehicleContract)
         btSearchVehicleContract.setOnClickListener(){
+            val bundle = Bundle()
+            bundle.putSerializable("searchUserTemp", user)
             Navigation.findNavController(view_)
-                .navigate(R.id.action_clientSearchDriverProfile_to_clientRequestServiceFragment)
+                .navigate(R.id.action_clientSearchDriverProfile_to_clientRequestServiceFragment,bundle)
         }
     }
 
