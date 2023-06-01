@@ -40,12 +40,13 @@
                     android:layout_height="wrap_content"
                     android:text="From"
                     android:textSize="15dp"/>
-                <EditText
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteTextViewFrom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="15dp"
-                    android:textSize="15dp"/>
-
+                    android:layout_marginLeft="25dp"
+                    android:hint="Enter an address"
+                    android:completionThreshold="1" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -61,7 +62,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginLeft="25dp"
                     android:textSize="15dp"/>
 
             </LinearLayout>
@@ -70,7 +71,8 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="40dp"
                 android:orientation="horizontal"
-                android:paddingHorizontal="20dp">
+                android:paddingHorizontal="20dp"
+                >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -79,7 +81,8 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginLeft="25dp"
+                    android:hint="dd/mm/yyyy"
                     android:textSize="15dp"/>
 
             </LinearLayout>
@@ -94,11 +97,13 @@
                     android:layout_height="wrap_content"
                     android:text="To"
                     android:textSize="15dp"/>
-                <EditText
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteTextViewTo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="15dp"
-                    android:textSize="15dp"/>
+                    android:layout_marginLeft="35dp"
+                    android:hint="Enter an address"
+                    android:completionThreshold="1" />
 
             </LinearLayout>
             <LinearLayout
@@ -107,16 +112,39 @@
                 android:paddingTop="40dp"
                 android:orientation="horizontal"
                 android:paddingHorizontal="20dp">
-                <TextView
+                    <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="People"
-                    android:textSize="15dp"/>
-                <EditText
-                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                        android:layout_weight="1">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="People"
+                            android:textSize="15dp"/>
+                        <EditText
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:textSize="15dp"/>
+                    </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="15dp"
-                    android:textSize="15dp"/>
+                    android:orientation="horizontal"
+                    android:layout_weight="1">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Weight"
+                        android:textSize="15dp"/>
+                    <EditText
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="15dp"/>
+                </LinearLayout>
 
             </LinearLayout>
             <LinearLayout
@@ -125,16 +153,34 @@
                 android:paddingTop="40dp"
                 android:orientation="horizontal"
                 android:paddingHorizontal="20dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Time"
+                        android:textSize="15dp"/>
+                    <EditText
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="15dp"/>
+                </LinearLayout>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Time"
-                    android:textSize="15dp"/>
+                    android:textSize="15dp"
+                    android:text="-"
+                    android:layout_weight="1"/>
                 <EditText
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="15dp"
-                    android:textSize="15dp"/>
+                    android:layout_marginLeft="15dp"
+                    android:textSize="15dp"
+                    android:layout_weight="1"/>
 
             </LinearLayout>
             <LinearLayout
@@ -151,7 +197,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginLeft="35dp"
                     android:textSize="15dp"/>
 
             </LinearLayout>
@@ -173,6 +219,7 @@
 
             </LinearLayout>
             <Button
+                android:id="@+id/bt_client_search_request_send"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
