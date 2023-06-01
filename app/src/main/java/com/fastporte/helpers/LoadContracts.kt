@@ -45,7 +45,10 @@ class LoadContracts {
                 if (response.isSuccessful) {
                     val contracts: List<Contract> = response.body() ?: ArrayList()
                     recyclerView.layoutManager = LinearLayoutManager(context)
-                    foo(contracts)
+                    val filterContracts = contracts.filter { contract ->
+                        contract.visible
+                    }
+                    foo(filterContracts)
                 } else {
                     Log.d("Activity fail", "Error: " + response.code())
                 }

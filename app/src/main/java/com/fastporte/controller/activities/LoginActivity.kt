@@ -114,6 +114,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun saveSharedPreferences(KeyName: String, value: String) {
         val sharedPreferences = SharedPreferences(this)
+        sharedPreferences.removeValue(KeyName)
         sharedPreferences.save(KeyName, value)
     }
 
