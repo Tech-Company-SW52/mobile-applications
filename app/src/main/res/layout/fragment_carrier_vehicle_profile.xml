@@ -5,8 +5,7 @@
     android:id="@+id/frameLayout7"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CarrierFragments.CarrierProfile.CarrierVehicleProfileFragment">
-
+    tools:context="com.fastporte.controller.fragments.CarrierFragments.CarrierProfile.CarrierVehicleProfileFragment">
     <ScrollView
         android:id="@+id/svVehicle"
         android:layout_width="match_parent"
@@ -20,7 +19,7 @@
             android:layout_height="wrap_content">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvExperienceCarrier"
+                android:id="@+id/rvVehicleCarrier"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -36,14 +35,11 @@
                 android:id="@+id/btAddVehicle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:text="Add vehicle"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.935"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rvExperienceCarrier"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
