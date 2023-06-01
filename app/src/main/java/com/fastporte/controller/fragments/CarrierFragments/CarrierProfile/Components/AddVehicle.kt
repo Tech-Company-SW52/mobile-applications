@@ -53,7 +53,9 @@ class AddVehicle(
         builder.setPositiveButton("Add") { dialog, which ->
             val type = binding.etVehicleName.text.toString()
             val capacity = binding.etCapacity.text.toString().toInt()
-            val urlImage = binding.etPhoto.text.toString()
+            var urlImage = binding.etPhoto.text.toString()
+            if (urlImage.isEmpty())
+                urlImage = "https://png.pngtree.com/png-vector/20191021/ourlarge/pngtree-vector-car-icon-png-image_1834527.jpg"
             //Toast.makeText(requireContext(), "datos $type $capacity $urlImage", Toast.LENGTH_SHORT).show()
             //listener?.onAddVehicleFormulary(type, capacity, urlImage)
             //añadir vehicle al arraylist
