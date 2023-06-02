@@ -1,5 +1,6 @@
 package com.fastporte.controller.fragments.ClientFragments
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -27,10 +28,6 @@ import retrofit2.http.Query
 import java.util.*
 
 class ClientRequestServiceFragment : Fragment() {
-
-
-
-
     lateinit var user: User;
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +35,7 @@ class ClientRequestServiceFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view: View= inflater.inflate(R.layout.fragment_client_request_service, container, false)
+        val editTextDate = view.findViewById<EditText>(R.id.id_client_search_request_date)
         getUser()
         back(view)
 
@@ -46,8 +44,103 @@ class ClientRequestServiceFragment : Fragment() {
         autoCompleteTo(view)
         //
 
+        setHourStart(view)
+        setHourEnd(view)
+
+
+        selectPeople(view)
+        selectWeight(view)
+        editTextDate.setOnClickListener { selectDate(view) }
+
         sendRequest(view)
         return view
+    }
+
+    private fun setHourEnd(view: View) {
+        val hourPicker = view.findViewById<NumberPicker>(R.id.hourEndPicker)
+
+        // Establecer rango de horas
+        hourPicker.minValue = 0
+        hourPicker.maxValue = 23
+
+        // Formatear visualización de horas
+        hourPicker.setFormatter { value ->
+            String.format(Locale.getDefault(), "%02d:00", value)
+        }
+    }
+
+    private fun setHourStart(view: View) {
+        val hourPicker = view.findViewById<NumberPicker>(R.id.hourStartPicker)
+
+        // Establecer rango de horas
+        hourPicker.minValue = 0
+        hourPicker.maxValue = 23
+
+        // Formatear visualización de horas
+        hourPicker.setFormatter { value ->
+            String.format(Locale.getDefault(), "%02d:00", value)
+        }
+    }
+
+    private fun selectWeight(view: View) {
+        val numberPicker = view.findViewById<EditText>(R.id.weightPicker)
+        val buttonDecrease = view.findViewById<Button>(R.id.buttonWeightDecrease)
+        val buttonIncrease = view.findViewById<Button>(R.id.buttonWeightIncrease)
+
+
+        // Establecer el valor inicial
+        numberPicker.setText("0")
+
+        // Botón de decremento
+        buttonDecrease.setOnClickListener {
+            if ( numberPicker.text.toString().toInt() > 0) {
+                numberPicker.setText((numberPicker.text.toString().toInt()-1).toString())
+            }
+        }
+
+        // Botón de incremento
+        buttonIncrease.setOnClickListener {
+            numberPicker.setText((numberPicker.text.toString().toInt()+1).toString())
+        }
+    }
+
+    private fun selectPeople(view: View) {
+        val numberPicker = view.findViewById<EditText>(R.id.peoplePicker)
+        val buttonDecrease = view.findViewById<Button>(R.id.buttonPeopleDecrease)
+        val buttonIncrease = view.findViewById<Button>(R.id.buttonPeopleIncrease)
+
+
+        // Establecer el valor inicial
+        numberPicker.setText("0")
+
+        // Botón de decremento
+        buttonDecrease.setOnClickListener {
+            if ( numberPicker.text.toString().toInt() > 0) {
+                numberPicker.setText((numberPicker.text.toString().toInt()-1).toString())
+            }
+        }
+
+        // Botón de incremento
+        buttonIncrease.setOnClickListener {
+            numberPicker.setText((numberPicker.text.toString().toInt()+1).toString())
+        }
+    }
+
+    private fun selectDate(view_: View) {
+        val editTextDate = view_.findViewById<EditText>(R.id.id_client_search_request_date)
+
+        val calendar = Calendar.getInstance()
+        val currentYear = calendar.get(Calendar.YEAR)
+        val currentMonth = calendar.get(Calendar.MONTH)
+        val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(requireContext(), { _: DatePicker?, year: Int, monthOfYear: Int, dayOfMonth: Int ->
+            val selectedDate = "$dayOfMonth/${monthOfYear + 1}/$year"
+            editTextDate.setText(selectedDate)
+        }, currentYear, currentMonth, currentDay)
+
+        datePickerDialog.datePicker.minDate = calendar.timeInMillis // Establecer fecha mínima como hoy
+        datePickerDialog.show()
     }
 
     private fun sendRequest(view_: View) {

@@ -53,24 +53,6 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="40dp"
                 android:orientation="horizontal"
-                android:paddingHorizontal="20dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Type"
-                    android:textSize="15dp"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:textSize="15dp"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="40dp"
-                android:orientation="horizontal"
                 android:paddingHorizontal="20dp"
                 >
                 <TextView
@@ -79,11 +61,15 @@
                     android:text="Date"
                     android:textSize="15dp"/>
                 <EditText
+                    android:id="@+id/id_client_search_request_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:hint="dd/mm/yyyy"
-                    android:textSize="15dp"/>
+                    android:hint="Select a date"
+                    android:focusable="false"
+                    android:clickable="true"
+                    android:inputType="none"
+                    android:onClick="showDatePicker"
+                    android:layout_marginLeft="25dp"/>
 
             </LinearLayout>
             <LinearLayout
@@ -121,12 +107,33 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="People"
-                            android:textSize="15dp"/>
-                        <EditText
-                            android:layout_width="100dp"
+                            android:textSize="15dp"
+                            android:paddingRight="10dp"/>
+                        <Button
+                            android:id="@+id/buttonPeopleDecrease"
+                            android:layout_width="40dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:textSize="15dp"/>
+                            android:text="-"
+                            android:backgroundTint="@color/white"
+                            android:textColor="@color/black"
+                            />
+                        <EditText
+                            android:id="@+id/peoplePicker"
+                            android:layout_width="40dp"
+                            android:layout_height="45dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:background="@drawable/edit_text_background"
+                            android:ems="10"
+                            android:inputType="number"/>
+
+                        <Button
+                            android:id="@+id/buttonPeopleIncrease"
+                            android:layout_width="40dp"
+                            android:layout_height="wrap_content"
+                            android:text="+"
+                            android:backgroundTint="@color/white"
+                            android:textColor="@color/black"/>
                     </LinearLayout>
 
                 <LinearLayout
@@ -138,55 +145,85 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Weight"
-                        android:textSize="15dp"/>
-                    <EditText
-                        android:layout_width="100dp"
+                        android:textSize="15dp"
+                        android:paddingRight="10dp"/>
+                    <Button
+                        android:id="@+id/buttonWeightDecrease"
+                        android:layout_width="40dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:textSize="15dp"/>
+                        android:text="-"
+                        android:backgroundTint="@color/white"
+                        android:textColor="@color/black"
+                        />
+                    <EditText
+                        android:id="@+id/weightPicker"
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:ems="10"
+                        android:layout_gravity="center"
+                        android:background="@drawable/edit_text_background"
+                        android:inputType="number"
+                        android:gravity="center"/>
+
+                    <Button
+                        android:id="@+id/buttonWeightIncrease"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:text="+"
+                        android:backgroundTint="@color/white"
+                        android:textColor="@color/black"/>
                 </LinearLayout>
 
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="40dp"
+                android:paddingTop="10dp"
                 android:orientation="horizontal"
                 android:paddingHorizontal="20dp">
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_weight="1">
+                    android:orientation="horizontal">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Time"
-                        android:textSize="15dp"/>
-                    <EditText
-                        android:layout_width="100dp"
+                        android:textSize="15dp"
+                        android:layout_gravity="center"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:textSize="15dp"/>
+                        android:orientation="horizontal">
+                        <NumberPicker
+                            android:id="@+id/hourStartPicker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="50dp"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="40dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="40dp"
+                            android:text="-"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"/>
+                        <NumberPicker
+                            android:id="@+id/hourEndPicker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+
                 </LinearLayout>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="15dp"
-                    android:text="-"
-                    android:layout_weight="1"/>
-                <EditText
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:textSize="15dp"
-                    android:layout_weight="1"/>
+
 
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="40dp"
+                android:paddingTop="20dp"
                 android:orientation="horizontal"
                 android:paddingHorizontal="20dp">
                 <TextView
@@ -198,7 +235,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="35dp"
-                    android:textSize="15dp"/>
+                    android:textSize="15dp"
+                    android:inputType="number"/>
 
             </LinearLayout>
             <LinearLayout
