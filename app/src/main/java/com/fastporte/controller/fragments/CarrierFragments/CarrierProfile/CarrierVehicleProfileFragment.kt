@@ -67,10 +67,12 @@ class CarrierVehicleProfileFragment : Fragment()
 
         val vehicleService: ProfileService = retrofit.create(ProfileService::class.java)
 
+
         val request = vehicleService.getDriverVehicle(
             SharedPreferences(view.context).getValue("id")!!.toInt(),
             "json"
         )
+
 
         request.enqueue(object : Callback<List<Vehicle>> {
             override fun onResponse(call: Call<List<Vehicle>>, response: Response<List<Vehicle>>) {
@@ -98,6 +100,11 @@ class CarrierVehicleProfileFragment : Fragment()
 
         })
     }
+
+
+//        vehicles.add(Vehicle(vehicles.size + 1, type, capacity, image))
+    //searchcommit    
+    //vehicleAdapter.notifyDataSetChanged()
 
 
     //@SuppressLint("NotifyDataSetChanged")

@@ -1,6 +1,7 @@
 package com.fastporte.models
 
 import com.google.gson.annotations.SerializedName
+
 import java.io.Serializable
 
 class Vehicle(
@@ -12,4 +13,7 @@ class Vehicle(
     val quantity: Int,
     @SerializedName("photo")
     val photo: String
+    @SerializedName("driver") 
+    var driver: User
 ): Serializable
+

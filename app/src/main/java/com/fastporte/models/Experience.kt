@@ -6,6 +6,7 @@ import java.sql.Time
 import java.time.LocalTime
 
 class Experience(
+
     @SerializedName("id")
     var id: Int,
     @SerializedName("job")
@@ -13,3 +14,4 @@ class Experience(
     @SerializedName("years")
     var years: Int
 ) : Serializable
+

@@ -13,6 +13,7 @@ import com.fastporte.R
 import java.sql.Time
 import java.time.LocalTime
 
+
 class ExperienceProfileAdapter(var experiences: List<Experience>, val context: Context) :
     RecyclerView.Adapter<ExperienceProfileAdapter.ViewHolder>() {
 
@@ -22,6 +23,7 @@ class ExperienceProfileAdapter(var experiences: List<Experience>, val context: C
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
         val view = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.prototype_carrier_experience_profile, parent, false)
@@ -39,8 +41,6 @@ class ExperienceProfileAdapter(var experiences: List<Experience>, val context: C
     override fun getItemCount(): Int {
         return experiences.size
     }
-
-
 
 
 }

@@ -11,5 +11,5 @@ interface DriversService {
     fun getDriver(@Query("format") format: String): Call<List<User>>
 
     @GET("drivers/{id}")
-    fun getDriver(@Query("format") format: String, @Path("id") id: Int): Call<User>
+    fun getDriver(@Path("id") id: Int, @Query("format") format: String ): Call<User>
 }

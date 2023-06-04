@@ -46,4 +46,5 @@ class VehicleProfileAdapter(var vehicles: List<Vehicle>, val context: Context) :
         return vehicles.size
     }
 
+
 }

@@ -43,4 +43,5 @@ class CommentProfileAdapter(var comments: List<Comment>, val context: Context) :
         return comments.size
     }
 
+
 }
