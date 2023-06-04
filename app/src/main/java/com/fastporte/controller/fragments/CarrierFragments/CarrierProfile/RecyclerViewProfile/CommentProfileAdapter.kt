@@ -1,5 +1,6 @@
 package com.fastporte.controller.fragments.CarrierFragments.CarrierProfile.RecyclerViewProfile
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -9,39 +10,38 @@ import com.fastporte.models.Comment
 import com.fastporte.R
 import com.squareup.picasso.Picasso
 
-class CommentProfileAdapter(var comments: ArrayList<Comment>) :
-    RecyclerView.Adapter<CommentProfilePrototype>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentProfilePrototype {
+class CommentProfileAdapter(var comments: List<Comment>, val context: Context) :
+    RecyclerView.Adapter<CommentProfileAdapter.ViewHolder>() {
+
+    class ViewHolder(val view: android.view.View): RecyclerView.ViewHolder(view) {
+        val tvName = view.findViewById<TextView>(R.id.tvCommentName)
+        val tvComment = view.findViewById<TextView>(R.id.tvComment)
+        val tvRate = view.findViewById<TextView>(R.id.tvCarrierRate)
+        val ivPhotoComment = view.findViewById<ImageView>(R.id.civProfileImage)
+    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.prototype_carrier_comment_profile, parent, false)
-        return CommentProfilePrototype(view)
+        return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: CommentProfilePrototype, position: Int) {
-        holder.bind(comments.get(position))
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val comment = comments[position]
+
+        holder.tvName.text = comment.client.name
+        holder.tvComment.text = comment.comment
+        holder.tvRate.text = comment.star.toString()
+
+        Picasso.get()
+            .load(comment.client.photo)
+            .error(R.mipmap.ic_launcher_round)
+            .into(holder.ivPhotoComment)
     }
 
     override fun getItemCount(): Int {
         return comments.size
     }
 
-}
-
-class CommentProfilePrototype(itemView: android.view.View) : RecyclerView.ViewHolder(itemView) {
-    val tvName = itemView.findViewById<TextView>(R.id.tvName)
-    val tvComment = itemView.findViewById<TextView>(R.id.tvDescription)
-    val tvRate = itemView.findViewById<TextView>(R.id.tvCarrierRate)
-    val ivPhotoComment = itemView.findViewById<ImageView>(R.id.civProfileImage)
-
-    fun bind(comment: Comment) {
-        tvName.text = comment.name
-        tvComment.text = comment.comment
-        tvRate.text = comment.rate.toString()
-
-        Picasso.get().load(comment.urlImage)
-            .error(R.mipmap.ic_launcher_round)
-            .into(ivPhotoComment)
-    }
 
 }

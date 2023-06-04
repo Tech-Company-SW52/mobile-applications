@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<!-- Cambiar el ícono de los tres puntos -->
+<!--    <item-->
+<!--        android:id="@+id/faq"-->
+<!--        android:icon="@drawable/baseline_person_24"-->
+<!--        android:title="Faq"-->
+<!--        app:showAsAction="always" />-->
+
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/baseline_keyboard_arrow_down_24"
+        android:title="Log out" />
+</menu>

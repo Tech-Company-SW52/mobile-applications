@@ -5,39 +5,29 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fastporte.models.Experience
 import com.fastporte.R
+import com.fastporte.controller.fragments.CarrierFragments.CarrierProfile.Components.AddExperience
 import com.fastporte.controller.fragments.CarrierFragments.CarrierProfile.RecyclerViewProfile.ExperienceProfileAdapter
+import com.fastporte.helpers.BaseURL
+import com.fastporte.helpers.SharedPreferences
+import com.fastporte.network.ProfileService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+//var jobExperience: String = ""
+//var timeExperience: Int = 0
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CarrierExperienceProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class CarrierExperienceProfileFragment : Fragment() {
-
-    var experiences = ArrayList<Experience>()
-    var experienceAdapter = ExperienceProfileAdapter(experiences)
-
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+class CarrierExperienceProfileFragment : Fragment()
+    //,AddExperienceInterface
+{
+    lateinit var experienceRecyclerView: RecyclerView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,73 +35,62 @@ class CarrierExperienceProfileFragment : Fragment() {
 
         val view: View =
             inflater.inflate(R.layout.fragment_carrier_experience_profile, container, false)
+        val addExperience = AddExperience()
 
-        loadExperiences()
-        initView(view)
+        //addExperience.setAddExperienceListener(this)
+
+        val btnAddExperience = view.findViewById<Button>(R.id.btAddExperience)
+
+        btnAddExperience?.setOnClickListener {
+            addExperience.show(parentFragmentManager, "AddExperience")
+            loadExperiences(view)
+        }
 
         return view
     }
 
-    private fun initView(view: View) {
-        val rvExperience = view.findViewById<RecyclerView>(R.id.rvExperienceCarrier)
-
-        rvExperience.adapter = experienceAdapter
-        rvExperience.layoutManager = LinearLayoutManager(view.context)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        experienceRecyclerView = view.findViewById(R.id.rvExperienceCarrier)
+        loadExperiences(view)
     }
 
-    private fun loadExperiences() {
-        /*val retrofit = Retrofit.Builder()
+    private fun loadExperiences(view: View) {
+        val retrofit = Retrofit.Builder()
             .baseUrl(BaseURL.BASE_URL.toString())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
         val experienceService: ProfileService = retrofit.create(ProfileService::class.java)
 
-        val request = experienceService.getExperience("json")
+        val request = experienceService.getDriverExperience(SharedPreferences(view.context).
+                                        getValue("id")!!.toInt(), "json")
 
         //Recibir la lista de experiencias
-        request.enqueue(object : Callback<ArrayList<Experience>> {
-            override fun onResponse(call: Call<ArrayList<Experience>>, response: Response<ArrayList<Experience>>) {
+        request.enqueue(object : Callback<List<Experience>> {
+            override fun onResponse(call: Call<List<Experience>>, response: Response<List<Experience>>) {
                 if(response.isSuccessful){
-                    val experienceList = response.body()!!
-                    //experiences.addAll(experienceList)
-
-                    for (experience in experienceList){
-                        experiences.add(Experience(experience.id, experience.job, experience.time) )
-                    }
-
-                    experiences.add(Experience(1, "Programador", "2 años"))
+                    val experienceList: List<Experience> = response.body()!!
+                    experienceRecyclerView.layoutManager = LinearLayoutManager(view.context)
+                    experienceRecyclerView.adapter = ExperienceProfileAdapter(experienceList, view.context)
 
                 }
             }
 
-            override fun onFailure(call: Call<ArrayList<Experience>>, t: Throwable) {
+            override fun onFailure(call: Call<List<Experience>>, t: Throwable) {
                 t.printStackTrace()
             }
-        })*/
+        })
 
-        experiences.add(Experience(1, "ANITA Tourism", "5 años"))
-        experiences.add(Experience(2, "PERU Tourism SAC", "7 años"))
-        experiences.add(Experience(3, "Independiente", "3 años"))
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CarrierExperienceProfileFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CarrierExperienceProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+    //override fun onAddExperienceFormulary(experienceJob: String, experienceTime: Int) {
+    //    jobExperience = experienceJob
+    //    timeExperience = experienceTime
+    //    Toast.makeText(context, "datos $jobExperience $timeExperience", Toast.LENGTH_SHORT).show()
+//
+    //    //experience?.job = jobExperience
+    //    //experience?.years = timeExperience
+    //    //postExperience()
+    //}
 }

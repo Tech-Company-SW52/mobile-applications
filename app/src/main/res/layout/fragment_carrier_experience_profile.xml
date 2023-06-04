@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout6"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fastporte.controller.fragments.CarrierFragments.CarrierProfile.CarrierExperienceProfileFragment">
+    tools:context=".CarrierFragments.CarrierProfile.CarrierExperienceProfileFragment">
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -33,11 +33,11 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <Button
-                android:id="@+id/btAddVehicle"
+                android:id="@+id/btAddExperience"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Add experience"
+                android:text="@string/add_experience"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.935"
@@ -47,6 +47,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

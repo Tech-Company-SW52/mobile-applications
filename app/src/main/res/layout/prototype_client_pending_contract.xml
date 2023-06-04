@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/btDeclineClient"
             android:layout_width="176dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"

@@ -1,5 +1,6 @@
 package com.fastporte.controller.activities
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat.startActivity
 import com.fastporte.R
 import com.fastporte.network.ClientsService
 import com.fastporte.network.DriversService
@@ -46,6 +48,7 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+    @SuppressLint("CutPasteId")
     private fun login() {
         val userEmail = findViewById<EditText>(R.id.et_username)
         val userPassword = findViewById<EditText>(R.id.et_password)
@@ -71,7 +74,7 @@ class LoginActivity : AppCompatActivity() {
                 if (userList != null) {
                     for (user in userList) {
                         if (userEmail.text.toString() == user.email && userPassword.text.toString() == user.password) {
-                            clientIntent(user.id)
+                            clientIntent(user.id, user.name, user.lastname)
                         }
                     }
                 }
@@ -82,14 +85,13 @@ class LoginActivity : AppCompatActivity() {
             }
         })
 
-
         listDriver.enqueue(object : Callback<List<User>> {
             override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
                 val userList = response.body()
                 if (userList != null) {
                     for (user in userList) {
                         if (userEmail.text.toString() == user.email && userPassword.text.toString() == user.password) {
-                            driverIntent(user.id)
+                            driverIntent(user.id, user.name, user.lastname)
                         }
                     }
                 }
@@ -99,24 +101,32 @@ class LoginActivity : AppCompatActivity() {
                 Log.d("LoginActivity Driver", t.toString())
             }
         })
+
     }
 
-    private fun clientIntent(id: Int) {
+    private fun clientIntent(id: Int, name: String, lastName: String){
         val clientIntent = Intent(this, ClientActivity::class.java)
         saveSharedPreferences("id", id.toString())
         saveSharedPreferences("typeUser", "client")
+        saveSharedPreferences("fullName", "$name $lastName")
+        val etPassword = findViewById<EditText>(R.id.et_password)
+        etPassword.text.clear()
         startActivity(clientIntent)
     }
 
-    private fun driverIntent(id: Int) {
+    private fun driverIntent(id: Int, name: String, lastName: String) {
         val carrierIntent = Intent(this, CarrierActivity::class.java)
         saveSharedPreferences("id", id.toString())
         saveSharedPreferences("typeUser", "driver")
+        saveSharedPreferences("fullName", "$name $lastName")
+        val etPassword = findViewById<EditText>(R.id.et_password)
+        etPassword.text.clear()
         startActivity(carrierIntent)
     }
 
     private fun saveSharedPreferences(KeyName: String, value: String) {
         val sharedPreferences = SharedPreferences(this)
+        sharedPreferences.removeValue(KeyName)
         sharedPreferences.save(KeyName, value)
     }
 

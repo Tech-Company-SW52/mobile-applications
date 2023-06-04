@@ -2,6 +2,7 @@ package com.fastporte.models
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
+import java.util.Date
 
 class User(
     @SerializedName("birthdate") var birthdate: String,
@@ -15,5 +16,4 @@ class User(
     @SerializedName("region") var region: String,
     @SerializedName("password") var password: String,
     @SerializedName("photo") var photo: String
-) : Serializable {
-}
+) : Serializable

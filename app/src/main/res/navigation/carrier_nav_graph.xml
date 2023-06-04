@@ -21,7 +21,19 @@
         tools:layout="@layout/fragment_carrier_profile" />
     <fragment
         android:id="@+id/id_carrier_support_fragment"
-        android:name="com.fastporte.controller.fragments.CarrierFragments.CarrierSupportFragment"
+        android:name="com.fastporte.controller.fragments.ClientFragments.ClientSupportFragment"
         android:label="Support"
-        tools:layout="@layout/fragment_carrier_support" />
+        tools:layout="@layout/fragment_client_support">
+
+        <action
+            android:id="@+id/action_id_carrier_support_fragment_to_id_client_faq_fragment"
+            app:destination="@id/id_client_faq_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/id_client_faq_fragment"
+        android:name="com.fastporte.controller.fragments.Faq.FaqFragment"
+        android:label="FAQ"
+        tools:layout="@layout/fragment_faq" />
+
 </navigation>
