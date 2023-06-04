@@ -31,6 +31,6 @@ class SearchClientExperienceAdapter(val experiences: List<Experience>,val contex
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val experience = experiences[position]
         holder.tvSearchClientJob.text = experience.job
-        holder.tvSearchClientJobTime.text = (experience.years)+" years"
+        holder.tvSearchClientJobTime.text = (experience.years.toString())+" years"
     }
 }

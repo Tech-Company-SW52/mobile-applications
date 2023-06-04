@@ -12,6 +12,7 @@ import com.fastporte.databinding.FragmentAddVehicleBinding
 import com.fastporte.helpers.BaseURL
 import com.fastporte.helpers.SharedPreferences
 import com.fastporte.models.Experience
+import com.fastporte.models.User
 import com.fastporte.models.Vehicle
 import com.fastporte.network.ProfileService
 import retrofit2.Call
@@ -54,12 +55,16 @@ class AddVehicle(
             val type = binding.etVehicleName.text.toString()
             val capacity = binding.etCapacity.text.toString().toInt()
             var urlImage = binding.etPhoto.text.toString()
+            var user = User("","", "",0,"","","","","","","")
             if (urlImage.isEmpty())
                 urlImage = "https://png.pngtree.com/png-vector/20191021/ourlarge/pngtree-vector-car-icon-png-image_1834527.jpg"
+
+
+
             //Toast.makeText(requireContext(), "datos $type $capacity $urlImage", Toast.LENGTH_SHORT).show()
             //listener?.onAddVehicleFormulary(type, capacity, urlImage)
             //añadir vehicle al arraylist
-            vehicle = Vehicle(0, type, capacity, urlImage)
+            vehicle = Vehicle(0, type, capacity, photo = urlImage, user)
             //listener?.onAddVehicleFormulary(type, capacity, urlImage)
 
             postVehicle()

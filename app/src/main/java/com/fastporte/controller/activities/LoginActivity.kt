@@ -25,7 +25,10 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
+        val sharedPreferences = SharedPreferences(this)
+        sharedPreferences.removeValue("typeUser")
+        sharedPreferences.removeValue("id")
+        sharedPreferences.removeValue("fullName")
         val login = findViewById<Button>(R.id.btn_login)
 
         login.setOnClickListener {
@@ -53,8 +56,6 @@ class LoginActivity : AppCompatActivity() {
         val userEmail = findViewById<EditText>(R.id.et_username)
         val userPassword = findViewById<EditText>(R.id.et_password)
 
-        userEmail.setText("luis@gmail.com")
-        userPassword.setText("123456")
 
         val retrofit = Retrofit.Builder()
             .baseUrl("https://api-fastporte.azurewebsites.net/api/")
