@@ -10,10 +10,14 @@ import com.fastporte.R
 import com.fastporte.models.ClientNotification
 import com.fastporte.models.DriverNotification
 
-class CarrierNotificationRequestAdapter(val notifications: List<DriverNotification>, val context: Context):RecyclerView.Adapter<CarrierNotificationRequestAdapter.ViewHolder>() {
+class CarrierNotificationRequestAdapter(val notifications: List<DriverNotification>, val context: Context,val listener: NotificationAdapterRequestListener):RecyclerView.Adapter<CarrierNotificationRequestAdapter.ViewHolder>() {
     class ViewHolder(val view: View): RecyclerView.ViewHolder(view){
         val bt_client_notification_accepted_details=view.findViewById<Button>(R.id.bt_carrier_notification_request_details)
 
+    }
+
+    interface NotificationAdapterRequestListener {
+        fun onButtonRequestClick(driverNotification: DriverNotification)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,6 +30,9 @@ class CarrierNotificationRequestAdapter(val notifications: List<DriverNotificati
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        //Codigo
+        val notification=notifications[position]
+        holder.bt_client_notification_accepted_details.setOnClickListener(){
+            listener.onButtonRequestClick(notification)
+        }
     }
 }

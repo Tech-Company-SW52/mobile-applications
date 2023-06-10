@@ -10,11 +10,16 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.fastporte.R
 import com.fastporte.models.ClientNotification
+import com.fastporte.models.DriverNotification
 
-class ClientNotificationsAdapter(val notifications: List<ClientNotification>, val context: Context):RecyclerView.Adapter<ClientNotificationsAdapter.ViewHolder>() {
+class ClientNotificationsAdapter(val notifications: List<ClientNotification>, val context: Context, val listener: NotificationAdapterListener):RecyclerView.Adapter<ClientNotificationsAdapter.ViewHolder>() {
     class ViewHolder(val view: View): RecyclerView.ViewHolder(view){
         val bt_client_notification_accepted_details=view.findViewById<Button>(R.id.bt_client_notification_accepted_details)
 
+    }
+
+    interface NotificationAdapterListener {
+        fun onButtonClick(clientNotification: ClientNotification)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,6 +32,9 @@ class ClientNotificationsAdapter(val notifications: List<ClientNotification>, va
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        //Codigo
+        val notification=notifications[position]
+        holder.bt_client_notification_accepted_details.setOnClickListener(){
+            listener.onButtonClick(notification)
+        }
     }
 }

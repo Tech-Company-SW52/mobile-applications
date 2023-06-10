@@ -22,7 +22,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class ClientNotificationsFragment : Fragment() {
+class ClientNotificationsFragment : Fragment(),ClientNotificationsAdapter.NotificationAdapterListener {
     lateinit var notificationAcceptedRecyclerView: RecyclerView
     lateinit var notificationDenniedRecyclerView: RecyclerView
     override fun onCreateView(
@@ -66,7 +66,7 @@ class ClientNotificationsFragment : Fragment() {
                             }
                         }
                     }
-                    notificationAcceptedRecyclerView.adapter = ClientNotificationsAdapter(visibleNotifications, requireContext())
+                    notificationAcceptedRecyclerView.adapter = ClientNotificationsAdapter(visibleNotifications, requireContext(),this@ClientNotificationsFragment)
                     notificationAcceptedRecyclerView.layoutManager = LinearLayoutManager(context)
 
                     notificationDenniedRecyclerView.adapter = ClientNotificationsDenniedAdapter(invisibleNotifications, requireContext())
@@ -82,5 +82,10 @@ class ClientNotificationsFragment : Fragment() {
     private fun isValidNotification(notification: ClientNotification): Boolean {
         return (notification.visible && notification.status.status == "PENDING") ||
                 (!notification.visible && notification.status.status == "OFFER")
+    }
+
+    override fun onButtonClick(clientNotification: ClientNotification) {
+        Toast.makeText(context,clientNotification.id.toString(),Toast.LENGTH_SHORT).show()
+
     }
 }
