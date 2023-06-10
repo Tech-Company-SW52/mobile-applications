@@ -28,7 +28,7 @@
                     android:id="@+id/iv_client_notification_reject_profile"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/exclamation"
+                    app:srcCompat="@drawable/exclamation"
                     android:layout_gravity="center" />
 
             </LinearLayout>

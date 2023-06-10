@@ -25,12 +25,13 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_weight="1.6">
+
                 <ImageView
                     android:id="@+id/iv_client_notification_reject_profile"
                     android:layout_width="80dp"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/finished"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/finished" />
 
             </LinearLayout>
             <LinearLayout
