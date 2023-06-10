@@ -39,4 +39,9 @@
         android:name="com.fastporte.controller.fragments.Faq.FaqFragment"
         android:label="FAQ"
         tools:layout="@layout/fragment_faq" />
+    <fragment
+        android:id="@+id/id_client_notifications_fragment"
+        android:name="com.fastporte.controller.fragments.ClientFragments.ClientNotificationsFragment"
+        android:label="Notifications"
+        tools:layout="@layout/fragment_client_notifications" />
 </navigation>

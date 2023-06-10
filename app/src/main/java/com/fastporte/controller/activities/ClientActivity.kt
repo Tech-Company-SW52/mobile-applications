@@ -70,7 +70,8 @@ class ClientActivity : AppCompatActivity() {
                 R.id.id_client_contracts_fragment,
                 R.id.id_client_profile_fragment,
                 R.id.id_client_support_fragment,
-                R.id.id_client_search_fragment
+                R.id.id_client_search_fragment,
+                R.id.id_client_notifications_fragment
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, drawerLayout)

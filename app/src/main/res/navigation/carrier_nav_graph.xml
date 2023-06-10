@@ -35,5 +35,10 @@
         android:name="com.fastporte.controller.fragments.Faq.FaqFragment"
         android:label="FAQ"
         tools:layout="@layout/fragment_faq" />
+    <fragment
+        android:id="@+id/id_carrier_notifications_fragment"
+        android:name="com.fastporte.controller.fragments.CarrierFragments.CarrierNotificationsFragment"
+        android:label="Notifications"
+        tools:layout="@layout/fragment_carrier_notifications" />
 
 </navigation>

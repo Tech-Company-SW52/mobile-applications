@@ -21,5 +21,9 @@
         android:id="@+id/id_client_support_fragment"
         android:checkable="true"
         android:title="Support" />
+    <item
+        android:id="@+id/id_client_notifications_fragment"
+        android:checkable="true"
+        android:title="Notifications" />
 
 </menu>

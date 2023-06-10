@@ -56,6 +56,8 @@ class LoginActivity : AppCompatActivity() {
         val userEmail = findViewById<EditText>(R.id.et_username)
         val userPassword = findViewById<EditText>(R.id.et_password)
 
+        userEmail.setText("luis@gmail.com")
+        userPassword.setText("123456")
 
         val retrofit = Retrofit.Builder()
             .baseUrl("https://api-fastporte.azurewebsites.net/api/")
