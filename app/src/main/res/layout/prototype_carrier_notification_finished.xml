@@ -29,7 +29,6 @@
                     android:id="@+id/iv_client_notification_reject_profile"
                     android:layout_width="80dp"
                     android:layout_height="match_parent"
-                    android:layout_PaddingVertical="10dp"
                     tools:src="@drawable/finished"
                     android:layout_gravity="center" />
 

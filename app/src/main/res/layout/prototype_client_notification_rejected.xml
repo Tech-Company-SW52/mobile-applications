@@ -38,7 +38,7 @@
                 android:orientation="vertical"
                 android:layout_weight="1.3"
                 android:paddingTop="20dp">
-                <de.hdodenhof.circleimageview.CircleImageView
+                <ImageView
                     android:id="@+id/iv_client_notification_reject_profile"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
