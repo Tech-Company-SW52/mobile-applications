@@ -14,4 +14,7 @@
     <string name="add_experience">Add experience</string>
     <string name="experience_job">Experience Job</string>
     <string name="experience_in_years">Job in years</string>
+    <string name="title_contract_accepted">Contract accepted!</string>
+    <string name="details">Details</string>
+    <string name="payment_details">Payment Details</string>
 </resources>
