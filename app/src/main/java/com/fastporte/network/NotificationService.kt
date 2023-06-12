@@ -14,4 +14,7 @@ interface NotificationService {
 
     @GET("contracts/notifications-client/{id}")
     fun getClientNotifiacations(@Path("id") id: Int, @Query("format") format: String): Call<List<ClientNotification>>
+
+    @GET("api/contracts/{id}")
+    fun getContract(@Path("id") id: Int, @Query("format") format: String): Call<ClientNotification>
 }

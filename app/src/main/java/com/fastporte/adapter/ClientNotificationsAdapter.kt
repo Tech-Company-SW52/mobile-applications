@@ -30,7 +30,7 @@ class ClientNotificationsAdapter(val notifications: List<ClientNotification>,
     }
 
     interface NotificationAdapterListener {
-        fun onButtonClick(clientNotification: ClientNotification)
+        fun onButtonClick(clientNotification: ClientNotification, view: View)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -63,7 +63,7 @@ class ClientNotificationsAdapter(val notifications: List<ClientNotification>,
         val notification=notifications[position]
         if(isAcceptedNotification(notification)){
             holder.bt_client_notification_accepted_details.setOnClickListener(){
-                listener.onButtonClick(notification)
+                listener.onButtonClick(notification, holder.view)
             }
         }
         else{

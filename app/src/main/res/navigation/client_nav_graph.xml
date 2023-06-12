@@ -43,5 +43,15 @@
         android:id="@+id/id_client_notifications_fragment"
         android:name="com.fastporte.controller.fragments.ClientFragments.ClientNotificationsFragment"
         android:label="Notifications"
-        tools:layout="@layout/fragment_client_notifications" />
+        tools:layout="@layout/fragment_client_notifications" >
+        <action
+            android:id="@+id/action_clientNotification_to_clientNotificationPayFragment"
+            app:destination="@id/fragment_client_pay" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_client_pay"
+        android:name="com.fastporte.controller.fragments.ClientFragments.ClientPayContractFragment"
+        android:label="Service Payment"
+        tools:layout="@layout/fragment_client_pay_contract" >
+    </fragment>
 </navigation>

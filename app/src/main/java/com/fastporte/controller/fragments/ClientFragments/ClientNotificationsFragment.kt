@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fastporte.R
@@ -81,8 +82,17 @@ class ClientNotificationsFragment : Fragment(),ClientNotificationsAdapter.Notifi
                 (!notification.visible && notification.status.status == "OFFER")
     }
 
-    override fun onButtonClick(clientNotification: ClientNotification) {
+    override fun onButtonClick(clientNotification: ClientNotification, view: View) {
         Toast.makeText(context,clientNotification.id.toString(),Toast.LENGTH_SHORT).show()
+        saveSharedPreferences("idNotification",clientNotification.id.toString(), view)
+        Navigation.findNavController(view)
+            .navigate(R.id.action_clientNotification_to_clientNotificationPayFragment)
 
+    }
+
+    private fun saveSharedPreferences(KeyName: String, value: String, view: View) {
+        val sharedPreferences = SharedPreferences(view.context)
+        sharedPreferences.removeValue(KeyName)
+        sharedPreferences.save(KeyName, value)
     }
 }
