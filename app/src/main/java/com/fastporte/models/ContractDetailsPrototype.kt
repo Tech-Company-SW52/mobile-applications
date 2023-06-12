@@ -28,11 +28,11 @@ class ContractDetailsPrototype(itemView: View) : RecyclerView.ViewHolder(itemVie
     fun bind(contract: Contract) {
         tvFrom.text = Html.fromHtml("From: <b>${contract.from}</b>")
         tvTo.text = Html.fromHtml("To: <b>${contract.to}</b>")
-        val parser = SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy")
-        val date: Date = parser.parse(contract.date.toString())
-        val formatter = SimpleDateFormat("dd/MM/yyyy")
-        val formattedDate: String = formatter.format(date)
-        tvDate.text = Html.fromHtml("Date: <b>${formattedDate}</b>")
+//        val parser = SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy")
+//        val date: Date = parser.parse(contract.date.toString())
+//        val formatter = SimpleDateFormat("dd/MM/yyyy")
+//        val formattedDate: String = formatter.format(date)
+        tvDate.text = Html.fromHtml("Date: <b>${contract.date}</b>")
         tvAmount.text = Html.fromHtml("Amount: <b>S/.${contract.amount}</b>")
 
         val picBuilder = Picasso.Builder(itemView.context)
