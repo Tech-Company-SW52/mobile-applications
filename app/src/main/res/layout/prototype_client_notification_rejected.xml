@@ -44,14 +44,15 @@
                     android:layout_height="50dp"
                     tools:src="@tools:sample/avatars"
                     android:layout_gravity="center"/>
+
                 <TextView
                     android:id="@+id/textView16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginTop="5dp"
-                    android:text="Client:"
-                    android:textStyle="bold"
-                    android:layout_gravity="center"/>
+                    android:text="Driver:"
+                    android:textStyle="bold" />
                 <TextView
                     android:id="@+id/tv_client_notification_reject_name"
                     android:layout_width="wrap_content"

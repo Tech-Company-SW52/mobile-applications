@@ -59,23 +59,20 @@ class ClientNotificationsFragment : Fragment(),ClientNotificationsAdapter.Notifi
 
                     for (notification in notificationList) {
                         if (isValidNotification(notification)) {
-                            if (notification.visible) {
-                                visibleNotifications.add(notification)
-                            } else {
-                                invisibleNotifications.add(notification)
-                            }
+                            visibleNotifications.add(notification)
                         }
                     }
                     notificationAcceptedRecyclerView.adapter = ClientNotificationsAdapter(visibleNotifications, requireContext(),this@ClientNotificationsFragment)
                     notificationAcceptedRecyclerView.layoutManager = LinearLayoutManager(context)
 
-                    notificationDenniedRecyclerView.adapter = ClientNotificationsDenniedAdapter(invisibleNotifications, requireContext())
-                    notificationDenniedRecyclerView.layoutManager = LinearLayoutManager(context)
                 }
             }
 
             override fun onFailure(call: Call<List<ClientNotification>>, t: Throwable) {
                 // Manejar el fallo de la solicitud
+                Toast.makeText(
+                    context,"There was an error loading the notifications",
+                    Toast.LENGTH_SHORT).show()
             }
         })
     }
