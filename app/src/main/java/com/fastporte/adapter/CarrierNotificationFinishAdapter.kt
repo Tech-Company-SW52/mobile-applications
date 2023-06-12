@@ -15,7 +15,7 @@ class CarrierNotificationFinishAdapter(val notifications: List<DriverNotificatio
 
     }
     interface NotificationAdapterFinishListener {
-        fun onButtonFinishClick(driverNotification: DriverNotification)
+        fun onButtonFinishClick(driverNotification: DriverNotification, view: View)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,7 +30,7 @@ class CarrierNotificationFinishAdapter(val notifications: List<DriverNotificatio
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val notification=notifications[position]
         holder.bt_client_notification_accepted_details.setOnClickListener(){
-            listener.onButtonFinishClick(notification)
+            listener.onButtonFinishClick(notification, holder.view)
         }
     }
 

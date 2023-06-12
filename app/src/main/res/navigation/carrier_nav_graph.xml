@@ -39,6 +39,10 @@
         android:id="@+id/id_carrier_notifications_fragment"
         android:name="com.fastporte.controller.fragments.CarrierFragments.CarrierNotificationsFragment"
         android:label="Notifications"
-        tools:layout="@layout/fragment_carrier_notifications" />
+        tools:layout="@layout/fragment_carrier_notifications" >
+        <action
+            android:id="@+id/action_id_carrier_notifications_fragment_to_id_carrier_contracts_fragment"
+            app:destination="@id/id_carrier_contracts_fragment" />
+    </fragment>
 
 </navigation>
