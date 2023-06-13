@@ -52,6 +52,9 @@
         android:id="@+id/fragment_client_pay"
         android:name="com.fastporte.controller.fragments.ClientFragments.ClientPayContractFragment"
         android:label="Service Payment"
-        tools:layout="@layout/fragment_client_pay_contract" >
+        tools:layout="@layout/fragment_client_pay_contract">
+        <action
+            android:id="@+id/action_fragment_client_pay_to_fragment_client_pay_success"
+            app:destination="@id/id_client_notifications_fragment" />
     </fragment>
 </navigation>

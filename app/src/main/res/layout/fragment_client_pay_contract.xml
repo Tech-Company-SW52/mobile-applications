@@ -87,16 +87,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="30dp"
                 android:layout_marginEnd="32dp"
-                android:layout_marginBottom="32dp"
                 android:backgroundTint="@color/accept"
                 android:text="Pay"
                 app:cornerRadius="33dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBaseline_toBaselineOf="@+id/bt_cancel"
                 app:layout_constraintEnd_toStartOf="@+id/bt_cancel"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView"
@@ -131,7 +128,8 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Holder Name" />
+                            android:hint="Holder Name"
+                            android:inputType="textPersonName" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -152,54 +150,54 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Card Number" />
+                            android:hint="Card Number"
+                            android:inputType="number"
+                            android:maxLength="16"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/til_month"
-                        android:layout_width="0dp"
+                        android:layout_width="110dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_marginEnd="8dp"
                         android:layout_marginBottom="24dp"
                         app:boxBackgroundColor="@color/white"
                         app:boxBackgroundMode="outline"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/til_year"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/til_year"
                         app:layout_constraintStart_toStartOf="parent">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Month" />
+                            android:hint="Month"
+                            android:inputType="numberDecimal"
+                            android:maxLength="2" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/til_year"
-                        android:layout_width="0dp"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="24dp"
-                        android:layout_marginBottom="24dp"
+                        android:layout_marginStart="4dp"
                         app:boxBackgroundColor="@color/white"
                         app:boxBackgroundMode="outline"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/til_cvv"
-                        app:layout_constraintStart_toEndOf="@+id/til_month"
-                        app:layout_constraintTop_toBottomOf="@+id/til_number">
+                        app:layout_constraintBaseline_toBaselineOf="@+id/til_cvv"
+                        app:layout_constraintStart_toEndOf="@+id/til_month">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Year" />
+                            android:hint="Year"
+                            android:inputType="numberDecimal"
+                            android:maxLength="4" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/til_cvv"
-                        android:layout_width="0dp"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
+                        android:layout_marginStart="4dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="24dp"
                         app:boxBackgroundColor="@color/white"
@@ -211,7 +209,9 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="CVV" />
+                            android:hint="CVV"
+                            android:inputType="numberDecimal"
+                            android:maxLength="3" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
