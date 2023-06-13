@@ -98,8 +98,15 @@ class CarrierNotificationsFragment : Fragment(),CarrierNotificationFinishAdapter
     override fun onButtonFinishClick(driverNotification: DriverNotification, view: View) {
         //CODIGO
         Toast.makeText(context,driverNotification.id.toString(),Toast.LENGTH_SHORT).show()
+        saveSharedPreferences("idNotification",driverNotification.id.toString(), view)
         Navigation.findNavController(view)
-            .navigate(R.id.action_id_carrier_notifications_fragment_to_id_carrier_contracts_fragment)
+            .navigate(R.id.action_id_carrier_notifications_fragment_to_carrierReceivePayFragment)
+    }
+
+    private fun saveSharedPreferences(KeyName: String, value: String, view: View) {
+        val sharedPreferences = SharedPreferences(view.context)
+        sharedPreferences.removeValue(KeyName)
+        sharedPreferences.save(KeyName, value)
     }
 
 }

@@ -43,6 +43,14 @@
         <action
             android:id="@+id/action_id_carrier_notifications_fragment_to_id_carrier_contracts_fragment"
             app:destination="@id/id_carrier_contracts_fragment" />
+        <action
+            android:id="@+id/action_id_carrier_notifications_fragment_to_carrierReceivePayFragment"
+            app:destination="@id/carrierReceivePayFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/carrierReceivePayFragment"
+        android:name="com.fastporte.controller.fragments.CarrierFragments.CarrierReceivePayFragment"
+        android:label="fragment_carrier_receive_pay"
+        tools:layout="@layout/fragment_carrier_receive_pay" />
 
 </navigation>
