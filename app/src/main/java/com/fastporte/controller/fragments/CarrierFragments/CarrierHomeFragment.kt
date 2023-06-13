@@ -15,9 +15,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fastporte.R
 import com.fastporte.controller.fragments.CarrierFragments.CarrierHome.CarrierHomeAdapter
+import com.fastporte.controller.fragments.CarrierFragments.CarrierHome.CarrierHomeHistoryAdapter
 import com.fastporte.controller.fragments.CarrierFragments.CarrierProfile.RecyclerViewProfile.ExperienceProfileAdapter
 import com.fastporte.helpers.BaseURL
 import com.fastporte.helpers.SharedPreferences
+import com.fastporte.models.Contract
 import com.fastporte.models.User
 import com.fastporte.models.Driver
 import com.fastporte.models.Experience
@@ -35,7 +37,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class CarrierHomeFragment : Fragment() {
 
     lateinit var popularRecyclerView: RecyclerView
-
+    lateinit var recentRecyclerView: RecyclerView
 
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
@@ -71,6 +73,7 @@ class CarrierHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         popularRecyclerView = view.findViewById(R.id.populaRV)
+        recentRecyclerView = view.findViewById(R.id.contractsRV)
         loadPopular(view)
     }
 
@@ -100,6 +103,20 @@ class CarrierHomeFragment : Fragment() {
 
         })
 
+        val request3 = homeService.getHistoryContractsByUserAndId( SharedPreferences(view.context).getValue("id")!!.toInt(),"driver", "json")
+
+        request3.enqueue(object :  Callback<List<Contract>> {
+            override fun onResponse(call: Call<List<Contract>>, response: Response<List<Contract>>) {
+                if (response.isSuccessful) {
+                    val contractList: List<Contract> = response.body()!!
+                    recentRecyclerView.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
+                    recentRecyclerView.adapter = CarrierHomeHistoryAdapter(contractList, view.context)
+                }
+            }
+            override fun onFailure(call: Call<List<Contract>>, t: Throwable) {
+                Log.d("profileInformationFragment", t.toString())
+            }
+        })
     }
 
     private fun loadData(view: View){

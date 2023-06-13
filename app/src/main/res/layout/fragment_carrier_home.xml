@@ -58,11 +58,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="115dp"
         android:fontFamily="@font/poppins_bold"
         android:text="Hi"
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="34sp"
         android:textStyle="bold" />
 
     <TextView
@@ -117,7 +117,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/populaRV"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="210dp" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="193dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/contractsRV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="405dp" />
 
 </FrameLayout>
