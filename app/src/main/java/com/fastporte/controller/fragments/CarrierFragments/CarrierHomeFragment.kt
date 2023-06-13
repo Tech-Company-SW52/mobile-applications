@@ -1,7 +1,6 @@
 package com.fastporte.controller.fragments.CarrierFragments
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -16,13 +15,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fastporte.R
 import com.fastporte.controller.fragments.CarrierFragments.CarrierHome.CarrierHomeAdapter
 import com.fastporte.controller.fragments.CarrierFragments.CarrierHome.CarrierHomeHistoryAdapter
-import com.fastporte.controller.fragments.CarrierFragments.CarrierProfile.RecyclerViewProfile.ExperienceProfileAdapter
+import com.fastporte.controller.fragments.ClientFragments.ClientHome.ClientHomeHistoryAdapter
+import com.fastporte.controller.fragments.ClientFragments.ClientHome.ClientHomePopularAdapter
 import com.fastporte.helpers.BaseURL
 import com.fastporte.helpers.SharedPreferences
 import com.fastporte.models.Contract
 import com.fastporte.models.User
 import com.fastporte.models.Driver
-import com.fastporte.models.Experience
 import com.fastporte.network.HomeService
 import com.fastporte.network.ProfileService
 import com.squareup.picasso.Picasso
@@ -72,8 +71,8 @@ class CarrierHomeFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        popularRecyclerView = view.findViewById(R.id.populaRV)
-        recentRecyclerView = view.findViewById(R.id.contractsRV)
+        popularRecyclerView = view.findViewById(R.id.populaRVdriver)
+        recentRecyclerView = view.findViewById(R.id.contractsRVdriver)
         loadPopular(view)
     }
 

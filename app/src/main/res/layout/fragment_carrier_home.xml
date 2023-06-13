@@ -115,13 +115,13 @@
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/populaRV"
+        android:id="@+id/populaRVdriver"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="193dp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/contractsRV"
+        android:id="@+id/contractsRVdriver"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="405dp" />
