@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.viewpager2.widget.ViewPager2
 import com.fastporte.Interface.EditProfileDialogListener
 import com.fastporte.R
-import com.fastporte.controller.fragments.CarrierFragments.CarrierProfile.Components.EditProfileDriverDialogFragment
 import com.fastporte.controller.fragments.ClientFragments.ClientProfile.ClientProfileAdapter
 import com.fastporte.controller.fragments.ClientFragments.ClientProfile.EditProfileClientDialogFragment
 import com.fastporte.helpers.BaseURL
@@ -68,7 +67,7 @@ class ClientProfileFragment : Fragment(), EditProfileDialogListener {
 
         loadData(view)
 
-        val btnEditProfile = view.findViewById<Button>(R.id.btnEditProfile)
+        val btnEditProfile = view.findViewById<Button>(R.id.btnViewHistory)
         btnEditProfile?.setOnClickListener {
             editProfileDialog.show(parentFragmentManager, "Edit profile")
         }

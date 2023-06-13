@@ -75,7 +75,7 @@ class CarrierProfileFragment : Fragment(), EditProfileDialogListener {
 
         loadData(view)
 
-        val btnEditProfile = view.findViewById<Button>(R.id.btnEditProfile)
+        val btnEditProfile = view.findViewById<Button>(R.id.btnViewHistory)
         btnEditProfile?.setOnClickListener {
             editProfileDialog.show(parentFragmentManager, "Edit profile")
         }
@@ -110,7 +110,7 @@ class CarrierProfileFragment : Fragment(), EditProfileDialogListener {
 
     private fun showData(user: User) {
 
-        val civCarrierProfile = view?.findViewById<CircleImageView>(R.id.civCarrierProfile)
+        val civCarrierProfile = view?.findViewById<CircleImageView>(R.id.civDriverProfile)
         val tvCarrierName = view?.findViewById<TextView>(R.id.tvProfileName)
         val tvCarrierDescription = view?.findViewById<TextView>(R.id.tvProfileDescription)
 
