@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fastporte.R
@@ -79,9 +80,14 @@ class ClientHomeFragment : Fragment() {
         request3.enqueue(object :  Callback<List<Contract>> {
             override fun onResponse(call: Call<List<Contract>>, response: Response<List<Contract>>) {
                 if (response.isSuccessful) {
-                    val contractList: List<Contract> = response.body()!!
-                    recentRecyclerView.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
-                    recentRecyclerView.adapter = ClientHomeHistoryAdapter(contractList, view.context)
+                    if (response.message() == "No Content"){
+                        Toast.makeText(view.context, "No hay contratos recientes", Toast.LENGTH_SHORT).show()
+                    }else{
+                        val contractList: List<Contract> = response.body()!!
+                        recentRecyclerView.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
+                        recentRecyclerView.adapter = ClientHomeHistoryAdapter(contractList, view.context)
+                    }
+
                 }
             }
             override fun onFailure(call: Call<List<Contract>>, t: Throwable) {

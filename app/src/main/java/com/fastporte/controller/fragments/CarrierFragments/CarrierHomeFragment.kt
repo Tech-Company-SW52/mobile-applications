@@ -90,9 +90,14 @@ class CarrierHomeFragment : Fragment() {
         request2.enqueue(object : Callback<List<Driver>> {
             override fun onResponse(call: Call<List<Driver>>, response: Response<List<Driver>>) {
                 if (response.isSuccessful) {
-                    val driverList: List<Driver> = response.body()!!
-                    popularRecyclerView.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
-                    popularRecyclerView.adapter = CarrierHomeAdapter(driverList, view.context)
+                    if (response.message() == "No Content") {
+                        Log.d("profileInformationFragment", response.body().toString())
+                    }else{
+                        val driverList: List<Driver> = response.body()!!
+                        popularRecyclerView.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
+                        popularRecyclerView.adapter = CarrierHomeAdapter(driverList, view.context)
+                    }
+
                 }
             }
             override fun onFailure(call: Call<List<Driver>>, t: Throwable) {
@@ -107,9 +112,14 @@ class CarrierHomeFragment : Fragment() {
         request3.enqueue(object :  Callback<List<Contract>> {
             override fun onResponse(call: Call<List<Contract>>, response: Response<List<Contract>>) {
                 if (response.isSuccessful) {
-                    val contractList: List<Contract> = response.body()!!
-                    recentRecyclerView.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
-                    recentRecyclerView.adapter = CarrierHomeHistoryAdapter(contractList, view.context)
+                    if (response.message() == "No Content") {
+                        Log.d("profileInformationFragment", response.body().toString())
+                    }else{
+                        val contractList: List<Contract> = response.body()!!
+                        recentRecyclerView.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
+                        recentRecyclerView.adapter = CarrierHomeHistoryAdapter(contractList, view.context)
+                    }
+
                 }
             }
             override fun onFailure(call: Call<List<Contract>>, t: Throwable) {

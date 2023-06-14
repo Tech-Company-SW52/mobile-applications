@@ -36,6 +36,6 @@ RecyclerView.Adapter<ClientHomePopularAdapter.ViewHolder>(){
             .into(holder.cvPhoto)
     }
     override fun getItemCount(): Int {
-        return drivers.size
+        return 5
     }
 }

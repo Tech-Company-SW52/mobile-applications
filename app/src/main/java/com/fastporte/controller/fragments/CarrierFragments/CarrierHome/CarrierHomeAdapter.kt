@@ -36,7 +36,7 @@ RecyclerView.Adapter<CarrierHomeAdapter.ViewHolder>(){
     }
 
     override fun getItemCount(): Int {
-        return drivers.size
+        return 5
     }
 
 }
