@@ -45,30 +45,29 @@ class CarrierHomeFragment : Fragment() {
     ): View {
 
 
-        val view: View =  inflater.inflate(R.layout.fragment_carrier_home, container, false)
-
-
+        val view: View = inflater.inflate(R.layout.fragment_carrier_home, container, false)
 
 
         val btnViewHistory = view.findViewById<Button>(R.id.btnViewHistory)
         val btnViewProfile = view.findViewById<Button>(R.id.btnViewProfile)
 
-        btnViewHistory.setOnClickListener {
-
-            val fragmentB = CarrierProfileFragment()
-            val transaction = parentFragmentManager.beginTransaction()
-            transaction.replace(R.id.profile_layout, fragmentB)
-            transaction.addToBackStack(null)
-            transaction.commit()
-        }
-        btnViewProfile.setOnClickListener {
-
-            findNavController().navigate(R.id.action_id_carrier_home_fragment_to_id_carrier_history_contracts_fragment)
-        }
+//        btnViewHistory.setOnClickListener {
+//
+//            val fragmentB = CarrierProfileFragment()
+//            val transaction = parentFragmentManager.beginTransaction()
+//            transaction.replace(R.id.profile_layout, fragmentB)
+//            transaction.addToBackStack(null)
+//            transaction.commit()
+//        }
+//        btnViewProfile.setOnClickListener {
+//
+//            findNavController().navigate(R.id.action_id_carrier_home_fragment_to_id_carrier_history_contracts_fragment)
+//        }
         loadData(view)
         // Inflate the layout for this fragment
         return view
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         popularRecyclerView = view.findViewById(R.id.populaRVdriver)
@@ -76,7 +75,7 @@ class CarrierHomeFragment : Fragment() {
         loadPopular(view)
     }
 
-    private fun loadPopular(view: View){
+    private fun loadPopular(view: View) {
         val retrofit = Retrofit.Builder()
             .baseUrl(BaseURL.BASE_URL.toString())
             .addConverterFactory(GsonConverterFactory.create())
@@ -85,21 +84,23 @@ class CarrierHomeFragment : Fragment() {
 
         val homeService: HomeService = retrofit.create(HomeService::class.java)
 
-        val request2 = homeService.getDriver( "json")
+        val request2 = homeService.getDriver("json")
 
         request2.enqueue(object : Callback<List<Driver>> {
             override fun onResponse(call: Call<List<Driver>>, response: Response<List<Driver>>) {
                 if (response.isSuccessful) {
                     if (response.message() == "No Content") {
                         Log.d("profileInformationFragment", response.body().toString())
-                    }else{
+                    } else {
                         val driverList: List<Driver> = response.body()!!
-                        popularRecyclerView.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
+                        popularRecyclerView.layoutManager =
+                            LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
                         popularRecyclerView.adapter = CarrierHomeAdapter(driverList, view.context)
                     }
 
                 }
             }
+
             override fun onFailure(call: Call<List<Driver>>, t: Throwable) {
                 Log.d("profileInformationFragment", t.toString())
             }
@@ -107,28 +108,36 @@ class CarrierHomeFragment : Fragment() {
 
         })
 
-        val request3 = homeService.getHistoryContractsByUserAndId( SharedPreferences(view.context).getValue("id")!!.toInt(),"driver", "json")
+        val request3 = homeService.getHistoryContractsByUserAndId(
+            SharedPreferences(view.context).getValue("id")!!.toInt(), "driver", "json"
+        )
 
-        request3.enqueue(object :  Callback<List<Contract>> {
-            override fun onResponse(call: Call<List<Contract>>, response: Response<List<Contract>>) {
+        request3.enqueue(object : Callback<List<Contract>> {
+            override fun onResponse(
+                call: Call<List<Contract>>,
+                response: Response<List<Contract>>
+            ) {
                 if (response.isSuccessful) {
                     if (response.message() == "No Content") {
                         Log.d("profileInformationFragment", response.body().toString())
-                    }else{
+                    } else {
                         val contractList: List<Contract> = response.body()!!
-                        recentRecyclerView.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
-                        recentRecyclerView.adapter = CarrierHomeHistoryAdapter(contractList, view.context)
+                        recentRecyclerView.layoutManager =
+                            LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
+                        recentRecyclerView.adapter =
+                            CarrierHomeHistoryAdapter(contractList, view.context)
                     }
 
                 }
             }
+
             override fun onFailure(call: Call<List<Contract>>, t: Throwable) {
                 Log.d("profileInformationFragment", t.toString())
             }
         })
     }
 
-    private fun loadData(view: View){
+    private fun loadData(view: View) {
         val retrofit = Retrofit.Builder()
             .baseUrl(BaseURL.BASE_URL.toString())
             .addConverterFactory(GsonConverterFactory.create())
@@ -154,9 +163,9 @@ class CarrierHomeFragment : Fragment() {
         })
 
 
-
     }
-    private fun showData(user: User){
+
+    private fun showData(user: User) {
         val civUserProfile = view?.findViewById<CircleImageView>(R.id.civDriverProfile)
         val tvNameProfile = view?.findViewById<TextView>(R.id.tvNameProfile)
 
@@ -164,7 +173,7 @@ class CarrierHomeFragment : Fragment() {
             .error(R.drawable.ic_launcher_background)
             .into(civUserProfile)
 
-        tvNameProfile?.text = "Hi, "+user.name+"!"
+        tvNameProfile?.text = "Hi, " + user.name + "!"
     }
 
 }

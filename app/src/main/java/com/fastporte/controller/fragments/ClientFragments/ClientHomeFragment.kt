@@ -37,11 +37,12 @@ class ClientHomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view:View = inflater.inflate(R.layout.fragment_client_home, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_client_home, container, false)
         loadData(view)
         return view
 
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         popularRecyclerView = view.findViewById(R.id.populaRVclient)
@@ -49,7 +50,7 @@ class ClientHomeFragment : Fragment() {
         loadPopular(view)
     }
 
-    private fun loadPopular(view: View){
+    private fun loadPopular(view: View) {
         val retrofit = Retrofit.Builder()
             .baseUrl(BaseURL.BASE_URL.toString())
             .addConverterFactory(GsonConverterFactory.create())
@@ -58,16 +59,18 @@ class ClientHomeFragment : Fragment() {
 
         val homeService: HomeService = retrofit.create(HomeService::class.java)
 
-        val request2 = homeService.getDriver( "json")
+        val request2 = homeService.getDriver("json")
 
         request2.enqueue(object : Callback<List<Driver>> {
             override fun onResponse(call: Call<List<Driver>>, response: Response<List<Driver>>) {
                 if (response.isSuccessful) {
                     val driverList: List<Driver> = response.body()!!
-                    popularRecyclerView.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
+                    popularRecyclerView.layoutManager =
+                        LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
                     popularRecyclerView.adapter = ClientHomePopularAdapter(driverList, view.context)
                 }
             }
+
             override fun onFailure(call: Call<List<Driver>>, t: Throwable) {
                 Log.d("profileInformationFragment", t.toString())
             }
@@ -75,27 +78,40 @@ class ClientHomeFragment : Fragment() {
 
         })
 
-        val request3 = homeService.getHistoryContractsByUserAndId( SharedPreferences(view.context).getValue("id")!!.toInt(),"client", "json")
+        val request3 = homeService.getHistoryContractsByUserAndId(
+            SharedPreferences(view.context).getValue("id")!!.toInt(), "client", "json"
+        )
 
-        request3.enqueue(object :  Callback<List<Contract>> {
-            override fun onResponse(call: Call<List<Contract>>, response: Response<List<Contract>>) {
+        request3.enqueue(object : Callback<List<Contract>> {
+            override fun onResponse(
+                call: Call<List<Contract>>,
+                response: Response<List<Contract>>
+            ) {
                 if (response.isSuccessful) {
-                    if (response.message() == "No Content"){
-                        Toast.makeText(view.context, "No hay contratos recientes", Toast.LENGTH_SHORT).show()
-                    }else{
+                    if (response.message() == "No Content") {
+                        Toast.makeText(
+                            view.context,
+                            "No hay contratos recientes",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
                         val contractList: List<Contract> = response.body()!!
-                        recentRecyclerView.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
-                        recentRecyclerView.adapter = ClientHomeHistoryAdapter(contractList, view.context)
+                        recentRecyclerView.layoutManager =
+                            LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
+                        recentRecyclerView.adapter =
+                            ClientHomeHistoryAdapter(contractList, view.context)
                     }
 
                 }
             }
+
             override fun onFailure(call: Call<List<Contract>>, t: Throwable) {
                 Log.d("profileInformationFragment", t.toString())
             }
         })
     }
-    private fun loadData(view: View){
+
+    private fun loadData(view: View) {
         val retrofit = Retrofit.Builder()
             .baseUrl(BaseURL.BASE_URL.toString())
             .addConverterFactory(GsonConverterFactory.create())
@@ -121,9 +137,9 @@ class ClientHomeFragment : Fragment() {
         })
 
 
-
     }
-    private fun showData(user: User){
+
+    private fun showData(user: User) {
         val civUserProfile = view?.findViewById<CircleImageView>(R.id.civDriverProfile)
         val tvNameProfile = view?.findViewById<TextView>(R.id.tvNameProfile)
 
@@ -131,6 +147,6 @@ class ClientHomeFragment : Fragment() {
             .error(R.drawable.ic_launcher_background)
             .into(civUserProfile)
 
-        tvNameProfile?.text = "Hi, "+user.name+"!"
+        tvNameProfile?.text = "Hi, " + user.name + "!"
     }
 }
