@@ -1,12 +1,14 @@
 package com.fastporte.controller.fragments.CarrierFragments
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import com.fastporte.R
 import com.fastporte.helpers.BaseURL
 import com.fastporte.helpers.SharedPreferences
@@ -41,9 +43,12 @@ class CarrierReceivePayFragment : Fragment() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
+        val sharedPreferences = view.context.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
+        sharedPreferences.getString("idNotification","")
+
         val service = retrofit.create(NotificationService::class.java)
         val request = service.getContract(
-            SharedPreferences(view.context).getValue("idNotification")!!.toInt(),
+            sharedPreferences.getString("idNotification","")!!.toInt(),
             "json"
         )
 
@@ -64,6 +69,7 @@ class CarrierReceivePayFragment : Fragment() {
                 println("Error: ${t.message}")
             }
         })
+        Toast.makeText(context,sharedPreferences.getString("idNotification",""), Toast.LENGTH_SHORT).show()
     }
 
     @SuppressLint("SetTextI18n")
@@ -102,4 +108,5 @@ class CarrierReceivePayFragment : Fragment() {
         tvQuantityCC?.text ="Quantity:  "+ notification.quantity
 
     }
+
 }
