@@ -7,11 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.Toast
 import com.fastporte.Interface.RegisterInterface
 import com.fastporte.controller.activities.LoginActivity
 import com.fastporte.R
 import com.fastporte.models.User
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -33,71 +38,87 @@ class NewAccountFragment : Fragment() {
         val btnSignUp = view_.findViewById<Button>(R.id.btnSignUp)
         val txtUsername = view_.findViewById<EditText>(R.id.txtUsername)
         val txtUserDescription = view_.findViewById<EditText>(R.id.txtUserDescription)
+        val checkboxConditions = view_.findViewById<CheckBox>(R.id.checkboxConditions)
+        val checkboxInformation = view_.findViewById<CheckBox>(R.id.checkboxInformation)
         btnSignUp.setOnClickListener {
-            val tempInfoUser = arguments?.getSerializable("tempInfoUser") as User
-            val userTypeText = arguments?.getString("userType")
+            val username = txtUsername.text.toString()
+            val userDescription = txtUserDescription.text.toString()
+            val conditionsChecked = checkboxConditions.isChecked
+            val informationChecked = checkboxInformation.isChecked
 
-            val retrofit = Retrofit.Builder()
-                .baseUrl("https://api-fastporte.azurewebsites.net/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
+            if (username.isEmpty() || userDescription.isEmpty() || !conditionsChecked || !informationChecked) {
+                Toast.makeText(context,"Debe rellenar y marcar todos los campos",Toast.LENGTH_SHORT).show()
+            }else {
+                val tempInfoUser = arguments?.getSerializable("tempInfoUser") as User
+                val userTypeText = arguments?.getString("userType")
 
-            val registerService: RegisterInterface
-            registerService = retrofit.create(RegisterInterface::class.java)
+                val retrofit = Retrofit.Builder()
+                    .baseUrl("https://api-fastporte.azurewebsites.net/api/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build()
 
-            if (userTypeText == "client") {
-                clientUser = User(
-                    tempInfoUser.birthdate,
-                    txtUserDescription.text.toString(),
-                    tempInfoUser.email,
-                    tempInfoUser.id,
-                    tempInfoUser.name,
-                    tempInfoUser.lastname,
-                    txtUsername.text.toString(),
-                    tempInfoUser.phone,
-                    tempInfoUser.region,
-                    tempInfoUser.password,
-                    tempInfoUser.photo
-                )
-                /*registerService.registerClient(clientUser).enqueue(object : Callback<Clients>{
-                    override fun onResponse(call: Call<Clients>, response: Response<Clients>) {
-                        TODO("Not yet implemented")
-                    }
+                val registerService: RegisterInterface =
+                    retrofit.create(RegisterInterface::class.java)
 
-                    override fun onFailure(call: Call<Clients>, t: Throwable) {
-                        TODO("Not yet implemented")
-                    }
+                if (userTypeText == "client") {
+                    clientUser = User(
+                        tempInfoUser.birthdate,
+                        txtUserDescription.text.toString(),
+                        tempInfoUser.email,
+                        tempInfoUser.id,
+                        tempInfoUser.name,
+                        tempInfoUser.lastname,
+                        txtUsername.text.toString(),
+                        tempInfoUser.phone,
+                        tempInfoUser.region,
+                        tempInfoUser.password,
+                        "https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg"
+                    )
+                    registerService.registerClient(clientUser).enqueue(object : Callback<User> {
+                        override fun onResponse(call: Call<User>, response: Response<User>) {
+                            if (response.isSuccessful) {
+                                val loginIntent = Intent(context, LoginActivity::class.java)
+                                startActivity(loginIntent)
+                            }
+                        }
 
-                })*/
-
-            } else {
-                driverUser = User(
-                    tempInfoUser.birthdate,
-                    txtUserDescription.text.toString(),
-                    tempInfoUser.email,
-                    tempInfoUser.id,
-                    tempInfoUser.name,
-                    tempInfoUser.lastname,
-                    txtUsername.text.toString(),
-                    tempInfoUser.phone,
-                    tempInfoUser.region,
-                    tempInfoUser.password,
-                    tempInfoUser.photo
-                )
-                /*registerService.registerDriver(driverUser).enqueue(object : Callback<Drivers>{
-                    override fun onResponse(call: Call<Drivers>, response: Response<Drivers>) {
-                        TODO("Not yet implemented")
-                    }
-
-                    override fun onFailure(call: Call<Drivers>, t: Throwable) {
-                        TODO("Not yet implemented")
-                    }
+                        override fun onFailure(call: Call<User>, t: Throwable) {
+                            TODO("Not yet implemented")
+                        }
 
 
-                })*/
+                    })
+
+                } else {
+                    driverUser = User(
+                        tempInfoUser.birthdate,
+                        txtUserDescription.text.toString(),
+                        tempInfoUser.email,
+                        tempInfoUser.id,
+                        tempInfoUser.name,
+                        tempInfoUser.lastname,
+                        txtUsername.text.toString(),
+                        tempInfoUser.phone,
+                        tempInfoUser.region,
+                        tempInfoUser.password,
+                        "https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg"
+                    )
+                    registerService.registerDriver(driverUser).enqueue(object : Callback<User> {
+                        override fun onResponse(call: Call<User>, response: Response<User>) {
+                            if (response.isSuccessful) {
+                                val loginIntent = Intent(context, LoginActivity::class.java)
+                                startActivity(loginIntent)
+                            }
+                        }
+
+                        override fun onFailure(call: Call<User>, t: Throwable) {
+                            TODO("Not yet implemented")
+                        }
+
+
+                    })
+                }
             }
-            val loginIntent = Intent(context, LoginActivity::class.java)
-            startActivity(loginIntent)
         }
     }
 
