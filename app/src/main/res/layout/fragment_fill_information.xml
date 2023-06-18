@@ -113,7 +113,7 @@
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:paddingStart="10dp"
-                    android:hint="dd/mm/yyyy"
+                    android:hint="yyyy-mm-dd"
                     android:textColor="#ACACAC" />
 
                 <LinearLayout

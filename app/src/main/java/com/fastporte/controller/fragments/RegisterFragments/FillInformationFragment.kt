@@ -8,12 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import androidx.navigation.Navigation
 import com.fastporte.R
 import com.fastporte.databinding.ActivityRegisterBinding
@@ -24,6 +19,7 @@ class FillInformationFragment : Fragment() {
     lateinit var user: User;
     lateinit var userType: String;
     lateinit var userCountry: String;
+    private var userCard="";
     val countries = arrayListOf(
         "Select Country",
         "Argentina",
@@ -134,8 +130,7 @@ class FillInformationFragment : Fragment() {
                 id: Long
             ) {
                 deleteCardHint()
-                val selectedItem = parent.getItemAtPosition(position).toString()
-                Log.d("Spinner", "Opción seleccionada: $selectedItem")
+                userCard  = parent.getItemAtPosition(position).toString()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -193,38 +188,49 @@ class FillInformationFragment : Fragment() {
         //val spIdentityCardType=view_.findViewById<EditText>(R.id.spIdentityCardType)
         val txtIdentityCardTypeNumber = view_.findViewById<EditText>(R.id.txtIdentityCardTypeNumber)
 
-        btnNext.setOnClickListener() {
-
-            val argumentos = arguments
-            if (argumentos != null) {
-                val valor = argumentos.getStringArray("tempUser")
-                if (valor != null) {
-                    user = User(
-                        txtdateBirth.text.toString(),
-                        "",
-                        valor[0].toString(),
-                        0,
-                        txtName.text.toString(),
-                        txtLastName.text.toString(),
-                        "",
-                        txtPhoneNumber.text.toString(),
-                        userCountry,
-                        valor[1].toString(),
-                        ""
-                    );
-                    val bundle = Bundle()
-                    bundle.putSerializable("tempInfoUser", user)
-                    if (userType == "Cliente") {
-                        bundle.putSerializable("userType", "client")
-                    } else {
-                        bundle.putSerializable("userType", "driver")
+        btnNext.setOnClickListener(){
+            // Imprimir cada uno de los condicionales en la consola
+            println("txtName: ${txtName.text}")
+            println("txtLastName: ${txtLastName.text}")
+            println("txtdateBirth: ${txtdateBirth.text}")
+            println("txtPhoneNumber: ${txtPhoneNumber.text}")
+            println("txtIdentityCardTypeNumber: ${txtIdentityCardTypeNumber.text}")
+            println("userCountry: $userCountry")
+            println("userCard: $userCard")
+            println("userType: $userType")
+            if(txtName.text.isEmpty() || txtLastName.text.isEmpty() || txtdateBirth.text.isEmpty() || txtPhoneNumber.text.isEmpty() || txtIdentityCardTypeNumber.text.isEmpty() || userCountry.isEmpty() || userCard.isEmpty() || userType.isEmpty()) {
+                Toast.makeText(context,"Debe rellenar todos los campos",Toast.LENGTH_SHORT).show()
+            } else {
+                val argumentos = arguments
+                if (argumentos != null) {
+                    val valor = argumentos.getStringArray("tempUser")
+                    if (valor != null) {
+                        user= User(
+                            txtdateBirth.text.toString(),
+                            "",
+                            valor[0].toString(),
+                            0,
+                            txtName.text.toString(),
+                            txtLastName.text.toString(),
+                            "",
+                            txtPhoneNumber.text.toString(),
+                            userCountry,
+                            valor[1].toString(),
+                            ""
+                        );
+                        val bundle = Bundle()
+                        bundle.putSerializable("tempInfoUser",user)
+                        if(userType=="Cliente"){
+                            bundle.putSerializable("userType","client")
+                        }else {
+                            bundle.putSerializable("userType","driver")
+                        }
+                        Navigation.findNavController(view_).navigate(R.id.action_fillInformationFragment_to_newAccountFragment,bundle)
                     }
-                    Navigation.findNavController(view_)
-                        .navigate(R.id.action_fillInformationFragment_to_newAccountFragment, bundle)
                 }
             }
-        }
-    }
+
+        }    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
