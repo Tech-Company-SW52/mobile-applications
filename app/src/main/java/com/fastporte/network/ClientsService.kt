@@ -11,5 +11,5 @@ interface ClientsService {
     fun getClient(@Query("format") format: String): Call<List<User>>
 
     @GET("clients/{id}")
-    fun getClient(@Query("format") format: String, @Path("id") id: Int): Call<User>
+    fun getClient(@Path("id") id: Int, @Query("format") format: String ): Call<User>
 }

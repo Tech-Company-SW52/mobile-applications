@@ -12,23 +12,30 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.navigation.Navigation
 import com.fastporte.R
-import com.fastporte.models.JsonResponse
-import com.fastporte.models.User
+import com.fastporte.helpers.SharedPreferences
+import com.fastporte.models.*
+import com.fastporte.network.ClientsService
+import com.fastporte.network.CommentsService
+import com.fastporte.network.ContractsService
 import com.fastporte.network.GeoCodeService
 import kotlinx.coroutines.*
 
 
 import okhttp3.*
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
+import java.sql.Time
 import java.util.*
 
 class ClientRequestServiceFragment : Fragment() {
     lateinit var user: User;
+    lateinit var client: User;
+    lateinit var contract: Contract
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,14 +46,11 @@ class ClientRequestServiceFragment : Fragment() {
         getUser()
         back(view)
 
-        //search
         autoCompleteFrom(view)
         autoCompleteTo(view)
-        //
 
         setHourStart(view)
         setHourEnd(view)
-
 
         selectPeople(view)
         selectWeight(view)
@@ -135,8 +139,13 @@ class ClientRequestServiceFragment : Fragment() {
         val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
 
         val datePickerDialog = DatePickerDialog(requireContext(), { _: DatePicker?, year: Int, monthOfYear: Int, dayOfMonth: Int ->
-            val selectedDate = "$dayOfMonth/${monthOfYear + 1}/$year"
-            editTextDate.setText(selectedDate)
+            if(monthOfYear+1>9){
+                val selectedDate = "$year-${monthOfYear + 1}-$dayOfMonth"
+                editTextDate.setText(selectedDate)
+            }else{
+                val selectedDate = "$year-0${monthOfYear + 1}-$dayOfMonth"
+                editTextDate.setText(selectedDate)
+            }
         }, currentYear, currentMonth, currentDay)
 
         datePickerDialog.datePicker.minDate = calendar.timeInMillis // Establecer fecha mínima como hoy
@@ -145,12 +154,136 @@ class ClientRequestServiceFragment : Fragment() {
 
     private fun sendRequest(view_: View) {
         val bt_client_search_request_send = view_.findViewById<Button>(R.id.bt_client_search_request_send)
-        bt_client_search_request_send.setOnClickListener(){
-            Navigation.findNavController(view_)
-                .navigate(R.id.action_clientRequestServiceFragment_to_searchFragment)
-        }
-    }
 
+        bt_client_search_request_send.setOnClickListener(){
+
+            val autoCompleteTextViewFrom = view_.findViewById<AutoCompleteTextView>(R.id.autoCompleteTextViewFrom)
+            val autoCompleteTextViewTo = view_.findViewById<AutoCompleteTextView>(R.id.autoCompleteTextViewTo)
+            val editTextType = view_.findViewById<EditText>(R.id.id_client_search_request_type)
+            val editTextDate = view_.findViewById<EditText>(R.id.id_client_search_request_date)
+            val peoplePicker = view_.findViewById<EditText>(R.id.peoplePicker)
+            val weightPicker = view_.findViewById<EditText>(R.id.weightPicker)
+            val editTextPrice = view_.findViewById<EditText>(R.id.id_client_search_request_price)
+            val editTextDescription = view_.findViewById<EditText>(R.id.id_client_search_request_description)
+            val hourStartPicker = view_.findViewById<NumberPicker>(R.id.hourStartPicker)
+            val hourEndPicker = view_.findViewById<NumberPicker>(R.id.hourEndPicker)
+            val timeArrival= hourStartPicker.value.toString()+":00:00"
+            val timeDeparture= hourEndPicker.value.toString()+":00:00"
+
+
+            val inputFields = listOf(
+                autoCompleteTextViewFrom,
+                autoCompleteTextViewTo,
+                editTextType,
+                editTextDate,
+                peoplePicker,
+                weightPicker,
+                editTextPrice,
+                editTextDescription,
+                hourStartPicker,
+                hourEndPicker
+            )
+
+            val allFieldsFilled = inputFields.all { field ->
+                when (field) {
+                    is EditText -> field.text.isNotEmpty()
+                    is NumberPicker -> field.value.toString().isNotEmpty()
+                    else -> false
+                }
+            }
+
+            if (allFieldsFilled) {
+                val retrofitU = Retrofit.Builder()
+                    .baseUrl("https://api-fastporte.azurewebsites.net/api/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build()
+                val retrofitC = Retrofit.Builder()
+                    .baseUrl("https://api-fastporte.azurewebsites.net/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build()
+                val contractsService: ContractsService = retrofitC.create(ContractsService::class.java)
+                val args = arguments
+                if (args != null && args.containsKey("searchUserTemp")) {
+                    this.user = args.getSerializable("searchUserTemp") as User
+                }
+
+
+                val clientService: ClientsService = retrofitU.create(ClientsService::class.java)
+                clientService.getClient(SharedPreferences(view_.context).getValue("id")!!.toInt(),"json").enqueue(object : Callback<User> {
+                    override fun onResponse(call: Call<User>, response: Response<User>) {
+                        if(response.isSuccessful){
+                            client=response.body()!!
+                            contract=Contract(
+                                id = 0, // Asigna el valor adecuado para el ID
+                                subject = editTextType.text.toString(), // Asigna el valor adecuado para el asunto
+                                from = autoCompleteTextViewFrom.text.toString(),
+                                to = autoCompleteTextViewTo.text.toString(),
+                                date = editTextDate.text.toString(),
+                                timeDeparture = "01:00:00", // Asigna el valor adecuado para la hora de salida
+                                timeArrival = "04:00:00", // Asigna el valor adecuado para la hora de llegada
+                                amount = editTextPrice.text.toString(), // Asigna el valor adecuado para la cantidad
+                                quantity = peoplePicker.text.toString(), // Asigna el valor adecuado para la cantidad
+                                visible = true, // Asigna el valor adecuado para la visibilidad
+                                client = client, // Asigna el objeto User correspondiente al cliente
+                                driver = user, // Asigna el objeto User correspondiente al conductor
+                                status = Status(0,"OFFER"), // Asigna el objeto Status correspondiente al estado
+                                notification = Notification(0,false)
+                            )
+                            println("contractId: ${contract.id}")
+                            println("subject: ${contract.subject}")
+                            println("from: ${contract.from}")
+                            println("to: ${contract.to}")
+                            println("date: ${contract.date}")
+                            println("timeDeparture: ${contract.timeDeparture}")
+                            println("timeArrival: ${contract.timeArrival}")
+                            println("amount: ${contract.amount}")
+                            println("quantity: ${contract.quantity}")
+                            println("visible: ${contract.visible}")
+                            println("client: ${contract.client}")
+                            println("driver: ${contract.driver}")
+                            println("status: ${contract.status}")
+                            println("notification: ${contract.notification}")
+
+                            contractsService.postContract(client.id,user.id,contract).enqueue(object :Callback<Contract>{
+                                override fun onResponse(call: Call<Contract>, response: Response<Contract>) {
+                                    if(response.isSuccessful){
+                                        Navigation.findNavController(view_)
+                                            .navigate(R.id.action_clientRequestServiceFragment_to_searchFragment)
+                                    }else{
+                                        println(response.code())
+                                        println(response.body())
+                                    }
+
+                                }
+
+                                override fun onFailure(call: Call<Contract>, t: Throwable) {
+                                    TODO("Not yet implemented")
+                                }
+                            })
+
+                        }else{
+                            println("--------FALSE")
+                        }
+                    }
+
+                    override fun onFailure(call: Call<User>, t: Throwable) {
+                        println("Fail")
+                    }
+                })
+
+
+            } else {
+                Toast.makeText(context,"Debe rellenar todos los campos",Toast.LENGTH_SHORT).show()
+            }
+
+
+
+        }
+
+
+
+
+    }
 
     private fun autoCompleteFrom(view_: View) {
             val autoCompleteTextViewFrom = view_.findViewById<AutoCompleteTextView>(R.id.autoCompleteTextViewFrom)
