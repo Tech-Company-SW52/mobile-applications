@@ -28,6 +28,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.Console
 
 class CarrierReceivePayFragment : Fragment() {
 
@@ -42,7 +43,9 @@ class CarrierReceivePayFragment : Fragment() {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_carrier_receive_pay, container, false)
 
+
         paymentFormConstraints(view)
+
         loadData(view)
         return view
     }
@@ -121,7 +124,7 @@ class CarrierReceivePayFragment : Fragment() {
         val tilHolderName = view.findViewById<TextInputLayout>(R.id.til_holder)
         val tilCardNumber = view.findViewById<TextInputLayout>(R.id.til_number)
 
-        val tilNumberLength = 20
+        val tilNumberLength = 16
 
 
         tilHolderName.error = " "
@@ -134,7 +137,9 @@ class CarrierReceivePayFragment : Fragment() {
         var _cvv: Int? = null
 
         val btPay = view.findViewById<Button>(R.id.bt_pay)
+
         btPay.isEnabled = false
+
         fun updateButtonState() {
             btPay.isEnabled = tilHolderName.error == null &&
                     tilCardNumber.error == null
@@ -179,19 +184,22 @@ class CarrierReceivePayFragment : Fragment() {
             _cardNumber = tilCardNumber.editText?.text.toString().toLong()
 
 
+
             val cardDetails = CardClient(
                 "email@gmail.com",
                 _holderName!!,
                 _cardNumber!!,
-                "-"+"-"+"-"+"-01",
+                "1000-01-01",
                 0,
                 " ",
                 _holderName!!)
+
 
             val retrofit = Retrofit.Builder()
                 .baseUrl(BaseURL.BASE_URL.toString())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
+
 
             val paymentService = retrofit.create(CardService::class.java)
             val request = paymentService.postCardDriver(
@@ -201,6 +209,7 @@ class CarrierReceivePayFragment : Fragment() {
             request.enqueue(object : Callback<CardClient> {
                 override fun onResponse(call: Call<CardClient>, response: Response<CardClient>) {
                     if (response.isSuccessful) {
+
                         Toast.makeText(context, "Payment successful", Toast.LENGTH_SHORT).show()
                         //updateContractStatus(view)
                         Navigation.findNavController(view)
@@ -210,6 +219,7 @@ class CarrierReceivePayFragment : Fragment() {
                     }
                 }
                 override fun onFailure(call: Call<CardClient>, t: Throwable) {
+
                     Toast.makeText(context, "Payment failed", Toast.LENGTH_SHORT).show()
                 }
             })
