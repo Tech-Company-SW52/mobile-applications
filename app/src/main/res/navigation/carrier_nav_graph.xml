@@ -13,7 +13,16 @@
         android:id="@+id/id_carrier_home_fragment"
         android:name="com.fastporte.controller.fragments.CarrierFragments.CarrierHomeFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_carrier_home" />
+        tools:layout="@layout/fragment_carrier_home" >
+        <action
+            android:id="@+id/action_id_carrier_home_fragment_to_id_carrier_profile_fragment2"
+
+            app:destination="@id/id_carrier_profile_fragment" />
+        <action
+            android:id="@+id/action_id_carrier_home_fragment_to_id_carrier_contracts_fragment"
+
+            app:destination="@id/id_carrier_contracts_fragment" />
+    </fragment>
     <fragment
         android:id="@+id/id_carrier_profile_fragment"
         android:name="com.fastporte.controller.fragments.CarrierFragments.CarrierProfileFragment"

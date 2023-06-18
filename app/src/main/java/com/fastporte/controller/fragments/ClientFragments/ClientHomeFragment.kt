@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fastporte.R
@@ -38,6 +40,15 @@ class ClientHomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_client_home, container, false)
+        val btnViewHistory = view.findViewById<Button>(R.id.btnViewHistoryClient)
+        val btnViewProfile = view.findViewById<Button>(R.id.btnViewProfileClient)
+        btnViewHistory.setOnClickListener {
+            findNavController().navigate(R.id.action_id_client_home_fragment_to_id_client_contracts_fragment)
+        }
+        btnViewProfile.setOnClickListener {
+            findNavController().navigate(R.id.action_id_client_home_fragment_to_id_client_profile_fragment)
+        }
+
         loadData(view)
         return view
 

@@ -43,26 +43,16 @@ class CarrierHomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-
         val view: View = inflater.inflate(R.layout.fragment_carrier_home, container, false)
-
-
         val btnViewHistory = view.findViewById<Button>(R.id.btnViewHistory)
         val btnViewProfile = view.findViewById<Button>(R.id.btnViewProfile)
 
-//        btnViewHistory.setOnClickListener {
-//
-//            val fragmentB = CarrierProfileFragment()
-//            val transaction = parentFragmentManager.beginTransaction()
-//            transaction.replace(R.id.profile_layout, fragmentB)
-//            transaction.addToBackStack(null)
-//            transaction.commit()
-//        }
-//        btnViewProfile.setOnClickListener {
-//
-//            findNavController().navigate(R.id.action_id_carrier_home_fragment_to_id_carrier_history_contracts_fragment)
-//        }
+        btnViewHistory.setOnClickListener {
+            findNavController().navigate(R.id.action_id_carrier_home_fragment_to_id_carrier_contracts_fragment)
+        }
+        btnViewProfile.setOnClickListener {
+            findNavController().navigate(R.id.action_id_carrier_home_fragment_to_id_carrier_profile_fragment2)
+        }
         loadData(view)
         // Inflate the layout for this fragment
         return view
@@ -80,12 +70,8 @@ class CarrierHomeFragment : Fragment() {
             .baseUrl(BaseURL.BASE_URL.toString())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-
-
         val homeService: HomeService = retrofit.create(HomeService::class.java)
-
         val request2 = homeService.getDriver("json")
-
         request2.enqueue(object : Callback<List<Driver>> {
             override fun onResponse(call: Call<List<Driver>>, response: Response<List<Driver>>) {
                 if (response.isSuccessful) {
@@ -97,21 +83,16 @@ class CarrierHomeFragment : Fragment() {
                             LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
                         popularRecyclerView.adapter = CarrierHomeAdapter(driverList, view.context)
                     }
-
                 }
             }
 
             override fun onFailure(call: Call<List<Driver>>, t: Throwable) {
                 Log.d("profileInformationFragment", t.toString())
             }
-
-
         })
-
         val request3 = homeService.getHistoryContractsByUserAndId(
             SharedPreferences(view.context).getValue("id")!!.toInt(), "driver", "json"
         )
-
         request3.enqueue(object : Callback<List<Contract>> {
             override fun onResponse(
                 call: Call<List<Contract>>,
@@ -127,7 +108,6 @@ class CarrierHomeFragment : Fragment() {
                         recentRecyclerView.adapter =
                             CarrierHomeHistoryAdapter(contractList, view.context)
                     }
-
                 }
             }
 
@@ -161,8 +141,6 @@ class CarrierHomeFragment : Fragment() {
                 }
             }
         })
-
-
     }
 
     private fun showData(user: User) {
