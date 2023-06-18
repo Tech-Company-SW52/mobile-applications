@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/client_notification">
+
+    <fragment
+        android:id="@+id/client_notification"
+        android:name="com.fastporte.controller.fragments.ClientFragments.ClientNotificationsFragment"
+        android:label="fragment_client_notification_pay"
+        tools:layout="@layout/fragment_client_notifications" >
+        <action
+            android:id="@+id/action_clientNotification_to_clientNotificationPayFragment"
+            app:destination="@id/fragment_client_pay" />
+    </fragment>
+
+
+
+
+</navigation>

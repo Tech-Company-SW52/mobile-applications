@@ -68,7 +68,8 @@ class CarrierActivity : AppCompatActivity() {
                 R.id.id_carrier_home_fragment,
                 R.id.id_carrier_contracts_fragment,
                 R.id.id_carrier_profile_fragment,
-                R.id.id_carrier_support_fragment
+                R.id.id_carrier_support_fragment,
+                R.id.id_carrier_notifications_fragment
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, drawerLayout)
