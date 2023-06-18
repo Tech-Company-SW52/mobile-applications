@@ -256,7 +256,7 @@ class ClientPayContractFragment : Fragment() {
                 "email@gmail.com",
                 _holderName!!,
                 _cardNumber!!,
-                _year!!+"-"+_month!!+"-01",
+                "1000"+"-"+"01"+"-01",
                 _cvv!!,
                 " ",
                 _holderName!!)

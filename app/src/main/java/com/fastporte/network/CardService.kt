@@ -19,4 +19,9 @@ interface CardService {
     fun updateContractStatus(@Path("idContract") idContract: Int,
                              @Path("idContractStatus") idContractStatus: Int):
             Call<CardClient>
+
+    @POST("api/cardsDriver/{idDriver}/add")
+    fun postCardDriver(@Path("idDriver") id: Int,
+                       @Body cardClient: CardClient?):
+            Call<CardClient>
 }
