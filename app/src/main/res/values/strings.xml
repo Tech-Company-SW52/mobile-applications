@@ -14,7 +14,20 @@
     <string name="add_experience">Add experience</string>
     <string name="experience_job">Experience Job</string>
     <string name="experience_in_years">Job in years</string>
+
     <string name="title_contract_accepted">Contract accepted!</string>
     <string name="details">Details</string>
     <string name="payment_details">Payment Details</string>
+    <string name="more">More</string>
+    <string name="recent_contracts">Recent Contracts</string>
+    <string name="popular_drivers">Popular Drivers</string>
+    <string name="client_data">Client Data:</string>
+    <string name="lugar">Centro de Lima</string>
+    <string name="destino">Huancayo</string>
+    <string name="type_service">Touristic</string>
+    <string name="name_client">Gianella</string>
+    <string name="name_tv">Name:</string>
+    <string name="from_tv">From:</string>
+    <string name="to_tv">To:</string>
+    <string name="service_tv">Service:</string>
 </resources>

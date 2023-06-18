@@ -1,7 +1,6 @@
 package com.fastporte.models
 
 import com.google.gson.annotations.SerializedName
-import java.util.Date
 
 class Contract(
     @SerializedName("id")
@@ -13,7 +12,7 @@ class Contract(
     @SerializedName("to")
     val to: String,
     @SerializedName("contractDate")
-    val date: Date,
+    val date: String,
     @SerializedName("timeDeparture")
     val timeDeparture: String,
     @SerializedName("timeArrival")
