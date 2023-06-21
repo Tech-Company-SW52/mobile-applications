@@ -50,8 +50,7 @@
         android:textAllCaps="false"
         android:textColor="#000000"
         android:textSize="12sp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvNameProfile"
@@ -114,16 +113,16 @@
             android:textColor="#A4000000"
             android:textStyle="bold" />
     -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/populaRVdriver"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="193dp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/populaRVdriver"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="193dp" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/contractsRVdriver"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="405dp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/contractsRVdriver"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="405dp" />
 
-    </FrameLayout>
+</FrameLayout>

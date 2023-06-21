@@ -13,7 +13,7 @@
         android:id="@+id/id_carrier_home_fragment"
         android:name="com.fastporte.controller.fragments.CarrierFragments.CarrierHomeFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_carrier_home" >
+        tools:layout="@layout/fragment_carrier_home">
         <action
             android:id="@+id/action_id_carrier_home_fragment_to_id_carrier_profile_fragment2"
 
@@ -48,7 +48,7 @@
         android:id="@+id/id_carrier_notifications_fragment"
         android:name="com.fastporte.controller.fragments.CarrierFragments.CarrierNotificationsFragment"
         android:label="Notifications"
-        tools:layout="@layout/fragment_carrier_notifications" >
+        tools:layout="@layout/fragment_carrier_notifications">
         <action
             android:id="@+id/action_id_carrier_notifications_fragment_to_id_carrier_contracts_fragment"
             app:destination="@id/id_carrier_contracts_fragment" />
@@ -60,7 +60,7 @@
         android:id="@+id/carrierReceivePayFragment"
         android:name="com.fastporte.controller.fragments.CarrierFragments.CarrierReceivePayFragment"
         android:label="fragment_carrier_receive_pay"
-        tools:layout="@layout/fragment_carrier_receive_pay" >
+        tools:layout="@layout/fragment_carrier_receive_pay">
         <action
             android:id="@+id/action_carrierReceivePayFragment_to_id_carrier_notifications_fragment"
             app:destination="@id/id_carrier_notifications_fragment" />

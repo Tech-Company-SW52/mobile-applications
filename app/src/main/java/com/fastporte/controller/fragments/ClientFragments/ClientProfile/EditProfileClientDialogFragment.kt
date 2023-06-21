@@ -46,11 +46,13 @@ class EditProfileClientDialogFragment : DialogFragment() {
             val lastname = binding.tilLastname.editText?.text.toString()
             val phone = binding.tilPhone.editText?.text.toString()
             val birthday = binding.tilBirthday.editText?.text.toString()
+            val description = binding.tilDescription.editText?.text.toString()
 
             user?.name = name
             user?.lastname = lastname
             user?.phone = phone
             user?.birthdate = birthday
+            user?.description = description
 
             updateUser()
 
@@ -67,7 +69,6 @@ class EditProfileClientDialogFragment : DialogFragment() {
         dialog.show()
 
         return dialog
-        // return super.onCreateDialog(savedInstanceState)
     }
 
     fun setDialogListener(listener: EditProfileDialogListener) {
@@ -80,6 +81,7 @@ class EditProfileClientDialogFragment : DialogFragment() {
         binding.tilLastname.editText?.setText(user?.lastname)
         binding.tilPhone.editText?.setText(user?.phone)
         binding.tilBirthday.editText?.setText(user?.birthdate)
+        binding.tilDescription.editText?.setText(user?.description)
     }
 
     private fun getCurrentUser() {

@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fastporte.R
 import com.fastporte.adapter.SearchClientCommentsAdapter
-import com.fastporte.models.CommentsSearch
+import com.fastporte.helpers.BaseURL
+import com.fastporte.models.Comment
 import com.fastporte.models.User
-import com.fastporte.network.ClientsService
 import com.fastporte.network.CommentsService
 import retrofit2.Call
 import retrofit2.Callback
@@ -29,37 +29,40 @@ class ClientSearchCommentsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view:View= inflater.inflate(R.layout.fragment_client_search_comments, container, false)
+        val view: View =
+            inflater.inflate(R.layout.fragment_client_search_comments, container, false)
 
-        commentRecyclerView=view.findViewById(R.id.rv_client_search_comments)
+        commentRecyclerView = view.findViewById(R.id.rv_client_search_comments)
         loadComments(view)
 
         return view
     }
+
     fun setUser(user: User) {
         this.user = user
     }
 
     private fun loadComments(view: View) {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://api-fastporte.azurewebsites.net/api/")
+            .baseUrl(BaseURL.BASE_URL.toString())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        val commentService:CommentsService= retrofit.create(CommentsService::class.java)
+        val commentService: CommentsService = retrofit.create(CommentsService::class.java)
         val listComments = commentService.getCommentsByDriverID(user?.id ?: 0)
-        listComments.enqueue(object :Callback<List<CommentsSearch>>{
+        listComments.enqueue(object : Callback<List<Comment>> {
             override fun onResponse(
-                call: Call<List<CommentsSearch>>,
-                response: Response<List<CommentsSearch>>
+                call: Call<List<Comment>>,
+                response: Response<List<Comment>>
             ) {
-                val commentList=response.body()
-                if(commentList!=null){
-                    commentRecyclerView.adapter= SearchClientCommentsAdapter(commentList,requireContext())
-                    commentRecyclerView.layoutManager= LinearLayoutManager(context)
+                val commentList = response.body()
+                if (commentList != null) {
+                    commentRecyclerView.adapter =
+                        SearchClientCommentsAdapter(commentList, requireContext())
+                    commentRecyclerView.layoutManager = LinearLayoutManager(context)
                 }
             }
 
-            override fun onFailure(call: Call<List<CommentsSearch>>, t: Throwable) {
+            override fun onFailure(call: Call<List<Comment>>, t: Throwable) {
                 TODO("Not yet implemented")
             }
 

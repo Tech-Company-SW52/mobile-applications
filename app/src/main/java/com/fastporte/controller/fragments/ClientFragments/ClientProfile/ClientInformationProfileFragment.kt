@@ -41,8 +41,8 @@ class ClientInformationProfileFragment : Fragment() {
         val profileService: ProfileService = retrofit.create(ProfileService::class.java)
 
         val request = profileService.getClientProfile(
-            SharedPreferences(view.context).getValue("id")!!.toInt()
-            ,"json")
+            SharedPreferences(view.context).getValue("id")!!.toInt(), "json"
+        )
 
         request.enqueue(object : Callback<User> {
             override fun onFailure(call: Call<User>, t: Throwable) {
@@ -56,6 +56,7 @@ class ClientInformationProfileFragment : Fragment() {
             }
         })
     }
+
     private fun showData(user: User) {
 
         val btName = view?.findViewById<TextView>(R.id.btName)

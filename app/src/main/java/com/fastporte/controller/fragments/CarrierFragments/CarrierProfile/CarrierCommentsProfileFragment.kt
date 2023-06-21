@@ -45,7 +45,7 @@ class CarrierCommentsProfileFragment : Fragment() {
         loadComments(view)
     }
 
-    private fun loadComments(view: View){
+    private fun loadComments(view: View) {
         val retrofit = Retrofit.Builder()
             .baseUrl(BaseURL.BASE_URL.toString())
             .addConverterFactory(GsonConverterFactory.create())
@@ -54,15 +54,16 @@ class CarrierCommentsProfileFragment : Fragment() {
         val commentService: ProfileService = retrofit.create(ProfileService::class.java)
 
         val request = commentService.getDriverComments(
-            SharedPreferences(view.context).getValue("id")!!.toInt(), "json")
+            SharedPreferences(view.context).getValue("id")!!.toInt(), "json"
+        )
 
         request.enqueue(object : Callback<List<Comment>> {
             override fun onResponse(call: Call<List<Comment>>, response: Response<List<Comment>>) {
                 if (response.isSuccessful) {
-                    if(response.message() == "No Content"){
-                        Toast.makeText(view.context, "No hay comentarios", Toast.LENGTH_SHORT).show()
-                    }
-                    else {
+                    if (response.message() == "No Content") {
+                        Toast.makeText(view.context, "No hay comentarios", Toast.LENGTH_SHORT)
+                            .show()
+                    } else {
                         val comments: List<Comment> = response.body()!!
                         commentRecyclerView.layoutManager = LinearLayoutManager(view.context)
                         commentRecyclerView.adapter = CommentProfileAdapter(comments, view.context)

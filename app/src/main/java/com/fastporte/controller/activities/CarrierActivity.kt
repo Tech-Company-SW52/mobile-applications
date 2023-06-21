@@ -47,6 +47,7 @@ class CarrierActivity : AppCompatActivity() {
                         finish()
                         true
                     }
+
                     else -> false
                 }
             }

@@ -1,6 +1,5 @@
 package com.fastporte.network
 
-import com.fastporte.models.CommentsSearch
 import com.fastporte.models.Experience
 import retrofit2.Call
 import retrofit2.http.GET

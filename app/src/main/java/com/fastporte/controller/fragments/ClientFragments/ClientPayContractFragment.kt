@@ -49,7 +49,7 @@ class ClientPayContractFragment : Fragment() {
         return view
     }
 
-    private fun loadData(view: View){
+    private fun loadData(view: View) {
         val retrofit = Retrofit.Builder()
             .baseUrl(BaseURL.BASE_URL.toString())
             .addConverterFactory(GsonConverterFactory.create())
@@ -62,11 +62,13 @@ class ClientPayContractFragment : Fragment() {
         )
 
         request.enqueue(object : Callback<ClientNotification> {
-            override fun onResponse(call: Call<ClientNotification>, response: Response<ClientNotification>) {
+            override fun onResponse(
+                call: Call<ClientNotification>,
+                response: Response<ClientNotification>
+            ) {
                 if (response.isSuccessful) {
                     showData(response.body()!!)
-                }
-                else    {
+                } else {
                     println("FALLO: " + response.errorBody()?.string())
                 }
             }
@@ -99,22 +101,22 @@ class ClientPayContractFragment : Fragment() {
             .error(R.drawable.ic_launcher_background)
             .into(civUserCC)
 
-        tvClientNameCC?.text = "Name:"+notification.driver.name
-        tvClientPhoneCC?.text = "Phone:"+notification.driver.phone
-        tvAmountCC?.text = "S/."+notification.amount
+        tvClientNameCC?.text = "Name:" + notification.driver.name
+        tvClientPhoneCC?.text = "Phone:" + notification.driver.phone
+        tvAmountCC?.text = "S/." + notification.amount
 
 
 
-        tvSubjectCC?.text = "Subject:   "+notification.subject
-        tvFromCC?.text =    "From:      "+notification.from
-        tvToCC?.text =      "To:        "+notification.to
-        tvDateCC?.text =    "Date:      "+ notification.contractDate
-        tvTimeCC?.text =    "Time:      "+ notification.timeDeparture
-        tvQuantityCC?.text ="Quantity:  "+ notification.quantity
+        tvSubjectCC?.text = "Subject:   " + notification.subject
+        tvFromCC?.text = "From:      " + notification.from
+        tvToCC?.text = "To:        " + notification.to
+        tvDateCC?.text = "Date:      " + notification.contractDate
+        tvTimeCC?.text = "Time:      " + notification.timeDeparture
+        tvQuantityCC?.text = "Quantity:  " + notification.quantity
 
     }
 
-    private fun paymentFormConstraints(view: View){
+    private fun paymentFormConstraints(view: View) {
         val tilYear = view.findViewById<TextInputLayout>(R.id.til_year)
         val tilMonth = view.findViewById<TextInputLayout>(R.id.til_month)
         val tilCvv = view.findViewById<TextInputLayout>(R.id.til_cvv)
@@ -159,8 +161,9 @@ class ClientPayContractFragment : Fragment() {
                 }
                 updateButtonState()
             }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int){}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
 
         tilCardNumber.editText?.addTextChangedListener(object : TextWatcher {
@@ -174,8 +177,9 @@ class ClientPayContractFragment : Fragment() {
                 }
                 updateButtonState()
             }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int){}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
         })
 
@@ -192,10 +196,10 @@ class ClientPayContractFragment : Fragment() {
                     tilYear.isErrorEnabled = false
                 }
 
-                if ( (s?.length == tilYearLength) && (s.toString().toInt() < 2023)) {
+                if ((s?.length == tilYearLength) && (s.toString().toInt() < 2023)) {
                     tilYear.error = "Invalid year"
                     tilYear.isErrorEnabled = true
-                } else if ( (s?.length == tilYearLength) && (s.toString().toInt() >= 2023)) {
+                } else if ((s?.length == tilYearLength) && (s.toString().toInt() >= 2023)) {
                     tilYear.error = null
                     tilYear.isErrorEnabled = false
                 }
@@ -232,17 +236,18 @@ class ClientPayContractFragment : Fragment() {
                     tilMonth.isErrorEnabled = false
                 }
 
-                if ( (s?.length == tilMonthLength) && (s.toString().toInt() > 12)) {
+                if ((s?.length == tilMonthLength) && (s.toString().toInt() > 12)) {
                     tilMonth.error = "Invalid month"
                     tilMonth.isErrorEnabled = true
-                } else if ( (s?.length == tilMonthLength) && (s.toString().toInt() <= 12)) {
+                } else if ((s?.length == tilMonthLength) && (s.toString().toInt() <= 12)) {
                     tilMonth.error = null
                     tilMonth.isErrorEnabled = false
                 }
                 updateButtonState()
             }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int){}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
 
         btPay.setOnClickListener {
@@ -256,10 +261,11 @@ class ClientPayContractFragment : Fragment() {
                 "email@gmail.com",
                 _holderName!!,
                 _cardNumber!!,
-                _year!!+"-"+_month!!+"-01",
+                _year!! + "-" + _month!! + "-01",
                 _cvv!!,
                 " ",
-                _holderName!!)
+                _holderName!!
+            )
 
             val retrofit = Retrofit.Builder()
                 .baseUrl(BaseURL.BASE_URL.toString())
@@ -268,8 +274,9 @@ class ClientPayContractFragment : Fragment() {
 
             val paymentService = retrofit.create(CardService::class.java)
             val request = paymentService.postCardClient(
-                    SharedPreferences(view.context).getValue("id")!!.toInt(),
-                    cardDetails)
+                SharedPreferences(view.context).getValue("id")!!.toInt(),
+                cardDetails
+            )
 
             request.enqueue(object : Callback<CardClient> {
                 override fun onResponse(call: Call<CardClient>, response: Response<CardClient>) {
@@ -282,6 +289,7 @@ class ClientPayContractFragment : Fragment() {
                         Toast.makeText(context, "Payment failed", Toast.LENGTH_SHORT).show()
                     }
                 }
+
                 override fun onFailure(call: Call<CardClient>, t: Throwable) {
                     Toast.makeText(context, "Payment failed", Toast.LENGTH_SHORT).show()
                 }
@@ -297,7 +305,7 @@ class ClientPayContractFragment : Fragment() {
 
     }
 
-    private fun updateContractStatus(view: View){
+    private fun updateContractStatus(view: View) {
         val retrofit = Retrofit.Builder()
             .baseUrl(BaseURL.BASE_URL.toString())
             .addConverterFactory(GsonConverterFactory.create())
@@ -305,16 +313,19 @@ class ClientPayContractFragment : Fragment() {
 
         val contractService = retrofit.create(CardService::class.java)
         val request = contractService.updateContractStatus(
-            SharedPreferences(view.context).getValue("idNotification")!!.toInt(), 2)
+            SharedPreferences(view.context).getValue("idNotification")!!.toInt(), 2
+        )
 
         request.enqueue(object : Callback<CardClient> {
             override fun onResponse(call: Call<CardClient>, response: Response<CardClient>) {
                 if (response.isSuccessful) {
                     Toast.makeText(context, "Contract status updated", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(context, "Contract status update failed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Contract status update failed", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
+
             override fun onFailure(call: Call<CardClient>, t: Throwable) {
                 Toast.makeText(context, "Contract status update failed", Toast.LENGTH_SHORT).show()
             }

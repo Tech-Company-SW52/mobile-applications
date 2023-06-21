@@ -13,12 +13,13 @@ import com.squareup.picasso.Picasso
 class CommentProfileAdapter(var comments: List<Comment>, val context: Context) :
     RecyclerView.Adapter<CommentProfileAdapter.ViewHolder>() {
 
-    class ViewHolder(val view: android.view.View): RecyclerView.ViewHolder(view) {
+    class ViewHolder(val view: android.view.View) : RecyclerView.ViewHolder(view) {
         val tvName = view.findViewById<TextView>(R.id.tvName)
         val tvComment = view.findViewById<TextView>(R.id.tvDescription)
         val tvRate = view.findViewById<TextView>(R.id.tvCarrierRate)
         val ivPhotoComment = view.findViewById<ImageView>(R.id.civProfileImage)
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater
             .from(parent.context)

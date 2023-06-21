@@ -8,6 +8,7 @@
     app:cardElevation="3dp"
     android:layout_margin="10dp"
     android:id="@+id/cv_search_comment">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,7 +20,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_search_comment_name"
@@ -57,7 +58,7 @@
             android:layout_height="19dp"
             android:layout_marginTop="45dp"
             android:layout_marginEnd="16dp"
-            android:tint="@color/fp_blue"
+            app:tint="@color/fp_blue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/baseline_star_24" />

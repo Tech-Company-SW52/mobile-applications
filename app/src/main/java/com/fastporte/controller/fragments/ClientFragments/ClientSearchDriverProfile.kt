@@ -30,7 +30,8 @@ class ClientSearchDriverProfile : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view: View= inflater.inflate(R.layout.fragment_client_search_driver_profile, container, false)
+        val view: View =
+            inflater.inflate(R.layout.fragment_client_search_driver_profile, container, false)
 
         loadInformation(view)
         contractDriver(view)
@@ -38,7 +39,7 @@ class ClientSearchDriverProfile : Fragment() {
         tabLayout = view.findViewById(R.id.tab_layout)
         viewPager = view.findViewById(R.id.view_pager)
 
-        val adapter = ViewPagerAdapter(childFragmentManager,user)
+        val adapter = ViewPagerAdapter(childFragmentManager, user)
         adapter.addFragment(ClientSearchPersonalnformationfragment(), "Personal Information")
         adapter.addFragment(ClientSearchExperienceFragment(), "Experience")
         adapter.addFragment(ClientSearchVehicleFragment(), "Vehicle")
@@ -52,7 +53,7 @@ class ClientSearchDriverProfile : Fragment() {
 
     private fun back(view_: View) {
         val tvbacksearchprofile = view_.findViewById<TextView>(R.id.tvbacksearchprofile)
-        tvbacksearchprofile.setOnClickListener(){
+        tvbacksearchprofile.setOnClickListener() {
             Navigation.findNavController(view_)
                 .navigate(R.id.action_clientSearchDriverProfile_to_searchResultFragment)
         }
@@ -60,46 +61,54 @@ class ClientSearchDriverProfile : Fragment() {
 
     private fun contractDriver(view_: View) {
         val btSearchVehicleContract = view_.findViewById<Button>(R.id.btSearchVehicleContract)
-        btSearchVehicleContract.setOnClickListener(){
+        btSearchVehicleContract.setOnClickListener() {
             val bundle = Bundle()
             bundle.putSerializable("searchUserTemp", user)
             Navigation.findNavController(view_)
-                .navigate(R.id.action_clientSearchDriverProfile_to_clientRequestServiceFragment,bundle)
+                .navigate(
+                    R.id.action_clientSearchDriverProfile_to_clientRequestServiceFragment,
+                    bundle
+                )
         }
     }
 
     private fun loadInformation(view_: View) {
-        val tvSearchVehicleProfileName = view_.findViewById<TextView>(R.id.tvSearchVehicleProfileName)
-        val tvSearchVehicleProfileDescription = view_.findViewById<TextView>(R.id.tvSearchVehicleProfileDescription)
+        val tvSearchVehicleProfileName =
+            view_.findViewById<TextView>(R.id.tvSearchVehicleProfileName)
+        val tvSearchVehicleProfileDescription =
+            view_.findViewById<TextView>(R.id.tvSearchVehicleProfileDescription)
         val rbSearchVehicleUserStar = view_.findViewById<RatingBar>(R.id.rbSearchVehicleUserStar)
-        val civtvSearchVehicleCarrierProfile = view_.findViewById<CircleImageView>(R.id.civtvSearchVehicleCarrierProfile)
+        val civtvSearchVehicleCarrierProfile =
+            view_.findViewById<CircleImageView>(R.id.civtvSearchVehicleCarrierProfile)
         user = arguments?.getSerializable("searchUserTemp") as User
         tvSearchVehicleProfileName.text = user.name
         tvSearchVehicleProfileDescription.text = user.description
 
-        val picBuilder= Picasso.Builder(requireContext())
+        val picBuilder = Picasso.Builder(requireContext())
         picBuilder.downloader((OkHttp3Downloader(context)))
-        picBuilder.build().load(user.photo).placeholder(R.color.white).error(R.color.white).into(civtvSearchVehicleCarrierProfile)
+        picBuilder.build().load(user.photo).placeholder(R.color.white).error(R.color.white)
+            .into(civtvSearchVehicleCarrierProfile)
 
     }
 
-    private inner class ViewPagerAdapter(manager: FragmentManager, private val user: User) : FragmentPagerAdapter(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+    private inner class ViewPagerAdapter(manager: FragmentManager, private val user: User) :
+        FragmentPagerAdapter(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
         private val fragmentList = ArrayList<Fragment>()
         private val fragmentTitleList = ArrayList<String>()
 
         override fun getItem(position: Int): Fragment {
-            val fragment=fragmentList[position]
-            if(fragment is ClientSearchPersonalnformationfragment){
+            val fragment = fragmentList[position]
+            if (fragment is ClientSearchPersonalnformationfragment) {
                 fragment.setUser(user)
             }
-            if(fragment is ClientSearchExperienceFragment){
+            if (fragment is ClientSearchExperienceFragment) {
                 fragment.setUser(user)
             }
-            if(fragment is ClientSearchVehicleFragment){
+            if (fragment is ClientSearchVehicleFragment) {
                 fragment.setUser(user)
             }
-            if(fragment is ClientSearchCommentsFragment){
+            if (fragment is ClientSearchCommentsFragment) {
                 fragment.setUser(user)
             }
             return fragmentList[position]

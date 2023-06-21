@@ -50,8 +50,7 @@
         android:textAllCaps="false"
         android:textColor="#000000"
         android:textSize="12sp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvNameProfile"
@@ -86,34 +85,34 @@
         android:text="@string/recent_contracts"
         android:textColor="#08445C"
         android:textSize="20sp" />
-<!--
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#00FFFFFF"
-        android:fontFamily="@font/poppins_bold"
-        android:layout_marginLeft="250dp"
-        android:layout_marginTop="162dp"
-        android:layout_marginRight="20dp"
-        android:text="More"
-        android:textAllCaps="false"
-        android:textColor="#A4000000"
-        android:textStyle="bold" />
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#00FFFFFF"
-        android:fontFamily="@font/poppins_bold"
-        android:layout_marginLeft="250dp"
-        android:layout_marginTop="375dp"
-        android:layout_marginRight="20dp"
-        android:text="@string/more"
-        android:textAllCaps="false"
-        android:textColor="#A4000000"
-        android:textStyle="bold" />
--->
+    <!--
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="162dp"
+            android:layout_marginRight="20dp"
+            android:text="More"
+            android:textAllCaps="false"
+            android:textColor="#A4000000"
+            android:textStyle="bold" />
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="375dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/more"
+            android:textAllCaps="false"
+            android:textColor="#A4000000"
+            android:textStyle="bold" />
+    -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/populaRVclient"
         android:layout_width="match_parent"

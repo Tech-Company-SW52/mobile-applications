@@ -12,7 +12,8 @@ import com.squareup.picasso.OkHttp3Downloader
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 
-class SearchClientVehicleAdapter(val vehicles: List<Vehicle>,val context: Context): RecyclerView.Adapter<SearchClientVehicleAdapter.ViewHolder>() {
+class SearchClientVehicleAdapter(val vehicles: List<Vehicle>, val context: Context) :
+    RecyclerView.Adapter<SearchClientVehicleAdapter.ViewHolder>() {
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val ivSearchClientPhotoVehicle =
             view.findViewById<CircleImageView>(R.id.ivSearchClientPhotoVehicle)

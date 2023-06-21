@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.fastporte.controller.fragments.CarrierFragments.CarrierProfile.CarrierVehicleProfileFragment">
+
     <ScrollView
         android:id="@+id/svVehicle"
         android:layout_width="match_parent"

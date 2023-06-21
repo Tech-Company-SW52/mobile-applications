@@ -27,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 //var image: String = ""
 
 class CarrierVehicleProfileFragment : Fragment()
-    //, AddVehicleInterface
+//, AddVehicleInterface
 {
     lateinit var vehicleRecyclerView: RecyclerView
     //var vehiclesNew = ArrayList<Vehicle>()

@@ -19,7 +19,7 @@ class FillInformationFragment : Fragment() {
     lateinit var user: User;
     lateinit var userType: String;
     lateinit var userCountry: String;
-    private var userCard="";
+    private var userCard = "";
     val countries = arrayListOf(
         "Select Country",
         "Argentina",
@@ -130,7 +130,7 @@ class FillInformationFragment : Fragment() {
                 id: Long
             ) {
                 deleteCardHint()
-                userCard  = parent.getItemAtPosition(position).toString()
+                userCard = parent.getItemAtPosition(position).toString()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -188,7 +188,7 @@ class FillInformationFragment : Fragment() {
         //val spIdentityCardType=view_.findViewById<EditText>(R.id.spIdentityCardType)
         val txtIdentityCardTypeNumber = view_.findViewById<EditText>(R.id.txtIdentityCardTypeNumber)
 
-        btnNext.setOnClickListener(){
+        btnNext.setOnClickListener() {
             // Imprimir cada uno de los condicionales en la consola
             println("txtName: ${txtName.text}")
             println("txtLastName: ${txtLastName.text}")
@@ -198,14 +198,14 @@ class FillInformationFragment : Fragment() {
             println("userCountry: $userCountry")
             println("userCard: $userCard")
             println("userType: $userType")
-            if(txtName.text.isEmpty() || txtLastName.text.isEmpty() || txtdateBirth.text.isEmpty() || txtPhoneNumber.text.isEmpty() || txtIdentityCardTypeNumber.text.isEmpty() || userCountry.isEmpty() || userCard.isEmpty() || userType.isEmpty()) {
-                Toast.makeText(context,"Debe rellenar todos los campos",Toast.LENGTH_SHORT).show()
+            if (txtName.text.isEmpty() || txtLastName.text.isEmpty() || txtdateBirth.text.isEmpty() || txtPhoneNumber.text.isEmpty() || txtIdentityCardTypeNumber.text.isEmpty() || userCountry.isEmpty() || userCard.isEmpty() || userType.isEmpty()) {
+                Toast.makeText(context, "Debe rellenar todos los campos", Toast.LENGTH_SHORT).show()
             } else {
                 val argumentos = arguments
                 if (argumentos != null) {
                     val valor = argumentos.getStringArray("tempUser")
                     if (valor != null) {
-                        user= User(
+                        user = User(
                             txtdateBirth.text.toString(),
                             "",
                             valor[0].toString(),
@@ -219,18 +219,22 @@ class FillInformationFragment : Fragment() {
                             ""
                         );
                         val bundle = Bundle()
-                        bundle.putSerializable("tempInfoUser",user)
-                        if(userType=="Cliente"){
-                            bundle.putSerializable("userType","client")
-                        }else {
-                            bundle.putSerializable("userType","driver")
+                        bundle.putSerializable("tempInfoUser", user)
+                        if (userType == "Cliente") {
+                            bundle.putSerializable("userType", "client")
+                        } else {
+                            bundle.putSerializable("userType", "driver")
                         }
-                        Navigation.findNavController(view_).navigate(R.id.action_fillInformationFragment_to_newAccountFragment,bundle)
+                        Navigation.findNavController(view_).navigate(
+                            R.id.action_fillInformationFragment_to_newAccountFragment,
+                            bundle
+                        )
                     }
                 }
             }
 
-        }    }
+        }
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

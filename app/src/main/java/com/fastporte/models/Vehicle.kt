@@ -13,7 +13,7 @@ class Vehicle(
     val quantity: Int,
     @SerializedName("photo")
     val photo: String,
-    @SerializedName("driver") 
+    @SerializedName("driver")
     var driver: User
-): Serializable
+) : Serializable
 

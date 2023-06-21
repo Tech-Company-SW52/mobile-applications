@@ -1,4 +1,5 @@
 package com.fastporte.network
+
 import com.fastporte.controller.fragments.ClientFragments.ClientRequestServiceFragment
 import com.fastporte.models.JsonResponse
 import com.fastporte.models.User
@@ -14,5 +15,5 @@ interface GeoCodeService {
         @Query("key") apiKey: String,
         @Query("language") language: String,
         @Query("pretty") pretty: Int
-    ):Call<JsonResponse>
+    ): Call<JsonResponse>
 }

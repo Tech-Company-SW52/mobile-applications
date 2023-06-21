@@ -4,14 +4,14 @@ import android.annotation.SuppressLint
 import android.text.Html
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.fastporte.R
+import com.fastporte.controller.fragments.ClientFragments.ClientContracts.MakeCommentDialogFragment
 import com.fastporte.helpers.SharedPreferences
 import com.squareup.picasso.OkHttp3Downloader
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
-import java.text.SimpleDateFormat
-import java.util.Date
 
 class ContractDetailsPrototype(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val tvFrom: TextView = itemView.findViewById(R.id.tvFromCD)
@@ -28,10 +28,6 @@ class ContractDetailsPrototype(itemView: View) : RecyclerView.ViewHolder(itemVie
     fun bind(contract: Contract) {
         tvFrom.text = Html.fromHtml("From: <b>${contract.from}</b>")
         tvTo.text = Html.fromHtml("To: <b>${contract.to}</b>")
-//        val parser = SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy")
-//        val date: Date = parser.parse(contract.date.toString())
-//        val formatter = SimpleDateFormat("dd/MM/yyyy")
-//        val formattedDate: String = formatter.format(date)
         tvDate.text = Html.fromHtml("Date: <b>${contract.date}</b>")
         tvAmount.text = Html.fromHtml("Amount: <b>S/.${contract.amount}</b>")
 
@@ -47,13 +43,18 @@ class ContractDetailsPrototype(itemView: View) : RecyclerView.ViewHolder(itemVie
             picBuilder.build()
                 .load(contract.driver.photo)
                 .into(civUserCD)
-            if (contract.status.status == "HISTORY") {
-                tvStatus.text = "Status: Done"
-                tvStatus.setTextColor(itemView.resources.getColor(R.color.accept))
-            } else {
-                tvStatus.text = "Status: Pending"
-                tvStatus.setTextColor(itemView.resources.getColor(R.color.decline))
+
+            val makeCommentDialog = MakeCommentDialogFragment(contract)
+
+            civUserCD.setOnClickListener {
+                makeCommentDialog.show(
+                    (itemView.context as AppCompatActivity).supportFragmentManager,
+                    "MakeCommentDialogFragment"
+                )
             }
+
+            tvStatus.text = "Status: Done"
+            tvStatus.setTextColor(itemView.resources.getColor(R.color.accept))
         } else {
             tvClientName.text = "${contract.client.name} ${contract.client.lastname}"
             picBuilder.downloader(OkHttp3Downloader(itemView.context))

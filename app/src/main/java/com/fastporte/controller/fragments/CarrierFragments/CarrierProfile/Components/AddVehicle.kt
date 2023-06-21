@@ -36,9 +36,10 @@ class AddVehicle(
     private lateinit var binding: FragmentAddVehicleBinding
     val bundle = Bundle()
     lateinit var vehicle: Vehicle
+
     //private var listener: AddVehicleInterface? = null
     //fun setAddVehicleListener(listener: CarrierVehicleProfileFragment) {
-        //this.listener = listener
+    //this.listener = listener
     //}
     val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(BaseURL.BASE_URL.toString())
@@ -55,10 +56,10 @@ class AddVehicle(
             val type = binding.etVehicleName.text.toString()
             val capacity = binding.etCapacity.text.toString().toInt()
             var urlImage = binding.etPhoto.text.toString()
-            var user = User("","", "",0,"","","","","","","")
+            var user = User("", "", "", 0, "", "", "", "", "", "", "")
             if (urlImage.isEmpty())
-                urlImage = "https://png.pngtree.com/png-vector/20191021/ourlarge/pngtree-vector-car-icon-png-image_1834527.jpg"
-
+                urlImage =
+                    "https://png.pngtree.com/png-vector/20191021/ourlarge/pngtree-vector-car-icon-png-image_1834527.jpg"
 
 
             //Toast.makeText(requireContext(), "datos $type $capacity $urlImage", Toast.LENGTH_SHORT).show()
@@ -74,6 +75,7 @@ class AddVehicle(
         dialog.show()
         return dialog
     }
+
     private fun postVehicle() {
 
         val request = vehicleService.postVehicleDriver(

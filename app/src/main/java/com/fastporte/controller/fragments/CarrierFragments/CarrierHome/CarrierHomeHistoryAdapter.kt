@@ -10,9 +10,9 @@ import com.squareup.picasso.OkHttp3Downloader
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 
-class CarrierHomeHistoryAdapter(var contracts: List<Contract>, val context: Context):
-RecyclerView.Adapter<CarrierHomeHistoryAdapter.ViewHolder>() {
-    class ViewHolder(val view: android.view.View): RecyclerView.ViewHolder(view){
+class CarrierHomeHistoryAdapter(var contracts: List<Contract>, val context: Context) :
+    RecyclerView.Adapter<CarrierHomeHistoryAdapter.ViewHolder>() {
+    class ViewHolder(val view: android.view.View) : RecyclerView.ViewHolder(view) {
         val cvPhoto = view.findViewById<CircleImageView>(R.id.civClientProfile)
         val tvName = view.findViewById<android.widget.TextView>(R.id.tvClientName)
         val tvFrom = view.findViewById<android.widget.TextView>(R.id.tvLugar)
@@ -44,7 +44,6 @@ RecyclerView.Adapter<CarrierHomeHistoryAdapter.ViewHolder>() {
     override fun getItemCount(): Int {
         return contracts.size
     }
-
 
 
 }

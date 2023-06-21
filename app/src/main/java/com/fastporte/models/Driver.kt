@@ -26,4 +26,4 @@ class Driver(
     var password: String,
     @SerializedName("description")
     var description: String,
-    ) : Serializable
+) : Serializable

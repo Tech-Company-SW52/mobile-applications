@@ -48,6 +48,7 @@ class ClientActivity : AppCompatActivity() {
                         finish()
                         true
                     }
+
                     else -> false
                 }
             }

@@ -34,7 +34,8 @@ class ClientRequestServiceFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view: View= inflater.inflate(R.layout.fragment_client_request_service, container, false)
+        val view: View =
+            inflater.inflate(R.layout.fragment_client_request_service, container, false)
         val editTextDate = view.findViewById<EditText>(R.id.id_client_search_request_date)
         getUser()
         back(view)
@@ -93,14 +94,14 @@ class ClientRequestServiceFragment : Fragment() {
 
         // Botón de decremento
         buttonDecrease.setOnClickListener {
-            if ( numberPicker.text.toString().toInt() > 0) {
-                numberPicker.setText((numberPicker.text.toString().toInt()-1).toString())
+            if (numberPicker.text.toString().toInt() > 0) {
+                numberPicker.setText((numberPicker.text.toString().toInt() - 1).toString())
             }
         }
 
         // Botón de incremento
         buttonIncrease.setOnClickListener {
-            numberPicker.setText((numberPicker.text.toString().toInt()+1).toString())
+            numberPicker.setText((numberPicker.text.toString().toInt() + 1).toString())
         }
     }
 
@@ -115,14 +116,14 @@ class ClientRequestServiceFragment : Fragment() {
 
         // Botón de decremento
         buttonDecrease.setOnClickListener {
-            if ( numberPicker.text.toString().toInt() > 0) {
-                numberPicker.setText((numberPicker.text.toString().toInt()-1).toString())
+            if (numberPicker.text.toString().toInt() > 0) {
+                numberPicker.setText((numberPicker.text.toString().toInt() - 1).toString())
             }
         }
 
         // Botón de incremento
         buttonIncrease.setOnClickListener {
-            numberPicker.setText((numberPicker.text.toString().toInt()+1).toString())
+            numberPicker.setText((numberPicker.text.toString().toInt() + 1).toString())
         }
     }
 
@@ -134,18 +135,26 @@ class ClientRequestServiceFragment : Fragment() {
         val currentMonth = calendar.get(Calendar.MONTH)
         val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
 
-        val datePickerDialog = DatePickerDialog(requireContext(), { _: DatePicker?, year: Int, monthOfYear: Int, dayOfMonth: Int ->
-            val selectedDate = "$dayOfMonth/${monthOfYear + 1}/$year"
-            editTextDate.setText(selectedDate)
-        }, currentYear, currentMonth, currentDay)
+        val datePickerDialog = DatePickerDialog(
+            requireContext(),
+            { _: DatePicker?, year: Int, monthOfYear: Int, dayOfMonth: Int ->
+                val selectedDate = "$dayOfMonth/${monthOfYear + 1}/$year"
+                editTextDate.setText(selectedDate)
+            },
+            currentYear,
+            currentMonth,
+            currentDay
+        )
 
-        datePickerDialog.datePicker.minDate = calendar.timeInMillis // Establecer fecha mínima como hoy
+        datePickerDialog.datePicker.minDate =
+            calendar.timeInMillis // Establecer fecha mínima como hoy
         datePickerDialog.show()
     }
 
     private fun sendRequest(view_: View) {
-        val bt_client_search_request_send = view_.findViewById<Button>(R.id.bt_client_search_request_send)
-        bt_client_search_request_send.setOnClickListener(){
+        val bt_client_search_request_send =
+            view_.findViewById<Button>(R.id.bt_client_search_request_send)
+        bt_client_search_request_send.setOnClickListener() {
             Navigation.findNavController(view_)
                 .navigate(R.id.action_clientRequestServiceFragment_to_searchFragment)
         }
@@ -153,73 +162,15 @@ class ClientRequestServiceFragment : Fragment() {
 
 
     private fun autoCompleteFrom(view_: View) {
-            val autoCompleteTextViewFrom = view_.findViewById<AutoCompleteTextView>(R.id.autoCompleteTextViewFrom)
-            val options = mutableListOf("Peru")
+        val autoCompleteTextViewFrom =
+            view_.findViewById<AutoCompleteTextView>(R.id.autoCompleteTextViewFrom)
+        val options = mutableListOf("Peru")
 
-            val adapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_dropdown_item_1line)
+        val adapter =
+            ArrayAdapter<String>(requireContext(), android.R.layout.simple_dropdown_item_1line)
         autoCompleteTextViewFrom.setAdapter(adapter)
 
         autoCompleteTextViewFrom.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    val newText = s.toString()
-                    val retrofit = Retrofit.Builder()
-                        .baseUrl("https://api.opencagedata.com/")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build()
-
-                    val GeoCodeService = retrofit.create(GeoCodeService::class.java)
-
-                    val query =autoCompleteTextViewFrom.text.toString()+", Peru"
-                    val apiKey = "4f3e2e9c5cce427694e5cbb203ccfb4e"
-                    val language = "es"
-                    val pretty = 1
-                    val replacedQuery = query.replace(" ", "+")
-                    val call = GeoCodeService.getFormattedResults(replacedQuery, apiKey, language, pretty)
-                    Log.d("TAG", "My query es: "+query)
-                    call.enqueue(object:retrofit2.Callback<JsonResponse>{
-                        override fun onResponse(
-                            call: Call<JsonResponse>,
-                            response: Response<JsonResponse>
-                        ) {
-                            if (response.isSuccessful) {
-                                val jsonResponse = response.body()
-                                var formattedResults: List<String>? = null
-
-                                if (jsonResponse != null) {
-                                    formattedResults = jsonResponse.results?.mapNotNull { it.formatted }
-                                    if (formattedResults != null) {
-                                        for (result in formattedResults) {
-                                            options.add(result)
-                                        }
-                                        val filteredOptions = options.filter { it.contains(newText, true) }.toTypedArray()
-                                        adapter.clear()
-                                        adapter.addAll(*filteredOptions)
-                                        adapter.notifyDataSetChanged()
-                                    }
-                                } else {}
-                            } else {}
-                        }
-                        override fun onFailure(call: Call<JsonResponse>, t: Throwable) {
-                            TODO("Not yet implemented")
-                        }
-                    })
-                }
-
-                override fun afterTextChanged(s: Editable?) {}
-            })
-
-    }
-
-    private fun autoCompleteTo(view_: View) {
-        val autoCompleteTextViewTo = view_.findViewById<AutoCompleteTextView>(R.id.autoCompleteTextViewTo)
-        val options = mutableListOf("Peru")
-
-        val adapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_dropdown_item_1line)
-        autoCompleteTextViewTo.setAdapter(adapter)
-
-        autoCompleteTextViewTo.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -231,14 +182,15 @@ class ClientRequestServiceFragment : Fragment() {
 
                 val GeoCodeService = retrofit.create(GeoCodeService::class.java)
 
-                val query =autoCompleteTextViewTo.text.toString()+", Peru"
+                val query = autoCompleteTextViewFrom.text.toString() + ", Peru"
                 val apiKey = "4f3e2e9c5cce427694e5cbb203ccfb4e"
                 val language = "es"
                 val pretty = 1
                 val replacedQuery = query.replace(" ", "+")
-                val call = GeoCodeService.getFormattedResults(replacedQuery, apiKey, language, pretty)
-                Log.d("TAG", "My query es: "+query)
-                call.enqueue(object:retrofit2.Callback<JsonResponse>{
+                val call =
+                    GeoCodeService.getFormattedResults(replacedQuery, apiKey, language, pretty)
+                Log.d("TAG", "My query es: " + query)
+                call.enqueue(object : retrofit2.Callback<JsonResponse> {
                     override fun onResponse(
                         call: Call<JsonResponse>,
                         response: Response<JsonResponse>
@@ -253,14 +205,85 @@ class ClientRequestServiceFragment : Fragment() {
                                     for (result in formattedResults) {
                                         options.add(result)
                                     }
-                                    val filteredOptions = options.filter { it.contains(newText, true) }.toTypedArray()
+                                    val filteredOptions =
+                                        options.filter { it.contains(newText, true) }.toTypedArray()
                                     adapter.clear()
                                     adapter.addAll(*filteredOptions)
                                     adapter.notifyDataSetChanged()
                                 }
-                            } else {}
-                        } else {}
+                            } else {
+                            }
+                        } else {
+                        }
                     }
+
+                    override fun onFailure(call: Call<JsonResponse>, t: Throwable) {
+                        TODO("Not yet implemented")
+                    }
+                })
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
+    }
+
+    private fun autoCompleteTo(view_: View) {
+        val autoCompleteTextViewTo =
+            view_.findViewById<AutoCompleteTextView>(R.id.autoCompleteTextViewTo)
+        val options = mutableListOf("Peru")
+
+        val adapter =
+            ArrayAdapter<String>(requireContext(), android.R.layout.simple_dropdown_item_1line)
+        autoCompleteTextViewTo.setAdapter(adapter)
+
+        autoCompleteTextViewTo.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val newText = s.toString()
+                val retrofit = Retrofit.Builder()
+                    .baseUrl("https://api.opencagedata.com/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build()
+
+                val GeoCodeService = retrofit.create(GeoCodeService::class.java)
+
+                val query = autoCompleteTextViewTo.text.toString() + ", Peru"
+                val apiKey = "4f3e2e9c5cce427694e5cbb203ccfb4e"
+                val language = "es"
+                val pretty = 1
+                val replacedQuery = query.replace(" ", "+")
+                val call =
+                    GeoCodeService.getFormattedResults(replacedQuery, apiKey, language, pretty)
+                Log.d("TAG", "My query es: " + query)
+                call.enqueue(object : retrofit2.Callback<JsonResponse> {
+                    override fun onResponse(
+                        call: Call<JsonResponse>,
+                        response: Response<JsonResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            val jsonResponse = response.body()
+                            var formattedResults: List<String>? = null
+
+                            if (jsonResponse != null) {
+                                formattedResults = jsonResponse.results?.mapNotNull { it.formatted }
+                                if (formattedResults != null) {
+                                    for (result in formattedResults) {
+                                        options.add(result)
+                                    }
+                                    val filteredOptions =
+                                        options.filter { it.contains(newText, true) }.toTypedArray()
+                                    adapter.clear()
+                                    adapter.addAll(*filteredOptions)
+                                    adapter.notifyDataSetChanged()
+                                }
+                            } else {
+                            }
+                        } else {
+                        }
+                    }
+
                     override fun onFailure(call: Call<JsonResponse>, t: Throwable) {
                         TODO("Not yet implemented")
                     }
@@ -278,11 +301,14 @@ class ClientRequestServiceFragment : Fragment() {
 
     private fun back(view_: View) {
         val tv_back_request = view_.findViewById<TextView>(R.id.tv_back_request)
-        tv_back_request.setOnClickListener(){
+        tv_back_request.setOnClickListener() {
             val bundle = Bundle()
             bundle.putSerializable("searchUserTemp", user)
             Navigation.findNavController(view_)
-                .navigate(R.id.action_clientRequestServiceFragment_to_clientSearchDriverProfile2,bundle)
+                .navigate(
+                    R.id.action_clientRequestServiceFragment_to_clientSearchDriverProfile2,
+                    bundle
+                )
         }
     }
 

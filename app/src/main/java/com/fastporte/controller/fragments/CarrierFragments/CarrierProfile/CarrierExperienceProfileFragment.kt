@@ -25,7 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 //var timeExperience: Int = 0
 
 class CarrierExperienceProfileFragment : Fragment()
-    //,AddExperienceInterface
+//,AddExperienceInterface
 {
     lateinit var experienceRecyclerView: RecyclerView
     override fun onCreateView(
@@ -63,16 +63,21 @@ class CarrierExperienceProfileFragment : Fragment()
 
         val experienceService: ProfileService = retrofit.create(ProfileService::class.java)
 
-        val request = experienceService.getDriverExperience(SharedPreferences(view.context).
-                                        getValue("id")!!.toInt(), "json")
+        val request = experienceService.getDriverExperience(
+            SharedPreferences(view.context).getValue("id")!!.toInt(), "json"
+        )
 
         //Recibir la lista de experiencias
         request.enqueue(object : Callback<List<Experience>> {
-            override fun onResponse(call: Call<List<Experience>>, response: Response<List<Experience>>) {
-                if(response.isSuccessful){
+            override fun onResponse(
+                call: Call<List<Experience>>,
+                response: Response<List<Experience>>
+            ) {
+                if (response.isSuccessful) {
                     val experienceList: List<Experience> = response.body()!!
                     experienceRecyclerView.layoutManager = LinearLayoutManager(view.context)
-                    experienceRecyclerView.adapter = ExperienceProfileAdapter(experienceList, view.context)
+                    experienceRecyclerView.adapter =
+                        ExperienceProfileAdapter(experienceList, view.context)
 
                 }
             }

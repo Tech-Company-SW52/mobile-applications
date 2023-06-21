@@ -15,13 +15,17 @@ import com.fastporte.models.Vehicle
 import com.squareup.picasso.Picasso
 import retrofit2.Call
 
-class SearchCarrierAdapter(val users: List<Vehicle>,val context: Context,val listener: SearchCarrierListener):
-        RecyclerView.Adapter<SearchCarrierPrototype>() {
+class SearchCarrierAdapter(
+    val users: List<Vehicle>,
+    val context: Context,
+    val listener: SearchCarrierListener
+) :
+    RecyclerView.Adapter<SearchCarrierPrototype>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchCarrierPrototype {
         val view = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.prototype_search_carrier, parent, false)
-        return  SearchCarrierPrototype(view)
+        return SearchCarrierPrototype(view)
     }
 
     override fun getItemCount(): Int {
@@ -29,23 +33,23 @@ class SearchCarrierAdapter(val users: List<Vehicle>,val context: Context,val lis
     }
 
     override fun onBindViewHolder(holder: SearchCarrierPrototype, position: Int) {
-        holder.bind(users.get(position),listener)
+        holder.bind(users.get(position), listener)
     }
 
 }
 
 class SearchCarrierPrototype(itemView: android.view.View) : RecyclerView.ViewHolder(itemView) {
     val Imagenperson = itemView.findViewById<ImageView>(R.id.civProfileImage)
-    val tvName = itemView. findViewById<TextView>(R.id.tvName)
+    val tvName = itemView.findViewById<TextView>(R.id.tvName)
     val tvDescription = itemView.findViewById<TextView>(R.id.tvDescription)
-    val btNext = itemView. findViewById<ImageButton>(R.id.btnNext)
+    val btNext = itemView.findViewById<ImageButton>(R.id.btnNext)
 
 
-    fun bind(vehicle: Vehicle,listener: SearchCarrierListener) {
+    fun bind(vehicle: Vehicle, listener: SearchCarrierListener) {
         tvName.text = vehicle.driver.name
         tvDescription.text = vehicle.driver.description
-        btNext.setOnClickListener(){
-            listener.onActionsItemClick(vehicle,itemView)
+        btNext.setOnClickListener() {
+            listener.onActionsItemClick(vehicle, itemView)
         }
 
         Picasso.get().load(vehicle.driver.photo)
@@ -54,6 +58,7 @@ class SearchCarrierPrototype(itemView: android.view.View) : RecyclerView.ViewHol
     }
 
 }
+
 interface SearchCarrierListener {
-    fun onActionsItemClick(vehicle: Vehicle,view_: View)
+    fun onActionsItemClick(vehicle: Vehicle, view_: View)
 }
