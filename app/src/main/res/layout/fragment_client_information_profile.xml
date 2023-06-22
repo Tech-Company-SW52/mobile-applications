@@ -5,8 +5,15 @@
     android:id="@+id/ClientInformationProfile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ClientFragments.ClientProfile.ClientInformationProfileFragment">
-
+    tools:context=".controller.fragments.ClientFragments.ClientProfile.ClientInformationProfileFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
     <Button
         android:id="@+id/btName"
         android:layout_width="200dp"
@@ -106,5 +113,7 @@
         app:layout_constraintEnd_toStartOf="@+id/btEmail"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

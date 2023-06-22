@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/profile_layout">
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -22,15 +26,17 @@
 
     <TextView
         android:id="@+id/tvProfileDescription"
-        android:layout_width="221dp"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:inputType="textMultiLine"
         android:text="Hola, mi nombre es Manuel y busco transporte."
         android:textAlignment="center"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvProfileName" />
 
@@ -46,6 +52,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/civProfileImage" />
+
+    <TextView
+        android:id="@+id/tvUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="* * * * *"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvProfileDescription" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tlProfile"
@@ -66,12 +87,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="376dp"
         android:text="Edit Profile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvProfileDescription"
+        app:layout_constraintTop_toBottomOf="@+id/tvUser"
         app:layout_constraintVertical_bias="0.0" />
 
     <androidx.viewpager2.widget.ViewPager2
@@ -86,3 +106,4 @@
         app:layout_constraintTop_toBottomOf="@+id/tlProfile" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
