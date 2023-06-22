@@ -13,9 +13,9 @@ import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.coroutines.NonDisposableHandle.parent
 
-class ClientHomeHistoryAdapter(var contracts: List<Contract>, val context: Context):
-RecyclerView.Adapter<ClientHomeHistoryAdapter.ViewHolder>(){
-    class ViewHolder(val view: android.view.View): RecyclerView.ViewHolder(view) {
+class ClientHomeHistoryAdapter(var contracts: List<Contract>, val context: Context) :
+    RecyclerView.Adapter<ClientHomeHistoryAdapter.ViewHolder>() {
+    class ViewHolder(val view: android.view.View) : RecyclerView.ViewHolder(view) {
         val cvPhoto = view.findViewById<CircleImageView>(R.id.civClientProfile)
         val tvNamed = view.findViewById<android.widget.TextView>(R.id.tvClientName)
         val tvFrom = view.findViewById<android.widget.TextView>(R.id.tvLugar)
@@ -37,12 +37,14 @@ RecyclerView.Adapter<ClientHomeHistoryAdapter.ViewHolder>(){
             .into(holder.cvPhoto)
 
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.prototype_carrier_contracts_home, parent, false)
         return ViewHolder(view)
     }
+
     override fun getItemCount(): Int {
         return contracts.size
     }

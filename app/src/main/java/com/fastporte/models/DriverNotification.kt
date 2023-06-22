@@ -1,6 +1,6 @@
 package com.fastporte.models
 
-class DriverNotification (
+class DriverNotification(
     val id: Int,
     val subject: String,
     val from: String,

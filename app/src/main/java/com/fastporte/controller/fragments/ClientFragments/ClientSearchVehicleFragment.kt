@@ -32,11 +32,12 @@ class ClientSearchVehicleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view:View= inflater.inflate(R.layout.fragment_client_search_vehicle, container, false)
-        vehicleRecyclerView=view.findViewById(R.id.rv_client_search_vehicle)
+        val view: View = inflater.inflate(R.layout.fragment_client_search_vehicle, container, false)
+        vehicleRecyclerView = view.findViewById(R.id.rv_client_search_vehicle)
         loadVehicles(view)
         return view
     }
+
     fun setUser(user: User) {
         this.user = user
     }
@@ -48,12 +49,13 @@ class ClientSearchVehicleFragment : Fragment() {
             .build()
         val vehicleService: VehicleService = retrofit.create(VehicleService::class.java)
         val listVehicles = vehicleService.getVehicleByDriverID(user?.id ?: 0)
-        listVehicles.enqueue(object : Callback<List<Vehicle>>{
+        listVehicles.enqueue(object : Callback<List<Vehicle>> {
             override fun onResponse(call: Call<List<Vehicle>>, response: Response<List<Vehicle>>) {
-                val listVehicle=response.body()
-                if(listVehicle!=null){
-                    vehicleRecyclerView.adapter= SearchClientVehicleAdapter(listVehicle,requireContext())
-                    vehicleRecyclerView.layoutManager= LinearLayoutManager(context)
+                val listVehicle = response.body()
+                if (listVehicle != null) {
+                    vehicleRecyclerView.adapter =
+                        SearchClientVehicleAdapter(listVehicle, requireContext())
+                    vehicleRecyclerView.layoutManager = LinearLayoutManager(context)
                 }
             }
 

@@ -2,7 +2,7 @@ package com.fastporte.models
 
 class Comment(
     val id: Int,
-    val comment: String,
-    val star: Int,
-    val client: User
+    var comment: String,
+    var star: Float,
+    var client: User
 )

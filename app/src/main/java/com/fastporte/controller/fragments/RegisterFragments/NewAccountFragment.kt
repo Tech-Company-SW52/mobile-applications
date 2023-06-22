@@ -47,8 +47,12 @@ class NewAccountFragment : Fragment() {
             val informationChecked = checkboxInformation.isChecked
 
             if (username.isEmpty() || userDescription.isEmpty() || !conditionsChecked || !informationChecked) {
-                Toast.makeText(context,"Debe rellenar y marcar todos los campos",Toast.LENGTH_SHORT).show()
-            }else {
+                Toast.makeText(
+                    context,
+                    "Debe rellenar y marcar todos los campos",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
                 val tempInfoUser = arguments?.getSerializable("tempInfoUser") as User
                 val userTypeText = arguments?.getString("userType")
 

@@ -49,7 +49,8 @@ class CarrierReceivePayFragment : Fragment() {
         loadData(view)
         return view
     }
-    private fun loadData(view: View){
+
+    private fun loadData(view: View) {
         val retrofit = Retrofit.Builder()
             .baseUrl(BaseURL.BASE_URL.toString())
             .addConverterFactory(GsonConverterFactory.create())
@@ -64,13 +65,15 @@ class CarrierReceivePayFragment : Fragment() {
         )
 
         request.enqueue(object : Callback<ClientNotification> {
-            override fun onResponse(call: Call<ClientNotification>, response: Response<ClientNotification>) {
+            override fun onResponse(
+                call: Call<ClientNotification>,
+                response: Response<ClientNotification>
+            ) {
                 if (response.isSuccessful) {
                     println("RESPONSEEEEEEEEEEE")
-                    println("RESPONSE: "+response.body()!!)
+                    println("RESPONSE: " + response.body()!!)
                     showData(response.body()!!)
-                }
-                else    {
+                } else {
                     println("FALLO: " + response.errorBody()?.string())
                 }
             }
@@ -105,21 +108,22 @@ class CarrierReceivePayFragment : Fragment() {
             .error(R.drawable.ic_launcher_background)
             .into(civUserCC)
 
-        tvDriverNameCC?.text = "Name:"+notification.driver.name
-        tvDriverPhoneCC?.text = "Phone:"+notification.driver.phone
-        tvAmountCC?.text = "S/."+notification.amount
+        tvDriverNameCC?.text = "Name:" + notification.driver.name
+        tvDriverPhoneCC?.text = "Phone:" + notification.driver.phone
+        tvAmountCC?.text = "S/." + notification.amount
 
 
 
-        tvSubjectCC?.text = "Subject:   "+notification.subject
-        tvFromCC?.text =    "From:      "+notification.from
-        tvToCC?.text =      "To:        "+notification.to
-        tvDateCC?.text =    "Date:      "+ notification.contractDate
-        tvTimeCC?.text =    "Time:      "+ notification.timeDeparture
-        tvQuantityCC?.text ="Quantity:  "+ notification.quantity
+        tvSubjectCC?.text = "Subject:   " + notification.subject
+        tvFromCC?.text = "From:      " + notification.from
+        tvToCC?.text = "To:        " + notification.to
+        tvDateCC?.text = "Date:      " + notification.contractDate
+        tvTimeCC?.text = "Time:      " + notification.timeDeparture
+        tvQuantityCC?.text = "Quantity:  " + notification.quantity
 
     }
-    private fun paymentFormConstraints(view: View){
+
+    private fun paymentFormConstraints(view: View) {
 
         val tilHolderName = view.findViewById<TextInputLayout>(R.id.til_holder)
         val tilCardNumber = view.findViewById<TextInputLayout>(R.id.til_number)
@@ -156,8 +160,9 @@ class CarrierReceivePayFragment : Fragment() {
                 }
                 updateButtonState()
             }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int){}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
 
         tilCardNumber.editText?.addTextChangedListener(object : TextWatcher {
@@ -171,8 +176,9 @@ class CarrierReceivePayFragment : Fragment() {
                 }
                 updateButtonState()
             }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int){}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
         })
 
@@ -184,7 +190,6 @@ class CarrierReceivePayFragment : Fragment() {
             _cardNumber = tilCardNumber.editText?.text.toString().toLong()
 
 
-
             val cardDetails = CardClient(
                 "email@gmail.com",
                 _holderName!!,
@@ -192,7 +197,8 @@ class CarrierReceivePayFragment : Fragment() {
                 "1000-01-01",
                 0,
                 " ",
-                _holderName!!)
+                _holderName!!
+            )
 
 
             val retrofit = Retrofit.Builder()
@@ -204,7 +210,8 @@ class CarrierReceivePayFragment : Fragment() {
             val paymentService = retrofit.create(CardService::class.java)
             val request = paymentService.postCardDriver(
                 SharedPreferences(view.context).getValue("id")!!.toInt(),
-                cardDetails)
+                cardDetails
+            )
 
             request.enqueue(object : Callback<CardClient> {
                 override fun onResponse(call: Call<CardClient>, response: Response<CardClient>) {
@@ -218,6 +225,7 @@ class CarrierReceivePayFragment : Fragment() {
                         Toast.makeText(context, "Payment failed", Toast.LENGTH_SHORT).show()
                     }
                 }
+
                 override fun onFailure(call: Call<CardClient>, t: Throwable) {
 
                     Toast.makeText(context, "Payment failed", Toast.LENGTH_SHORT).show()

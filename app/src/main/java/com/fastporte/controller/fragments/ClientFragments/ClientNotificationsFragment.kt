@@ -23,7 +23,8 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class ClientNotificationsFragment : Fragment(),ClientNotificationsAdapter.NotificationAdapterListener {
+class ClientNotificationsFragment : Fragment(),
+    ClientNotificationsAdapter.NotificationAdapterListener {
     lateinit var notificationAcceptedRecyclerView: RecyclerView
     lateinit var notificationDenniedRecyclerView: RecyclerView
     override fun onCreateView(
@@ -32,8 +33,8 @@ class ClientNotificationsFragment : Fragment(),ClientNotificationsAdapter.Notifi
     ): View? {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_client_notifications, container, false)
-        notificationAcceptedRecyclerView=view.findViewById(R.id.rv_client_notifications_accepted)
-        notificationDenniedRecyclerView=view.findViewById(R.id.rv_client_notifications_dennied)
+        notificationAcceptedRecyclerView = view.findViewById(R.id.rv_client_notifications_accepted)
+        notificationDenniedRecyclerView = view.findViewById(R.id.rv_client_notifications_dennied)
         loadNotifications(view)
         return view
     }
@@ -63,7 +64,11 @@ class ClientNotificationsFragment : Fragment(),ClientNotificationsAdapter.Notifi
                             visibleNotifications.add(notification)
                         }
                     }
-                    notificationAcceptedRecyclerView.adapter = ClientNotificationsAdapter(visibleNotifications, requireContext(),this@ClientNotificationsFragment)
+                    notificationAcceptedRecyclerView.adapter = ClientNotificationsAdapter(
+                        visibleNotifications,
+                        requireContext(),
+                        this@ClientNotificationsFragment
+                    )
                     notificationAcceptedRecyclerView.layoutManager = LinearLayoutManager(context)
 
                 }
@@ -72,19 +77,21 @@ class ClientNotificationsFragment : Fragment(),ClientNotificationsAdapter.Notifi
             override fun onFailure(call: Call<List<ClientNotification>>, t: Throwable) {
                 // Manejar el fallo de la solicitud
                 Toast.makeText(
-                    context,"There was an error loading the notifications",
-                    Toast.LENGTH_SHORT).show()
+                    context, "There was an error loading the notifications",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
     }
+
     private fun isValidNotification(notification: ClientNotification): Boolean {
         return (notification.visible && notification.status.status == "PENDING") ||
                 (!notification.visible && notification.status.status == "OFFER")
     }
 
     override fun onButtonClick(clientNotification: ClientNotification, view: View) {
-        Toast.makeText(context,clientNotification.id.toString(),Toast.LENGTH_SHORT).show()
-        saveSharedPreferences("idNotification",clientNotification.id.toString(), view)
+        Toast.makeText(context, clientNotification.id.toString(), Toast.LENGTH_SHORT).show()
+        saveSharedPreferences("idNotification", clientNotification.id.toString(), view)
         Navigation.findNavController(view)
             .navigate(R.id.action_clientNotification_to_clientNotificationPayFragment)
 

@@ -11,17 +11,23 @@ import retrofit2.http.Path
 interface CardService {
 
     @POST("api/cardsClient/{idClient}/add")
-    fun postCardClient(@Path("idClient") id: Int,
-                       @Body cardClient: CardClient?):
+    fun postCardClient(
+        @Path("idClient") id: Int,
+        @Body cardClient: CardClient?
+    ):
             Call<CardClient>
 
     @PUT("api/contracts/{idContract}/update-status/{idContractStatus}")
-    fun updateContractStatus(@Path("idContract") idContract: Int,
-                             @Path("idContractStatus") idContractStatus: Int):
+    fun updateContractStatus(
+        @Path("idContract") idContract: Int,
+        @Path("idContractStatus") idContractStatus: Int
+    ):
             Call<CardClient>
 
     @POST("api/cardsDriver/{idDriver}/add")
-    fun postCardDriver(@Path("idDriver") id: Int,
-                       @Body cardClient: CardClient?):
+    fun postCardDriver(
+        @Path("idDriver") id: Int,
+        @Body cardClient: CardClient?
+    ):
             Call<CardClient>
 }

@@ -17,7 +17,6 @@ import com.fastporte.R
 import com.fastporte.helpers.SharedPreferences
 
 
-
 class SearchFragment : Fragment() {
 
 
@@ -30,36 +29,38 @@ class SearchFragment : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_search, container, false)
         val items = listOf("Trunk", "Van", "Cargo Truck", "Bus", "Taxi")
 
-        val autoComplete : AutoCompleteTextView = view.findViewById(R.id.auto_complete)
+        val autoComplete: AutoCompleteTextView = view.findViewById(R.id.auto_complete)
 
         val adapter = context?.let { ArrayAdapter<String>(it, R.layout.list_item, items) }
 
         autoComplete.setAdapter(adapter)
 
-        autoComplete.onItemClickListener = AdapterView.OnItemClickListener{
-            adapterView, view, i, l ->
+        autoComplete.onItemClickListener =
+            AdapterView.OnItemClickListener { adapterView, view, i, l ->
 
-            val itemSelected = adapterView.getItemAtPosition(i)
-        }
+                val itemSelected = adapterView.getItemAtPosition(i)
+            }
         val buttonresult = view.findViewById<Button>(R.id.bt_result)
         val editnumber = view.findViewById<EditText>(R.id.et_username)
 
 
-        buttonresult.setOnClickListener(){
-            information(autoComplete.text.toString(),editnumber.text.toString())
+        buttonresult.setOnClickListener() {
+            information(autoComplete.text.toString(), editnumber.text.toString())
             next(view)
 
         }
 
         return view
     }
-    private fun information(type_vehicle: String, Size: String){
+
+    private fun information(type_vehicle: String, Size: String) {
         val _context = requireContext()
         val sharedPreferences = SharedPreferences(_context)
         sharedPreferences.save("type", type_vehicle)
         sharedPreferences.save("size", Size)
 
     }
+
     private fun next(view_: View) {
         val btnNext = view_.findViewById<Button>(R.id.bt_result)
         Navigation.findNavController(view_)

@@ -9,9 +9,9 @@ import com.squareup.picasso.OkHttp3Downloader
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 
-class CarrierHomeAdapter(var drivers: List<Driver>, val context: Context):
-RecyclerView.Adapter<CarrierHomeAdapter.ViewHolder>(){
-    class ViewHolder(val view: android.view.View): RecyclerView.ViewHolder(view) {
+class CarrierHomeAdapter(var drivers: List<Driver>, val context: Context) :
+    RecyclerView.Adapter<CarrierHomeAdapter.ViewHolder>() {
+    class ViewHolder(val view: android.view.View) : RecyclerView.ViewHolder(view) {
         val cvPhoto = view.findViewById<CircleImageView>(R.id.civDriverProfile)
         val tvName = view.findViewById<android.widget.TextView>(R.id.tvDriverName)
     }

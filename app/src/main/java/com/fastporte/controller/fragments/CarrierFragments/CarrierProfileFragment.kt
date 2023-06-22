@@ -128,10 +128,12 @@ class CarrierProfileFragment : Fragment(), EditProfileDialogListener {
         val informationName = view?.findViewById<Button>(R.id.btName)
         val informationBirthday = view?.findViewById<Button>(R.id.btAge)
         val informationPhone = view?.findViewById<Button>(R.id.btPhone)
+        val informationDescription = view?.findViewById<TextView>(R.id.tvProfileDescription)
 
         tvProfileName?.text = user.name
         informationName?.text = user.name
         informationBirthday?.text = user.birthdate
         informationPhone?.text = user.phone
+        informationDescription?.text = user.description
     }
 }

@@ -19,7 +19,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/prototype_client_search_profile_vehicle"/>
+            tools:listitem="@layout/prototype_client_search_profile_vehicle" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

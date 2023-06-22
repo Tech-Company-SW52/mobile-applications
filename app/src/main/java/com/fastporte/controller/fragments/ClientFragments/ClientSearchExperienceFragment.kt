@@ -30,11 +30,13 @@ class ClientSearchExperienceFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view:View= inflater.inflate(R.layout.fragment_client_search_experience, container, false)
-        experienceRecyclerView=view.findViewById(R.id.rv_client_search_experience)
+        val view: View =
+            inflater.inflate(R.layout.fragment_client_search_experience, container, false)
+        experienceRecyclerView = view.findViewById(R.id.rv_client_search_experience)
         loadExperience(view)
         return view
     }
+
     fun setUser(user: User) {
         this.user = user
     }
@@ -46,15 +48,16 @@ class ClientSearchExperienceFragment : Fragment() {
             .build()
         val experienceService: ExperienceService = retrofit.create(ExperienceService::class.java)
         val listExperience = experienceService.getExperienceByDriverID(user?.id ?: 0)
-        listExperience.enqueue(object :Callback<List<Experience>>{
+        listExperience.enqueue(object : Callback<List<Experience>> {
             override fun onResponse(
                 call: Call<List<Experience>>,
                 response: Response<List<Experience>>
             ) {
-                val experienceList=response.body()
-                if(experienceList!=null){
-                    experienceRecyclerView.adapter= SearchClientExperienceAdapter(experienceList,requireContext())
-                    experienceRecyclerView.layoutManager= LinearLayoutManager(context)
+                val experienceList = response.body()
+                if (experienceList != null) {
+                    experienceRecyclerView.adapter =
+                        SearchClientExperienceAdapter(experienceList, requireContext())
+                    experienceRecyclerView.layoutManager = LinearLayoutManager(context)
                 }
             }
 

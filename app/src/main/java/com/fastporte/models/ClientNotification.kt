@@ -1,6 +1,6 @@
 package com.fastporte.models
 
-class ClientNotification (
+class ClientNotification(
     val id: Int,
     val subject: String,
     val from: String,

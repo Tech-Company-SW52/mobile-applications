@@ -14,7 +14,7 @@ import com.squareup.picasso.Picasso
 
 class VehicleProfileAdapter(var vehicles: List<Vehicle>, val context: Context) :
     RecyclerView.Adapter<VehicleProfileAdapter.ViewHolder>() {
-    class ViewHolder(val view: View): RecyclerView.ViewHolder(view) {
+    class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val ivVehicle = view.findViewById<ImageView>(R.id.ivPhotoVehicle)
         val btTypeVehicle = view.findViewById<Button>(R.id.btTypeVehicle)
         val btCapacity = view.findViewById<Button>(R.id.btCapacity)

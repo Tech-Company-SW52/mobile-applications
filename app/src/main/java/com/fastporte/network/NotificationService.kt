@@ -10,10 +10,16 @@ import retrofit2.http.Query
 
 interface NotificationService {
     @GET("contracts/notifications-driver/{id}")
-    fun getDriverNotifiacations(@Path("id") id: Int, @Query("format") format: String): Call<List<DriverNotification>>
+    fun getDriverNotifiacations(
+        @Path("id") id: Int,
+        @Query("format") format: String
+    ): Call<List<DriverNotification>>
 
     @GET("contracts/notifications-client/{id}")
-    fun getClientNotifiacations(@Path("id") id: Int, @Query("format") format: String): Call<List<ClientNotification>>
+    fun getClientNotifiacations(
+        @Path("id") id: Int,
+        @Query("format") format: String
+    ): Call<List<ClientNotification>>
 
     @GET("api/contracts/{id}")
     fun getContract(@Path("id") id: Int, @Query("format") format: String): Call<ClientNotification>

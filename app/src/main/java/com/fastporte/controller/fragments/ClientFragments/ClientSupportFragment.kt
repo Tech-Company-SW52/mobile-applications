@@ -28,7 +28,8 @@ class ClientSupportFragment : Fragment() {
 
         //Llevarme a un sitio web al hacer click en la imagen de la web
         ivWebSite.setOnClickListener {
-            val url = "https://tech-company-sw52.github.io/landing-page/" // Reemplaza con el URL del sitio web externo
+            val url =
+                "https://tech-company-sw52.github.io/landing-page/" // Reemplaza con el URL del sitio web externo
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             startActivity(intent)
         }

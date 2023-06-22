@@ -152,7 +152,7 @@
                             android:layout_height="wrap_content"
                             android:hint="Card Number"
                             android:inputType="number"
-                            android:maxLength="16"/>
+                            android:maxLength="16" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout

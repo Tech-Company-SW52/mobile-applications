@@ -13,7 +13,14 @@
         android:id="@+id/id_client_home_fragment"
         android:name="com.fastporte.controller.fragments.ClientFragments.ClientHomeFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_client_home" />
+        tools:layout="@layout/fragment_client_home">
+        <action
+            android:id="@+id/action_id_client_home_fragment_to_id_client_profile_fragment"
+            app:destination="@id/id_client_profile_fragment" />
+        <action
+            android:id="@+id/action_id_client_home_fragment_to_id_client_contracts_fragment"
+            app:destination="@id/id_client_contracts_fragment" />
+    </fragment>
     <fragment
         android:id="@+id/id_client_profile_fragment"
         android:name="com.fastporte.controller.fragments.ClientFragments.ClientProfileFragment"
@@ -28,7 +35,7 @@
         android:id="@+id/id_client_support_fragment"
         android:name="com.fastporte.controller.fragments.ClientFragments.ClientSupportFragment"
         android:label="Support"
-        tools:layout="@layout/fragment_client_support" >
+        tools:layout="@layout/fragment_client_support">
         <action
             android:id="@+id/action_id_client_support_fragment_to_id_client_faq_fragment"
             app:destination="@id/id_client_faq_fragment" />
@@ -43,7 +50,7 @@
         android:id="@+id/id_client_notifications_fragment"
         android:name="com.fastporte.controller.fragments.ClientFragments.ClientNotificationsFragment"
         android:label="Notifications"
-        tools:layout="@layout/fragment_client_notifications" >
+        tools:layout="@layout/fragment_client_notifications">
         <action
             android:id="@+id/action_clientNotification_to_clientNotificationPayFragment"
             app:destination="@id/fragment_client_pay" />

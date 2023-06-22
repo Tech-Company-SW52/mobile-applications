@@ -3,7 +3,7 @@ package com.fastporte.models
 import android.provider.ContactsContract.CommonDataKinds.Email
 import com.google.gson.annotations.SerializedName
 
-class CardClient (
+class CardClient(
 //    @SerializedName("id")
 //    val id: Int,
     @SerializedName("email")
@@ -20,4 +20,4 @@ class CardClient (
     val issuer: String,
     @SerializedName("nickname")
     val nickname: String
-        )
+)

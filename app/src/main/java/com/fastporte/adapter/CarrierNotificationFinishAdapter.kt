@@ -9,13 +9,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fastporte.R
 import com.fastporte.models.DriverNotification
 
-class CarrierNotificationFinishAdapter(val notifications: List<DriverNotification>,
-                                       val context: Context,
-                                       val listener: NotificationAdapterFinishListener
-                                       ):RecyclerView.Adapter<CarrierNotificationFinishAdapter.ViewHolder>() {
-    class ViewHolder(val view: View): RecyclerView.ViewHolder(view){
-        val bt_carrier_notification_request_details=view.findViewById<Button>(R.id.bt_carrier_notification_request_details)
-        val bt_carrier_notification_finished_details=view.findViewById<Button>(R.id.bt_carrier_notification_finished_details)
+class CarrierNotificationFinishAdapter(
+    val notifications: List<DriverNotification>,
+    val context: Context,
+    val listener: NotificationAdapterFinishListener
+) : RecyclerView.Adapter<CarrierNotificationFinishAdapter.ViewHolder>() {
+    class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+        val bt_carrier_notification_request_details =
+            view.findViewById<Button>(R.id.bt_carrier_notification_request_details)
+        val bt_carrier_notification_finished_details =
+            view.findViewById<Button>(R.id.bt_carrier_notification_finished_details)
 
     }
 
@@ -34,9 +37,11 @@ class CarrierNotificationFinishAdapter(val notifications: List<DriverNotificatio
         }
         return viewType
     }
+
     fun isAcceptedNotification(notification: DriverNotification): Boolean {
         return notification.visible && notification.status.status == "OFFER"
     }
+
     fun isFinishNotification(notification: DriverNotification): Boolean {
         return notification.visible && notification.status.status == "HISTORY"
     }
@@ -47,7 +52,7 @@ class CarrierNotificationFinishAdapter(val notifications: List<DriverNotificatio
             VIEW_TYPE_HISTORY -> R.layout.prototype_carrier_notification_finished
             else -> R.layout.prototype_carrier_notification_request
         }
-        val view = LayoutInflater.from(context).inflate(layoutResId,parent,false)
+        val view = LayoutInflater.from(context).inflate(layoutResId, parent, false)
         return ViewHolder(view)
     }
 
@@ -56,19 +61,20 @@ class CarrierNotificationFinishAdapter(val notifications: List<DriverNotificatio
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val notification=notifications[position]
-        if (isAcceptedNotification(notification)){
-            holder.bt_carrier_notification_request_details.setOnClickListener(){
+        val notification = notifications[position]
+        if (isAcceptedNotification(notification)) {
+            holder.bt_carrier_notification_request_details.setOnClickListener() {
                 listener.onButtonFinishClick(notification, holder.view)
             }
         }
-        if (isFinishNotification(notification)){
-            holder.bt_carrier_notification_finished_details.setOnClickListener(){
+        if (isFinishNotification(notification)) {
+            holder.bt_carrier_notification_finished_details.setOnClickListener() {
                 listener.onButtonFinishClick(notification, holder.view)
             }
         }
 
     }
+
     companion object {
         private const val VIEW_TYPE_OFFER = 0
         private const val VIEW_TYPE_HISTORY = 1

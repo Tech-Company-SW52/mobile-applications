@@ -30,14 +30,10 @@ import retrofit2.converter.gson.GsonConverterFactory
  * create an instance of this fragment.
  */
 
-class AddExperience(): DialogFragment() {
+class AddExperience() : DialogFragment() {
     private lateinit var binding: FragmentAddExperienceBinding
     val bundle = Bundle()
     lateinit var experience: Experience
-    //private var listener: AddExperienceInterface? = null
-    //fun setAddExperienceListener(listener: CarrierExperienceProfileFragment) {
-    //    this.listener = listener
-    //}
     val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(BaseURL.BASE_URL.toString())
         .addConverterFactory(GsonConverterFactory.create())
@@ -49,11 +45,11 @@ class AddExperience(): DialogFragment() {
         binding = FragmentAddExperienceBinding.inflate(layoutInflater)
         val builder = AlertDialog.Builder(requireActivity())
         builder.setView(binding.root)
-        builder.setPositiveButton("Add"){dialog, which ->
+        builder.setPositiveButton("Add") { _, _ ->
             val jobExpe = binding.etExperienceJob.text.toString()
             val years = binding.etExperienceTime.text.toString().toInt()
             //experience?.id = 4
-            experience = Experience(0,jobExpe,years)
+            experience = Experience(0, jobExpe, years)
             postExperience()
             //listener?.onAddExperienceFormulary(jobExpe, years)
             dismiss()
@@ -71,6 +67,7 @@ class AddExperience(): DialogFragment() {
             override fun onFailure(call: Call<Experience>, t: Throwable) {
                 Log.d("Activity fail", t.toString())
             }
+
             override fun onResponse(call: Call<Experience>, response: Response<Experience>) {
                 if (response.isSuccessful) {
                     Log.d("Activity success", response.body().toString())

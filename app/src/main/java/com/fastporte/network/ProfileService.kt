@@ -18,10 +18,13 @@ interface ProfileService {
     fun getDriverProfile(@Path("id") id: Int, @Query("format") format: String): Call<User>
 
     @GET("api/experience/{id}")
-    fun getDriverExperience(@Path("id") id: Int, @Query("format") format: String): Call<List<Experience>>
+    fun getDriverExperience(
+        @Path("id") id: Int,
+        @Query("format") format: String
+    ): Call<List<Experience>>
 
     @GET("api/vehicle/driver/{id}")
-    fun getDriverVehicle(@Path("id")    id: Int, @Query("format") format: String): Call<List<Vehicle>>
+    fun getDriverVehicle(@Path("id") id: Int, @Query("format") format: String): Call<List<Vehicle>>
 
     @GET("api/comments/driver/{id}")
     fun getDriverComments(@Path("id") id: Int, @Query("format") format: String): Call<List<Comment>>
@@ -39,5 +42,5 @@ interface ProfileService {
     fun postExperienceDriver(@Path("id") id: Int, @Body experience: Experience?): Call<Experience>
 
     @POST("api/vehicle/{id}")
-    fun postVehicleDriver(@Path("id") id: Int, @Body experience: Vehicle?): Call<Vehicle>
+    fun postVehicleDriver(@Path("id") id: Int, @Body vehicle: Vehicle?): Call<Vehicle>
 }

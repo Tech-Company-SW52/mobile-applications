@@ -107,7 +107,7 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    private fun clientIntent(id: Int, name: String, lastName: String){
+    private fun clientIntent(id: Int, name: String, lastName: String) {
         val clientIntent = Intent(this, ClientActivity::class.java)
         saveSharedPreferences("id", id.toString())
         saveSharedPreferences("typeUser", "client")
