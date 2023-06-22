@@ -2,6 +2,8 @@ package com.fastporte.controller.fragments.ClientFragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -43,11 +45,26 @@ class SearchFragment : Fragment() {
         val buttonresult = view.findViewById<Button>(R.id.bt_result)
         val editnumber = view.findViewById<EditText>(R.id.et_username)
 
+        buttonresult.isEnabled = false
 
         buttonresult.setOnClickListener() {
             information(autoComplete.text.toString(), editnumber.text.toString())
             next(view)
         }
+
+        editnumber.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                buttonresult.isEnabled = s.toString().isNotEmpty()
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                buttonresult.isEnabled = s.toString().isNotEmpty()
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                buttonresult.isEnabled = s.toString().isNotEmpty()
+            }
+        })
 
         return view
     }
