@@ -2,9 +2,7 @@ package com.fastporte.network
 
 import com.fastporte.models.User
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ClientsService {
     @GET("clients")
@@ -12,4 +10,8 @@ interface ClientsService {
 
     @GET("clients/{id}")
     fun getClient(@Path("id") id: Int, @Query("format") format: String ): Call<User>
+
+    @PUT("clients/{id}")
+    fun updateClient(@Path("id") id: Int, @Body user: User?): Call<User>
+
 }
