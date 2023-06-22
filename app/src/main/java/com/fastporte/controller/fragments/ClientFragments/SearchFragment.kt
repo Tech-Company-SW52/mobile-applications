@@ -47,7 +47,6 @@ class SearchFragment : Fragment() {
         buttonresult.setOnClickListener() {
             information(autoComplete.text.toString(), editnumber.text.toString())
             next(view)
-
         }
 
         return view
@@ -58,7 +57,6 @@ class SearchFragment : Fragment() {
         val sharedPreferences = SharedPreferences(_context)
         sharedPreferences.save("type", type_vehicle)
         sharedPreferences.save("size", Size)
-
     }
 
     private fun next(view_: View) {

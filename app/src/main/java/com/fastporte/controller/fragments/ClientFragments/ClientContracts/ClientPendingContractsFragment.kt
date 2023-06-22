@@ -23,5 +23,6 @@ class ClientPendingContractsFragment : Fragment() {
 
         val loadContracts = LoadContracts()
         loadContracts.getPendingContractsOfClient(view, view.context)
+
     }
 }

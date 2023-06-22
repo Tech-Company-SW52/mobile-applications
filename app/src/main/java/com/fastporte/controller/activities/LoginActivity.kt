@@ -4,7 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -25,6 +28,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        inputsConstraint(findViewById(R.id.btn_login))
         val sharedPreferences = SharedPreferences(this)
         sharedPreferences.removeValue("typeUser")
         sharedPreferences.removeValue("id")
@@ -56,8 +60,8 @@ class LoginActivity : AppCompatActivity() {
         val userEmail = findViewById<EditText>(R.id.et_username)
         val userPassword = findViewById<EditText>(R.id.et_password)
 
-        userEmail.setText("luis@gmail.com")
-        userPassword.setText("123456")
+//        userEmail.setText("luis@gmail.com")
+//        userPassword.setText("123456")
 
         val retrofit = Retrofit.Builder()
             .baseUrl("https://api-fastporte.azurewebsites.net/api/")
@@ -139,5 +143,57 @@ class LoginActivity : AppCompatActivity() {
         tvCreateAccount.setOnClickListener {
             startActivity(registerActivity)
         }
+    }
+
+    private fun inputsConstraint(view: View){
+        val etUsername = findViewById<EditText>(R.id.et_username)
+        val etPassword = findViewById<EditText>(R.id.et_password)
+        val btnLogin = findViewById<Button>(R.id.btn_login)
+        btnLogin.isEnabled = false
+
+        etUsername.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // No es necesario implementar este método para tu caso
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // No es necesario implementar este método para tu caso
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                if (s.isNullOrEmpty()) {
+                    etUsername.error = "This field can't be empty"
+                    btnLogin.isEnabled = false
+                } else {
+                    etUsername.error = null
+                    if (!etUsername.text.isNullOrEmpty() && !etPassword.text.isNullOrEmpty()) {
+                        btnLogin.isEnabled = true
+                    }
+                }
+            }
+        })
+
+        etPassword.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // No es necesario implementar este método para tu caso
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // No es necesario implementar este método para tu caso
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                if (s.isNullOrEmpty()) {
+                    etPassword.error = "This field can't be empty"
+                    btnLogin.isEnabled = false
+                } else {
+                    etPassword.error = null
+                    if (!etUsername.text.isNullOrEmpty() && !etPassword.text.isNullOrEmpty()) {
+                        btnLogin.isEnabled = true
+                    }
+                }
+            }
+        })
+
     }
 }
