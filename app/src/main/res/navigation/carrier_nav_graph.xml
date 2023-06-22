@@ -59,7 +59,7 @@
     <fragment
         android:id="@+id/carrierReceivePayFragment"
         android:name="com.fastporte.controller.fragments.CarrierFragments.CarrierReceivePayFragment"
-        android:label="fragment_carrier_receive_pay"
+        android:label="Receive Pay"
         tools:layout="@layout/fragment_carrier_receive_pay">
         <action
             android:id="@+id/action_carrierReceivePayFragment_to_id_carrier_notifications_fragment"
