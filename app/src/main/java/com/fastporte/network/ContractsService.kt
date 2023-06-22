@@ -51,5 +51,5 @@ interface ContractsService {
 
     @POST("api/contracts/add/{clientId}/{driverId}")
     fun postContract(@Path("clientId") clientId: Int,
-                     @Path("driverId") driverId: Int, @Body contract: Contract?): Call<Contract>
+                     @Path("driverId") driverId: Int, @Body contract: ContractPost?): Call<ContractPost>
 }
