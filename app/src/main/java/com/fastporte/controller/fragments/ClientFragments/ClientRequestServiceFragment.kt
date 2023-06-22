@@ -12,12 +12,14 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.navigation.Navigation
 import com.fastporte.R
-import com.fastporte.models.JsonResponse
-import com.fastporte.models.User
+import com.fastporte.network.ClientsService
+import com.fastporte.network.ContractsService
 import com.fastporte.network.GeoCodeService
 import kotlinx.coroutines.*
-
-
+import com.fastporte.helpers.SharedPreferences
+import com.fastporte.models.*
+import java.text.SimpleDateFormat
+import java.util.*
 import okhttp3.*
 import retrofit2.Call
 import retrofit2.Response
@@ -29,6 +31,8 @@ import java.util.*
 
 class ClientRequestServiceFragment : Fragment() {
     lateinit var user: User;
+    lateinit var client: User;
+    lateinit var contract: ContractPost
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -135,28 +139,158 @@ class ClientRequestServiceFragment : Fragment() {
         val currentMonth = calendar.get(Calendar.MONTH)
         val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
 
-        val datePickerDialog = DatePickerDialog(
-            requireContext(),
-            { _: DatePicker?, year: Int, monthOfYear: Int, dayOfMonth: Int ->
-                val selectedDate = "$dayOfMonth/${monthOfYear + 1}/$year"
+        val datePickerDialog = DatePickerDialog(requireContext(), { _: DatePicker?, year: Int, monthOfYear: Int, dayOfMonth: Int ->
+            val selectedDate = "$dayOfMonth/${monthOfYear + 1}/$year"
+            editTextDate.setText(selectedDate)
+            if(monthOfYear+1>9){
+                val selectedDate = "$year-${monthOfYear + 1}-$dayOfMonth"
                 editTextDate.setText(selectedDate)
-            },
-            currentYear,
-            currentMonth,
-            currentDay
-        )
+            }else{
+                val selectedDate = "$year-0${monthOfYear + 1}-$dayOfMonth"
+                editTextDate.setText(selectedDate)
+            }
+        }, currentYear, currentMonth, currentDay)
 
         datePickerDialog.datePicker.minDate =
             calendar.timeInMillis // Establecer fecha mínima como hoy
         datePickerDialog.show()
     }
+    private fun setFormatTime(date: String): String{
+        val inputFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+
+        val parsedDate = inputFormat.parse(date)
+        return outputFormat.format(parsedDate)
+    }
+
 
     private fun sendRequest(view_: View) {
         val bt_client_search_request_send =
             view_.findViewById<Button>(R.id.bt_client_search_request_send)
-        bt_client_search_request_send.setOnClickListener() {
+        bt_client_search_request_send.setOnClickListener(){
             Navigation.findNavController(view_)
                 .navigate(R.id.action_clientRequestServiceFragment_to_searchFragment)
+
+            val autoCompleteTextViewFrom = view_.findViewById<AutoCompleteTextView>(R.id.autoCompleteTextViewFrom)
+            val autoCompleteTextViewTo = view_.findViewById<AutoCompleteTextView>(R.id.autoCompleteTextViewTo)
+            val editTextType = view_.findViewById<EditText>(R.id.id_client_search_request_type)
+            val editTextDate = view_.findViewById<EditText>(R.id.id_client_search_request_date)
+            val peoplePicker = view_.findViewById<EditText>(R.id.peoplePicker)
+            val weightPicker = view_.findViewById<EditText>(R.id.weightPicker)
+            val editTextPrice = view_.findViewById<EditText>(R.id.id_client_search_request_price)
+            val editTextDescription = view_.findViewById<EditText>(R.id.id_client_search_request_description)
+            val hourStartPicker = view_.findViewById<NumberPicker>(R.id.hourStartPicker)
+            val hourEndPicker = view_.findViewById<NumberPicker>(R.id.hourEndPicker)
+            val timeArrival= hourStartPicker.value.toString()+":00:00"
+            val timeDeparture= hourEndPicker.value.toString()+":00:00"
+
+
+            val inputFields = listOf(
+                autoCompleteTextViewFrom,
+                autoCompleteTextViewTo,
+                editTextType,
+                editTextDate,
+                peoplePicker,
+                weightPicker,
+                editTextPrice,
+                editTextDescription,
+                hourStartPicker,
+                hourEndPicker
+            )
+
+            val allFieldsFilled = inputFields.all { field ->
+                when (field) {
+                    is EditText -> field.text.isNotEmpty()
+                    is NumberPicker -> field.value.toString().isNotEmpty()
+                    else -> false
+                }
+            }
+
+            if (allFieldsFilled) {
+                val retrofitU = Retrofit.Builder()
+                    .baseUrl("https://api-fastporte.azurewebsites.net/api/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build()
+                val retrofitC = Retrofit.Builder()
+                    .baseUrl("https://api-fastporte.azurewebsites.net/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build()
+                val contractsService: ContractsService = retrofitC.create(ContractsService::class.java)
+                val args = arguments
+                if (args != null && args.containsKey("searchUserTemp")) {
+                    this.user = args.getSerializable("searchUserTemp") as User
+                }
+
+
+                val clientService: ClientsService = retrofitU.create(ClientsService::class.java)
+                clientService.getClient(SharedPreferences(view_.context).getValue("id")!!.toInt(),"json").enqueue(object : retrofit2.Callback<User> {
+                    override fun onResponse(call: Call<User>, response: Response<User>) {
+                        if(response.isSuccessful){
+                            client=response.body()!!
+                            contract= ContractPost(
+                                subject = editTextType.text.toString(),
+                                from = autoCompleteTextViewFrom.text.toString(),
+                                to = autoCompleteTextViewTo.text.toString(),
+                                contractDate = editTextDate.text.toString(),
+                                timeDeparture = setFormatTime(timeDeparture),
+                                timeArrival = setFormatTime(timeArrival),
+                                amount = editTextPrice.text.toString(),
+                                quantity = peoplePicker.text.toString(),
+                                description = editTextDescription.text.toString(),
+                                visible = true,
+                                client = client,
+                                driver = user,
+                                status = Status(0,"OFFER"),
+                                notification = Notification(0,false)
+                            )
+                            println("subject: ${contract.subject}")
+                            println("from: ${contract.from}")
+                            println("to: ${contract.to}")
+                            println("date: ${contract.contractDate}")
+                            println("timeDeparture: ${contract.timeDeparture}")
+                            println("timeArrival: ${contract.timeArrival}")
+                            println("amount: ${contract.amount}")
+                            println("quantity: ${contract.quantity}")
+                            println("visible: ${contract.visible}")
+                            println("client: ${contract.client}")
+                            println("driver: ${contract.driver}")
+                            println("status: ${contract.status}")
+                            println("notification: ${contract.notification}")
+
+                            contractsService.postContract(client.id,user.id,contract).enqueue(object :retrofit2.Callback<ContractPost>{
+                                override fun onResponse(call: Call<ContractPost>, response: Response<ContractPost>) {
+                                    if(response.isSuccessful){
+                                        /*val navController = Navigation.findNavController(view_)
+                                        navController.navigate(R.id.action_clientRequestServiceFragment_to_searchFragment)*/
+                                    }else{
+                                        println(response.code())
+                                        println(response.body())
+                                    }
+
+                                }
+
+                                override fun onFailure(call: Call<ContractPost>, t: Throwable) {
+                                    TODO("Not yet implemented")
+                                }
+                            })
+
+                        }else{
+                            println("--------FALSE")
+                        }
+                    }
+
+                    override fun onFailure(call: Call<User>, t: Throwable) {
+                        println("Fail")
+                    }
+                })
+
+
+            } else {
+                Toast.makeText(context,"Debe rellenar todos los campos",Toast.LENGTH_SHORT).show()
+            }
+
+
+
         }
     }
 
