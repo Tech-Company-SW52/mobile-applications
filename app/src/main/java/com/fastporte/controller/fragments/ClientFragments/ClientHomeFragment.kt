@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -43,10 +44,12 @@ class ClientHomeFragment : Fragment() {
         val btnViewHistory = view.findViewById<Button>(R.id.btnViewHistoryClient)
         val btnViewProfile = view.findViewById<Button>(R.id.btnViewProfileClient)
         btnViewHistory.setOnClickListener {
-            findNavController().navigate(R.id.action_id_client_home_fragment_to_id_client_contracts_fragment)
+            Navigation.findNavController(view).popBackStack()
+            Navigation.findNavController(view).navigate(R.id.id_client_contracts_fragment)
         }
         btnViewProfile.setOnClickListener {
-            findNavController().navigate(R.id.action_id_client_home_fragment_to_id_client_profile_fragment)
+            Navigation.findNavController(view).popBackStack()
+            Navigation.findNavController(view).navigate(R.id.id_client_profile_fragment)
         }
 
         loadData(view)
