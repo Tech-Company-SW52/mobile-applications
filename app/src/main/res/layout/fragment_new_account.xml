@@ -107,6 +107,18 @@
                     android:buttonTint="@color/fp_blue" />
 
                 <Button
+                    android:id="@+id/btTermsConditions"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:clickable="false"
+                    android:contextClickable="false"
+                    android:drawablePadding="10dp"
+                    android:text="@string/terms_and_conditions"
+                    android:textColor="#000000"
+                    android:textSize="12sp"
+                    android:theme="@style/CustomButtonTextInformation" />
+
+                <Button
                     android:id="@+id/btnSignUp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
