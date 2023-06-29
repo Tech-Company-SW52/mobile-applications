@@ -24,4 +24,11 @@ class CarrierPendingContractsFragment : Fragment() {
         val loadContracts = LoadContracts()
         loadContracts.getPendingContractsOfDriver(view, view.context)
     }
+
+
+    override fun onResume() {
+        super.onResume()
+        val loadContracts = LoadContracts()
+        loadContracts.getPendingContractsOfDriver(requireView(), requireContext())
+    }
 }

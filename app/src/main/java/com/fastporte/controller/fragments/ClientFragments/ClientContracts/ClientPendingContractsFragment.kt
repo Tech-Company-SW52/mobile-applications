@@ -23,6 +23,12 @@ class ClientPendingContractsFragment : Fragment() {
 
         val loadContracts = LoadContracts()
         loadContracts.getPendingContractsOfClient(view, view.context)
+    }
 
+    override fun onResume() {
+        super.onResume()
+
+        val loadContracts = LoadContracts()
+        loadContracts.getPendingContractsOfClient(requireView(), requireContext())
     }
 }
