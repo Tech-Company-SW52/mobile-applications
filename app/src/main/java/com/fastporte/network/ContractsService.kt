@@ -14,6 +14,12 @@ interface ContractsService {
         @Query("format") format: String
     ): Call<List<Contract>>
 
+    @GET("api/contracts/{id}")
+    fun getContractsById(
+        @Path("id") id: Int,
+        @Query("format") format: String
+    ): Call<Contract>
+
     @GET("api/contracts/pending/{user}/{id}")
     fun getPendingContractsByUserAndId(
         @Path("id") id: Int,
