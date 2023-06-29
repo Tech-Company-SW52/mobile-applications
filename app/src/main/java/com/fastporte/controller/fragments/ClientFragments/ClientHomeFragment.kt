@@ -43,6 +43,8 @@ class ClientHomeFragment : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_client_home, container, false)
         val btnViewHistory = view.findViewById<Button>(R.id.btnViewHistoryClient)
         val btnViewProfile = view.findViewById<Button>(R.id.btnViewProfileClient)
+        val btnFavoriteDrivers = view.findViewById<Button>(R.id.btnViewProfileClient2)
+
         btnViewHistory.setOnClickListener {
             Navigation.findNavController(view).popBackStack()
             Navigation.findNavController(view).navigate(R.id.id_client_contracts_fragment)
@@ -50,6 +52,10 @@ class ClientHomeFragment : Fragment() {
         btnViewProfile.setOnClickListener {
             Navigation.findNavController(view).popBackStack()
             Navigation.findNavController(view).navigate(R.id.id_client_profile_fragment)
+        }
+
+        btnFavoriteDrivers.setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.favoriteDriversFragment)
         }
 
         loadData(view)

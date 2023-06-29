@@ -55,12 +55,10 @@ class ClientHomePopularAdapter(var drivers: List<Driver>, val context: Context) 
             if(PopularDriverDB.getInstance(this.context).getPopularDriverDAO().existsPopularDriver(driver.id)){
                 PopularDriverDB.getInstance(this.context).getPopularDriverDAO().deletePopularDriver(driver)
                 holder.fabFavorite.setImageResource(R.drawable.baseline_favorite_border_24)
-                return@setOnClickListener
             }
             else{
                 PopularDriverDB.getInstance(this.context).getPopularDriverDAO().insertPopularDriver(driver)
                 holder.fabFavorite.setImageResource(R.drawable.baseline_favorite_24)
-                return@setOnClickListener
             }
 
         }
