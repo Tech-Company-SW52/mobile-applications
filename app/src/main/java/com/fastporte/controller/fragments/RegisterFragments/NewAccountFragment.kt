@@ -1,7 +1,9 @@
 package com.fastporte.controller.fragments.RegisterFragments
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.text.Html
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.fastporte.Interface.RegisterInterface
 import com.fastporte.controller.activities.LoginActivity
@@ -28,9 +31,18 @@ class NewAccountFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view: View = inflater.inflate(R.layout.fragment_new_account, container, false)
+
+        val termsConditions = view.findViewById<Button>(R.id.btTermsConditions)
+
+        termsConditions.setOnClickListener {
+            val url =
+                "https://www.freeprivacypolicy.com/live/8c9bf7ae-7d09-424d-8243-d6f04cc8c058"
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(url)
+            startActivity(intent)
+        }
         register(view)
         //Inflate the layout for this fragment
-
         return view
     }
 
@@ -89,10 +101,7 @@ class NewAccountFragment : Fragment() {
                         override fun onFailure(call: Call<User>, t: Throwable) {
                             TODO("Not yet implemented")
                         }
-
-
                     })
-
                 } else {
                     driverUser = User(
                         tempInfoUser.birthdate,
@@ -118,12 +127,9 @@ class NewAccountFragment : Fragment() {
                         override fun onFailure(call: Call<User>, t: Throwable) {
                             TODO("Not yet implemented")
                         }
-
-
                     })
                 }
             }
         }
     }
-
 }

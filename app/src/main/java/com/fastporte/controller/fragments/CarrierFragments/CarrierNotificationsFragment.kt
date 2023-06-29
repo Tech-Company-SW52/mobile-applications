@@ -91,8 +91,9 @@ class CarrierNotificationsFragment : Fragment(),
         //CODIGO
         if (driverNotification.status.status == "OFFER") {
 
+            Navigation.findNavController(view).popBackStack()
             Navigation.findNavController(view)
-                .navigate(R.id.action_id_carrier_notifications_fragment_to_id_carrier_contracts_fragment)
+                .navigate(R.id.id_carrier_contracts_fragment)
         }
         if (driverNotification.status.status == "HISTORY") {
 

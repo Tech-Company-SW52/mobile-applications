@@ -1,6 +1,7 @@
 package com.fastporte.controller.fragments.ClientFragments
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,6 +14,7 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Filter
 import android.widget.Toast
 import androidx.navigation.Navigation
 import com.fastporte.R
@@ -33,7 +35,7 @@ class SearchFragment : Fragment() {
 
         val autoComplete: AutoCompleteTextView = view.findViewById(R.id.auto_complete)
 
-        val adapter = context?.let { ArrayAdapter<String>(it, R.layout.list_item, items) }
+        val adapter = context?.let { VehicleAdapter<String>(it, R.layout.list_item, items) }
 
         autoComplete.setAdapter(adapter)
 
@@ -67,6 +69,25 @@ class SearchFragment : Fragment() {
         })
 
         return view
+    }
+
+    class VehicleAdapter<String>(context: Context, layout: Int, values: List<String>): ArrayAdapter<String> (context,layout,values) {
+        val noFilter = object: Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val results = FilterResults()
+                results.values = values
+                results.count = values.size
+                return results
+            }
+
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                notifyDataSetChanged()
+            }
+        }
+
+        override fun getFilter(): Filter {
+            return noFilter
+        }
     }
 
     private fun information(type_vehicle: String, Size: String) {
