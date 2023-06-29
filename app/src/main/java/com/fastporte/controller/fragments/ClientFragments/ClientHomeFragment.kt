@@ -89,7 +89,6 @@ class ClientHomeFragment : Fragment() {
                 Log.d("profileInformationFragment", t.toString())
             }
 
-
         })
 
         val request3 = homeService.getHistoryContractsByUserAndId(
