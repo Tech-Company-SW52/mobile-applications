@@ -10,19 +10,38 @@ import com.fastporte.R
 import com.fastporte.helpers.SharedPreferences
 import com.fastporte.models.JsonResponse
 import com.fastporte.network.GeoCodeService
+import org.osmdroid.views.MapView
 
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import org.osmdroid.config.Configuration
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory
+import org.osmdroid.util.GeoPoint
+import org.osmdroid.views.overlay.Marker
 
 
 class Fragment_Map : Fragment() {
 
+    private lateinit var mapView: MapView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        // Inflate the layout for this fragment
+
+        val view: View = inflater.inflate(R.layout.fragment__map, container, false)
+        // Configuración de OpenStreetMap
+        val context = requireContext().applicationContext
+        Configuration.getInstance().load(context, context.getSharedPreferences("OpenStreetMapPrefs", 0))
+
+        mapView = view.findViewById(R.id.mapView)
+
+        // Configuración del mapa
+        mapView.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE)
+        mapView.setMultiTouchControls(true)
 
         val _context = requireContext()
         val sharedPreferences = SharedPreferences(_context)
@@ -63,6 +82,7 @@ class Fragment_Map : Fragment() {
                         if (firstGeometry != null) {
                             FirstLocationLat = firstGeometry.lat
                             FirstLocationLng = firstGeometry.lng
+                            Map1(mapView,FirstLocationLat,FirstLocationLng)
                             // Utiliza los valores de lat y lng como desees
                             Log.d("TAG", "lat1 y lng1: " + FirstLocationLat+" -  "+FirstLocationLng )
                         }
@@ -95,6 +115,7 @@ class Fragment_Map : Fragment() {
                         if (firstGeometry != null) {
                             SecondLocationLat = firstGeometry.lat
                             SecondLocationLng = firstGeometry.lng
+                            Map2(mapView,SecondLocationLat,SecondLocationLng)
                             Log.d("TAG", "lat2 y lng2: " + SecondLocationLat+" -  "+SecondLocationLng )
 
                             // Utiliza los valores de lat y lng como desees
@@ -111,13 +132,37 @@ class Fragment_Map : Fragment() {
 
 
 
-        // Inflate the layout for this fragment
-
-        val view: View = inflater.inflate(R.layout.fragment__map, container, false)
 
 
 
         return view
+    }
+    private fun Map1(mapView : MapView, FirstLocationLat: Double, FirstLocationLng: Double){
+
+        // Ubicaciones por latitud y longitud
+        val location1 = GeoPoint(FirstLocationLat, FirstLocationLng) // Ejemplo: San miguel
+
+
+        // Mostrar ubicaciones en el mapa
+        mapView.controller.setZoom(15.0)
+        mapView.controller.setCenter(location1)
+
+        // Agregar marcadores para las ubicaciones
+        val marker1 = Marker(mapView)
+        marker1.position = location1
+        marker1.title = "Ubicación 1"
+        mapView.overlays.add(marker1)
+
+    }
+    private fun Map2(mapView : MapView, SecondLocationLat: Double, SecondLocationLng: Double){
+
+        val location2 = GeoPoint(SecondLocationLat, SecondLocationLng) // Ejemplo: Miraflores
+
+
+        val marker2 = Marker(mapView)
+        marker2.position = location2
+        marker2.title = "Ubicación 2"
+        mapView.overlays.add(marker2)
     }
 
 }
