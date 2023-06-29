@@ -8,7 +8,11 @@
         android:id="@+id/id_client_contracts_fragment"
         android:name="com.fastporte.controller.fragments.ClientFragments.ClientContractsFragment"
         android:label="Contracts"
-        tools:layout="@layout/fragment_client_contracts" />
+        tools:layout="@layout/fragment_client_contracts" >
+        <action
+            android:id="@+id/action_id_client_contracts_fragment_to_fragment_Map"
+            app:destination="@id/fragment_Map" />
+    </fragment>
     <fragment
         android:id="@+id/id_client_home_fragment"
         android:name="com.fastporte.controller.fragments.ClientFragments.ClientHomeFragment"
@@ -68,6 +72,16 @@
             app:destination="@id/id_client_notifications_fragment" />
     </fragment>
     <fragment
+
+        android:id="@+id/fragment_Map"
+        android:name="com.fastporte.controller.fragments.Fragment_Map"
+        android:label="Map"
+        tools:layout="@layout/fragment__map">
+        <action
+            android:id="@+id/action_fragment_Map_to_id_client_contracts_fragment"
+            app:destination="@id/id_client_contracts_fragment" />
+    </fragment>
+      <fragment
         android:id="@+id/favoriteDriversFragment"
         android:name="com.fastporte.controller.fragments.ClientFragments.FavoriteDriversFragment"
         android:label="My Favorite Drivers"
@@ -75,5 +89,6 @@
         <action
             android:id="@+id/action_favoriteDriversFragment_to_id_client_home_fragment"
             app:destination="@id/id_client_home_fragment" />
+
     </fragment>
 </navigation>

@@ -6,8 +6,10 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.fastporte.R
+import com.fastporte.adapter.ClientNotificationsAdapter
 import com.fastporte.helpers.BaseURL
 import com.fastporte.helpers.SharedPreferences
 import com.fastporte.network.ContractsService
@@ -19,8 +21,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.text.SimpleDateFormat
-import java.util.Date
 
 class ContractCardPrototype(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val retrofit: Retrofit = Retrofit.Builder()
@@ -43,6 +43,8 @@ class ContractCardPrototype(itemView: View) : RecyclerView.ViewHolder(itemView) 
     private val civUserCC: CircleImageView = itemView.findViewById(R.id.civUserCC)
     private val sharedPreferences = SharedPreferences(itemView.context)
 
+
+
     fun responseService(request: Call<Contract>) {
         request.enqueue(object : Callback<Contract> {
             override fun onFailure(call: Call<Contract>, t: Throwable) {
@@ -55,6 +57,34 @@ class ContractCardPrototype(itemView: View) : RecyclerView.ViewHolder(itemView) 
             ) {
                 if (response.isSuccessful) {
                     val contract: Contract = response.body()!!
+                    Log.d("Activity success", "Success: $contract")
+                } else {
+                    Log.d("Activity fail", "Error: " + response.code())
+                }
+            }
+        })
+    }
+
+    fun responseServiceRedired(request: Call<Contract>, view_: View) {
+        request.enqueue(object : Callback<Contract> {
+            override fun onFailure(call: Call<Contract>, t: Throwable) {
+                Log.d("Activity Fail", "Error: $t")
+            }
+
+            override fun onResponse(
+                call: Call<Contract>,
+                response: Response<Contract>
+            ) {
+                if (response.isSuccessful) {
+                    val contract: Contract = response.body()!!
+                    saveSharedPreferences("to",contract.to, view_)
+                    saveSharedPreferences("from", contract.from, view_)
+
+                    Navigation.findNavController(view_)
+                        .navigate(
+                            R.id.action_id_client_contracts_fragment_to_fragment_Map
+                        )
+
                     Log.d("Activity success", "Success: $contract")
                 } else {
                     Log.d("Activity fail", "Error: " + response.code())
@@ -103,6 +133,13 @@ class ContractCardPrototype(itemView: View) : RecyclerView.ViewHolder(itemView) 
                 val request2 = contractsService.changeVisible(contract.id, "json")
                 responseService(request2)
             }
+            val btMapClient = itemView.findViewById<Button>(R.id.btMapClient)
+            btMapClient.setOnClickListener {
+                // Traer la información del contrato para guardarlo y redirigirlo al fragment
+                val request = contractsService.getContractsById(contract.id, "json")
+                responseServiceRedired(request,itemView)
+            }
+
         } else {
             tvClientName.text = "${contract.client.name} ${contract.client.lastname}"
             tvClientPhone.text = "Phone: ${contract.client.phone}"
@@ -138,5 +175,10 @@ class ContractCardPrototype(itemView: View) : RecyclerView.ViewHolder(itemView) 
                 }
             }
         }
+    }
+    private fun saveSharedPreferences(KeyName: String, value: String, view: View) {
+        val sharedPreferences = SharedPreferences(view.context)
+        sharedPreferences.removeValue(KeyName)
+        sharedPreferences.save(KeyName, value)
     }
 }
