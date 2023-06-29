@@ -9,6 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -37,21 +40,29 @@ class CarrierHomeFragment : Fragment() {
 
     lateinit var popularRecyclerView: RecyclerView
     lateinit var recentRecyclerView: RecyclerView
+    private lateinit var navController: NavController
 
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         val view: View = inflater.inflate(R.layout.fragment_carrier_home, container, false)
+        //super.onViewCreated(view, savedInstanceState)
+        //navController = Navigation.findNavController(view)
         val btnViewHistory = view.findViewById<Button>(R.id.btnViewHistory)
         val btnViewProfile = view.findViewById<Button>(R.id.btnViewProfile)
 
         btnViewHistory.setOnClickListener {
-            findNavController().navigate(R.id.action_id_carrier_home_fragment_to_id_carrier_contracts_fragment)
+            Navigation.findNavController(view).popBackStack()
+            Navigation.findNavController(view).navigate(R.id.id_carrier_contracts_fragment)
+            //navController.navigate(R.id.action_id_carrier_home_fragment_to_id_carrier_contracts_fragment)
         }
         btnViewProfile.setOnClickListener {
-            findNavController().navigate(R.id.action_id_carrier_home_fragment_to_id_carrier_profile_fragment2)
+            Navigation.findNavController(view).popBackStack()
+            Navigation.findNavController(view).navigate(R.id.id_carrier_profile_fragment)
+            //navController.navigate(R.id.action_id_carrier_home_fragment_to_id_carrier_profile_fragment2)
         }
         loadData(view)
         // Inflate the layout for this fragment

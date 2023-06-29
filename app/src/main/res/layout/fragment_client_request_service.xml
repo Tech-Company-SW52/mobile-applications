@@ -69,6 +69,7 @@
                     android:textSize="15dp" />
 
                 <EditText
+                    android:id="@+id/id_client_search_request_type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="35dp"
@@ -280,6 +281,7 @@
                     android:textSize="15dp" />
 
                 <EditText
+                    android:id="@+id/id_client_search_request_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="35dp"
@@ -302,6 +304,7 @@
                     android:textSize="15dp" />
 
                 <EditText
+                    android:id="@+id/id_client_search_request_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="15dp" />

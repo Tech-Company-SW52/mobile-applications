@@ -24,4 +24,10 @@ class CarrierOfferContractsFragment : Fragment() {
         val loadContracts = LoadContracts()
         loadContracts.getOfferContracts(view, view.context)
     }
+
+    override fun onResume() {
+        super.onResume()
+        val loadContracts = LoadContracts()
+        loadContracts.getOfferContracts(requireView(), requireContext())
+    }
 }

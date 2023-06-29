@@ -6,10 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".controller.fragments.CarrierFragments.CarrierReceivePayFragment">
 
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">

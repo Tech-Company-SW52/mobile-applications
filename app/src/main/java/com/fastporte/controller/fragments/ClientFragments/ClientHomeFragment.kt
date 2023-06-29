@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -42,11 +43,19 @@ class ClientHomeFragment : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_client_home, container, false)
         val btnViewHistory = view.findViewById<Button>(R.id.btnViewHistoryClient)
         val btnViewProfile = view.findViewById<Button>(R.id.btnViewProfileClient)
+        val btnFavoriteDrivers = view.findViewById<Button>(R.id.btnViewProfileClient2)
+
         btnViewHistory.setOnClickListener {
-            findNavController().navigate(R.id.action_id_client_home_fragment_to_id_client_contracts_fragment)
+            Navigation.findNavController(view).popBackStack()
+            Navigation.findNavController(view).navigate(R.id.id_client_contracts_fragment)
         }
         btnViewProfile.setOnClickListener {
-            findNavController().navigate(R.id.action_id_client_home_fragment_to_id_client_profile_fragment)
+            Navigation.findNavController(view).popBackStack()
+            Navigation.findNavController(view).navigate(R.id.id_client_profile_fragment)
+        }
+
+        btnFavoriteDrivers.setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.favoriteDriversFragment)
         }
 
         loadData(view)
@@ -85,7 +94,6 @@ class ClientHomeFragment : Fragment() {
             override fun onFailure(call: Call<List<Driver>>, t: Throwable) {
                 Log.d("profileInformationFragment", t.toString())
             }
-
 
         })
 

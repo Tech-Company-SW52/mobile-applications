@@ -1,11 +1,10 @@
 package com.fastporte.network
 
 import com.fastporte.models.Contract
+import com.fastporte.models.ContractPost
+import com.fastporte.models.Experience
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.PUT
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ContractsService {
     @GET("api/contracts/offer/driver/{id}")
@@ -55,4 +54,8 @@ interface ContractsService {
         @Path("idContractStatus") idContractStatus: Int,
         @Query("format") format: String
     ): Call<Contract>
+
+    @POST("api/contracts/add/{clientId}/{driverId}")
+    fun postContract(@Path("clientId") clientId: Int,
+                     @Path("driverId") driverId: Int, @Body contract: ContractPost?): Call<ContractPost>
 }

@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_id_client_home_fragment_to_id_client_contracts_fragment"
             app:destination="@id/id_client_contracts_fragment" />
+        <action
+            android:id="@+id/action_id_client_home_fragment_to_favoriteDriversFragment"
+            app:destination="@id/favoriteDriversFragment" />
     </fragment>
     <fragment
         android:id="@+id/id_client_profile_fragment"
@@ -69,6 +72,7 @@
             app:destination="@id/id_client_notifications_fragment" />
     </fragment>
     <fragment
+
         android:id="@+id/fragment_Map"
         android:name="com.fastporte.controller.fragments.Fragment_Map"
         android:label="Map"
@@ -76,5 +80,15 @@
         <action
             android:id="@+id/action_fragment_Map_to_id_client_contracts_fragment"
             app:destination="@id/id_client_contracts_fragment" />
+    </fragment>
+      <fragment
+        android:id="@+id/favoriteDriversFragment"
+        android:name="com.fastporte.controller.fragments.ClientFragments.FavoriteDriversFragment"
+        android:label="My Favorite Drivers"
+        tools:layout="@layout/fragment_favorite_drivers" >
+        <action
+            android:id="@+id/action_favoriteDriversFragment_to_id_client_home_fragment"
+            app:destination="@id/id_client_home_fragment" />
+
     </fragment>
 </navigation>

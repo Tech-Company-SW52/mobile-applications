@@ -30,4 +30,5 @@
     <string name="from_tv">From:</string>
     <string name="to_tv">To:</string>
     <string name="service_tv">Service:</string>
+    <string name="terms_and_conditions">Terms and Conditions</string>
 </resources>

@@ -2,9 +2,7 @@ package com.fastporte.network
 
 import com.fastporte.models.User
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface DriversService {
     @GET("drivers")
@@ -12,4 +10,7 @@ interface DriversService {
 
     @GET("drivers/{id}")
     fun getDriver(@Path("id") id: Int, @Query("format") format: String): Call<User>
+
+    @PUT("drivers/{id}")
+    fun updateDriver(@Path("id") id: Int, @Body user: User?): Call<User>
 }

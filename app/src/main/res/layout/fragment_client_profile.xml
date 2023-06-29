@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/profile_layout">
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,15 +26,17 @@
 
     <TextView
         android:id="@+id/tvProfileDescription"
-        android:layout_width="221dp"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:inputType="textMultiLine"
         android:text="Hola, mi nombre es Manuel y busco transporte."
         android:textAlignment="center"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvProfileName" />
 
@@ -66,7 +72,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="376dp"
         android:text="Edit Profile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,3 +91,4 @@
         app:layout_constraintTop_toBottomOf="@+id/tlProfile" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
