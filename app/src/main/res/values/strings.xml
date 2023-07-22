@@ -1,5 +1,34 @@
 <resources>
-    <string name="app_name">FastPort</string>
+    <string name="app_name">FastPorte</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_vehicle">Add Vehicle</string>
+    <string name="vehicle_type">vehicle type</string>
+    <string name="vehicle_capacity">vehicle capacity</string>
+    <string name="vehicle_photo">vehicle photo</string>
+    <string name="save">Save</string>
+    <string name="password"><u>Forgot your password?</u></string>
+    <string name="create"><u>Create account</u></string>
+    <string name="upload_photo"><u>Upload photo</u></string>
+    <string name="upload_document"><u>Upload document</u></string>
+    <string name="add_experience">Add experience</string>
+    <string name="experience_job">Experience Job</string>
+    <string name="experience_in_years">Job in years</string>
+
+    <string name="title_contract_accepted">Contract accepted!</string>
+    <string name="details">Details</string>
+    <string name="payment_details">Payment Details</string>
+    <string name="more">More</string>
+    <string name="recent_contracts">Recent Contracts</string>
+    <string name="popular_drivers">Popular Drivers</string>
+    <string name="client_data">Client Data:</string>
+    <string name="lugar">Centro de Lima</string>
+    <string name="destino">Huancayo</string>
+    <string name="type_service">Touristic</string>
+    <string name="name_client">Gianella</string>
+    <string name="name_tv">Name:</string>
+    <string name="from_tv">From:</string>
+    <string name="to_tv">To:</string>
+    <string name="service_tv">Service:</string>
+    <string name="terms_and_conditions">Terms and Conditions</string>
 </resources>

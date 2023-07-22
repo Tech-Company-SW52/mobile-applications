@@ -8,4 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="fp_blue">#0F15A3</color>
+    <color name="accept">#1ACC8D</color>
+    <color name="decline">#DE1919</color>
+    <color name="amount">#264986</color>
+    <color name="checkbox_stroke_checked">#0F15A3</color> <!-- Rosa -->
+    <color name="checkbox_bg_checked">#0F15A3</color> <!-- Naranja claro -->
+    <color name="checkbox_stroke_unchecked">#0F15A3</color> <!-- Gris -->
+    <color name="checkbox_bg_unchecked">#0F15A3</color> <!-- Blanco -->
 </resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/search_vehicle"
+    app:startDestination="@id/searchFragment">
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.fastporte.controller.fragments.ClientFragments.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_searchResultFragment"
+            app:destination="@id/searchResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchResultFragment"
+        android:name="com.fastporte.controller.fragments.ClientFragments.SearchResultFragment"
+        android:label="fragment_search_result"
+        tools:layout="@layout/fragment_search_result">
+        <action
+            android:id="@+id/action_searchResultFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_searchResultFragment_to_clientSearchDriverProfile"
+            app:destination="@id/clientSearchDriverProfile" />
+    </fragment>
+    <fragment
+        android:id="@+id/clientSearchDriverProfile"
+        android:name="com.fastporte.controller.fragments.ClientFragments.ClientSearchDriverProfile"
+        android:label="fragment_client_search_driver_profile"
+        tools:layout="@layout/fragment_client_search_driver_profile">
+        <action
+            android:id="@+id/action_clientSearchDriverProfile_to_clientRequestServiceFragment"
+            app:destination="@id/clientRequestServiceFragment" />
+        <action
+            android:id="@+id/action_clientSearchDriverProfile_to_searchResultFragment"
+            app:destination="@id/searchResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/clientRequestServiceFragment"
+        android:name="com.fastporte.controller.fragments.ClientFragments.ClientRequestServiceFragment"
+        android:label="fragment_client_request_service"
+        tools:layout="@layout/fragment_client_request_service">
+        <action
+            android:id="@+id/action_clientRequestServiceFragment_to_clientSearchDriverProfile2"
+            app:destination="@id/clientSearchDriverProfile" />
+        <action
+            android:id="@+id/action_clientRequestServiceFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
+</navigation>

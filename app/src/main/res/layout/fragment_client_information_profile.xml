@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ClientInformationProfile"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controller.fragments.ClientFragments.ClientProfile.ClientInformationProfileFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+    <Button
+        android:id="@+id/btName"
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="48dp"
+        android:clickable="false"
+        android:contextClickable="false"
+        android:text="Manuel Rodriguez"
+        android:textColor="#000000"
+        android:theme="@style/CustomButtonTextInformation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Age"
+        android:textSize="12sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btAge"
+        app:layout_constraintEnd_toStartOf="@+id/btAge"
+        app:layout_constraintHorizontal_bias="0.471"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btAge"
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="48dp"
+        android:clickable="false"
+        android:contextClickable="false"
+        android:text="54 years old"
+        android:textColor="#000000"
+        android:theme="@style/CustomButtonTextInformation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btName" />
+
+    <TextView
+        android:id="@+id/tvPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone"
+        android:textSize="12sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btPhone"
+        app:layout_constraintEnd_toStartOf="@+id/btPhone"
+        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btEmail"
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="48dp"
+        android:clickable="false"
+        android:contextClickable="false"
+        android:text="manuel@gmail.com"
+        android:textColor="#000000"
+        android:theme="@style/CustomButtonTextInformation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btAge" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textSize="12sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btName"
+        app:layout_constraintEnd_toStartOf="@+id/btName"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btPhone"
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="48dp"
+        android:clickable="false"
+        android:contextClickable="false"
+        android:text="985421637"
+        android:textColor="#000000"
+        android:theme="@style/CustomButtonTextInformation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btEmail" />
+
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textSize="12sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btEmail"
+        app:layout_constraintEnd_toStartOf="@+id/btEmail"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

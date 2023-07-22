@@ -7,27 +7,29 @@
     tools:openDrawer="start"
     android:id="@+id/client_drawer"
     android:fitsSystemWindows="true"
-    tools:context=".ClientActivity">
+    tools:context=".controller.activities.ClientActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <include
             layout="@layout/toolbar"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
+
         <fragment
             android:id="@+id/clientFragmentContainerView"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:defaultNavHost="true"
-            app:navGraph="@navigation/client_nav_graph"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:navGraph="@navigation/client_nav_graph" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -37,8 +39,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/header_layout"
-        app:menu="@menu/client_menu"
 
-        />
+        app:menu="@menu/client_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="3dp"
+    android:layout_margin="10dp"
+    android:id="@+id/cv_search_comment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="10dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_search_comment_profile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_search_comment_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="26dp"
+            app:layout_constraintStart_toEndOf="@+id/iv_search_comment_profile"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Name" />
+
+        <TextView
+            android:id="@+id/tv_search_comment_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toEndOf="@+id/iv_search_comment_profile"
+            app:layout_constraintTop_toBottomOf="@+id/tv_search_comment_name"
+            android:textSize="10dp"
+            tools:text="Comment" />
+
+        <TextView
+            android:id="@+id/tv_search_comment_start_puntuation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:text="5"
+            app:layout_constraintEnd_toStartOf="@+id/iv_search_comment_start"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_search_comment_start"
+            android:layout_width="22dp"
+            android:layout_height="19dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginEnd="16dp"
+            app:tint="@color/fp_blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_star_24" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

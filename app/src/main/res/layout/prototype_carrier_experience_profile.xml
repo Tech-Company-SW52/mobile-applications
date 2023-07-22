@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <Button
+        android:id="@+id/btJob"
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:clickable="false"
+        android:contextClickable="false"
+        android:text="Tourism"
+        android:textColor="#000000"
+        android:theme="@style/CustomButtonTextInformation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.91"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="Time"
+        android:textSize="12sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btTime"
+        app:layout_constraintEnd_toStartOf="@+id/btTime"
+        app:layout_constraintHorizontal_bias="0.346"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvJob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="Job"
+        android:textSize="12sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btJob"
+        app:layout_constraintEnd_toStartOf="@+id/btJob"
+        app:layout_constraintHorizontal_bias="0.327"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btTime"
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="false"
+        android:contextClickable="false"
+        android:text="41 years old"
+        android:textColor="#000000"
+        android:theme="@style/CustomButtonTextInformation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.91"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btJob"
+        app:layout_constraintVertical_bias="1.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

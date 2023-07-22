@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".controller.fragments.RegisterFragments.FillInformationFragment"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="75dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="80dp"
+                    android:layout_height="71dp"
+                    android:src="@drawable/fastport_logo" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="327dp"
+                    android:layout_height="104dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Fill in your user information!"
+                    android:textAlignment="center"
+                    android:textColor=" #093649"
+                    android:textSize="30sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="start"
+                android:paddingHorizontal="25dp"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Name"
+                    android:textColor="#38404F"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/txtName"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:background="@drawable/edit_text_background"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:paddingStart="10dp"
+                    android:hint="Fullname"
+                    android:textColor="#ACACAC" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Last Name"
+                    android:textColor="#38404F"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="15dp" />
+
+                <EditText
+                    android:id="@+id/txtLastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:background="@drawable/edit_text_background"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:paddingStart="10dp"
+                    android:hint="Fullname"
+                    android:textColor="#ACACAC" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Date of birth"
+                    android:textColor="#38404F"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="15dp" />
+
+                <EditText
+                    android:id="@+id/txtdateBirth"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:background="@drawable/edit_text_background"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:paddingStart="10dp"
+                    android:hint="yyyy-mm-dd"
+                    android:textColor="#ACACAC" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="15dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="0.8"
+                        android:layout_marginRight="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="Country"
+                            android:textColor="#38404F"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <Spinner
+                            android:id="@+id/spCountry"
+                            android:layout_width="match_parent"
+                            android:layout_height="38dp"
+                            android:drawablePadding="10dp"
+                            android:ems="10"
+                            android:background="@drawable/edit_text_background"
+                            android:inputType="textPersonName"
+                            android:paddingStart="10dp"
+                            android:textColor="#ACACAC" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="0.8"
+                        android:layout_marginLeft="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="Phone number"
+                            android:textColor="#38404F"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/txtPhoneNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="38dp"
+                            android:background="@drawable/edit_text_background"
+                            android:drawablePadding="10dp"
+                            android:ems="10"
+                            android:inputType="textPersonName"
+                            android:paddingStart="10dp"
+                            android:hint="+51 999999999"
+                            android:textColor="#ACACAC" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/outline_account_circle_24"
+                        app:tint="#264986" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/baseline_cloud_upload_24"
+                        app:tint="#0760A0"
+                        android:layout_marginLeft="8dp" />
+
+                    <TextView
+                        android:id="@+id/txtUploadPhoto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="@string/upload_photo"
+                        android:textAllCaps="false"
+                        android:gravity="center"
+                        android:layout_marginLeft="4dp"
+                        android:textColor="#0760A0" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="User Type"
+                    android:textColor="#38404F"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spUserType"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:background="@drawable/edit_text_background"
+                    android:drawablePadding="10dp"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:paddingStart="10dp"
+                    android:hint="Select type"
+                    android:textColor="#ACACAC" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Identity card"
+                    android:textColor="#38404F"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="15dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="15dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="0.8"
+                        android:layout_marginRight="10dp">
+
+                        <Spinner
+                            android:id="@+id/spIdentityCardType"
+                            android:layout_width="match_parent"
+                            android:layout_height="38dp"
+                            android:background="@drawable/edit_text_background"
+                            android:drawablePadding="10dp"
+                            android:ems="10"
+                            android:inputType="textPersonName"
+                            android:paddingStart="10dp"
+                            android:hint="Select type"
+                            android:textColor="#ACACAC" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="0.8"
+                        android:layout_marginLeft="10dp">
+
+                        <EditText
+                            android:id="@+id/txtIdentityCardTypeNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="38dp"
+                            android:background="@drawable/edit_text_background"
+                            android:drawablePadding="10dp"
+                            android:ems="10"
+                            android:inputType="textPersonName"
+                            android:paddingStart="10dp"
+                            android:hint="49453765"
+                            android:textColor="#ACACAC" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/baseline_cloud_upload_24"
+                        app:tint="#0760A0"
+                        android:layout_marginLeft="8dp" />
+
+                    <TextView
+                        android:id="@+id/txtUploadDocument"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="@string/upload_document"
+                        android:textAllCaps="false"
+                        android:gravity="center"
+                        android:layout_marginLeft="4dp"
+                        android:textColor="#0760A0" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnNext2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Continue" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:orientation="vertical" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

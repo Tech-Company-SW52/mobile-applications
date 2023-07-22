@@ -6,22 +6,64 @@
     app:startDestination="@id/id_carrier_home_fragment">
     <fragment
         android:id="@+id/id_carrier_contracts_fragment"
-        android:name="com.fastport.CarrierFragments.CarrierContractsFragment"
+        android:name="com.fastporte.controller.fragments.CarrierFragments.CarrierContractsFragment"
         android:label="Contracts"
         tools:layout="@layout/fragment_carrier_contracts" />
     <fragment
         android:id="@+id/id_carrier_home_fragment"
-        android:name="com.fastport.CarrierFragments.CarrierHomeFragment"
+        android:name="com.fastporte.controller.fragments.CarrierFragments.CarrierHomeFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_carrier_home" />
+        tools:layout="@layout/fragment_carrier_home">
+        <action
+            android:id="@+id/action_id_carrier_home_fragment_to_id_carrier_profile_fragment2"
+
+            app:destination="@id/id_carrier_profile_fragment" />
+        <action
+            android:id="@+id/action_id_carrier_home_fragment_to_id_carrier_contracts_fragment"
+
+            app:destination="@id/id_carrier_contracts_fragment" />
+    </fragment>
     <fragment
         android:id="@+id/id_carrier_profile_fragment"
-        android:name="com.fastport.CarrierFragments.CarrierProfileFragment"
+        android:name="com.fastporte.controller.fragments.CarrierFragments.CarrierProfileFragment"
         android:label="My profile"
         tools:layout="@layout/fragment_carrier_profile" />
     <fragment
         android:id="@+id/id_carrier_support_fragment"
-        android:name="com.fastport.CarrierFragments.CarrierSupportFragment"
+        android:name="com.fastporte.controller.fragments.ClientFragments.ClientSupportFragment"
         android:label="Support"
-        tools:layout="@layout/fragment_carrier_support" />
+        tools:layout="@layout/fragment_client_support">
+
+        <action
+            android:id="@+id/action_id_carrier_support_fragment_to_id_client_faq_fragment"
+            app:destination="@id/id_client_faq_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/id_client_faq_fragment"
+        android:name="com.fastporte.controller.fragments.Faq.FaqFragment"
+        android:label="FAQ"
+        tools:layout="@layout/fragment_faq" />
+    <fragment
+        android:id="@+id/id_carrier_notifications_fragment"
+        android:name="com.fastporte.controller.fragments.CarrierFragments.CarrierNotificationsFragment"
+        android:label="Notifications"
+        tools:layout="@layout/fragment_carrier_notifications">
+        <action
+            android:id="@+id/action_id_carrier_notifications_fragment_to_id_carrier_contracts_fragment"
+            app:destination="@id/id_carrier_contracts_fragment" />
+        <action
+            android:id="@+id/action_id_carrier_notifications_fragment_to_carrierReceivePayFragment"
+            app:destination="@id/carrierReceivePayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/carrierReceivePayFragment"
+        android:name="com.fastporte.controller.fragments.CarrierFragments.CarrierReceivePayFragment"
+        android:label="Receive Pay"
+        tools:layout="@layout/fragment_carrier_receive_pay">
+        <action
+            android:id="@+id/action_carrierReceivePayFragment_to_id_carrier_notifications_fragment"
+            app:destination="@id/id_carrier_notifications_fragment" />
+    </fragment>
+
 </navigation>

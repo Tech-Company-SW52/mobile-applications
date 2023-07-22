@@ -1,16 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CarrierFragments.CarrierHomeFragment"
+    tools:context=".controller.fragments.CarrierFragments.CarrierHomeFragment"
     android:layout_marginTop="60dp">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civDriverProfile"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/fastport_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnViewHistory"
+        android:layout_width="144dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="20dp"
+        android:text="View History"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvUser"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnViewProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="215dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="20dp"
+        android:background="#00FFFFFF"
+        android:fontFamily="@font/poppins_bold"
+        android:text="My Account"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
     <TextView
+        android:id="@+id/tvNameProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="115dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Hi"
+        android:textColor="#000000"
+        android:textSize="34sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvPopularDrivers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="170dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/popular_drivers"
+        android:textColor="#08445C"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tvRecentContracts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="380dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/recent_contracts"
+        android:textColor="#08445C"
+        android:textSize="20sp" />
+    <!--
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="162dp"
+            android:layout_marginRight="20dp"
+            android:text="More"
+            android:textAllCaps="false"
+            android:textColor="#A4000000"
+            android:textStyle="bold" />
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="375dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/more"
+            android:textAllCaps="false"
+            android:textColor="#A4000000"
+            android:textStyle="bold" />
+    -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/populaRVdriver"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Carrier Home"
-        android:gravity="center"/>
+        android:layout_marginTop="193dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/contractsRVdriver"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="405dp" />
 
 </FrameLayout>
